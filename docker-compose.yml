@@ -1,0 +1,58 @@
+# PAES Pro — un solo comando: docker compose up -d
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: paes-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: paes
+      POSTGRES_PASSWORD: paes_local_dev
+      POSTGRES_DB: paes_pro
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U paes -d paes_pro']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    container_name: paes-api
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: '3000'
+      DATABASE_URL: postgres://paes:paes_local_dev@postgres:5432/paes_pro
+      WEB_ORIGIN: http://localhost:5173
+      JWT_SECRET: ${JWT_SECRET:-cambia-esto-en-produccion-por-favor-32chars}
+      REFRESH_SECRET: ${REFRESH_SECRET:-cambia-esto-en-produccion-refresh-secre}
+      SMTP_HOST: ${SMTP_HOST:-localhost}
+    ports:
+      - '3000:3000'
+    volumes:
+      - apiuploads:/app/uploads
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL:-http://localhost:3000/api/v1}
+    container_name: paes-web
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - '8080:80'
+
+volumes:
+  pgdata:
+  apiuploads:

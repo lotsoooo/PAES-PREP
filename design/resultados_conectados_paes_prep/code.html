@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PAES Prep - Resultados de Ensayo</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-container": "#cea700",
+                      "background": "#f9f9ff",
+                      "tertiary": "#735c00",
+                      "surface-tint": "#1353d8",
+                      "on-secondary-fixed": "#341100",
+                      "inverse-on-surface": "#edf0ff",
+                      "surface-container": "#e9edff",
+                      "error-container": "#ffdad6",
+                      "secondary-container": "#fd761a",
+                      "primary-container": "#1a56db",
+                      "on-tertiary-container": "#4e3e00",
+                      "secondary-fixed-dim": "#ffb690",
+                      "on-tertiary-fixed": "#231b00",
+                      "surface": "#f9f9ff",
+                      "on-primary-fixed-variant": "#003dab",
+                      "surface-container-highest": "#dce2f7",
+                      "on-tertiary-fixed-variant": "#574500",
+                      "on-primary-fixed": "#00174d",
+                      "inverse-surface": "#293040",
+                      "inverse-primary": "#b5c4ff",
+                      "secondary-fixed": "#ffdbca",
+                      "primary-fixed-dim": "#b5c4ff",
+                      "tertiary-fixed": "#ffe083",
+                      "surface-container-high": "#e1e8fd",
+                      "on-error": "#ffffff",
+                      "on-primary-container": "#d4dcff",
+                      "primary-fixed": "#dbe1ff",
+                      "outline-variant": "#c3c5d7",
+                      "surface-bright": "#f9f9ff",
+                      "secondary": "#9d4300",
+                      "tertiary-fixed-dim": "#eec200",
+                      "on-secondary-fixed-variant": "#783200",
+                      "error": "#ba1a1a",
+                      "on-surface-variant": "#434654",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "on-background": "#141b2b",
+                      "on-primary": "#ffffff",
+                      "surface-dim": "#d3daef",
+                      "on-secondary-container": "#5c2400",
+                      "surface-container-low": "#f1f3ff",
+                      "on-surface": "#141b2b",
+                      "outline": "#737686",
+                      "primary": "#003fb1",
+                      "on-tertiary": "#ffffff",
+                      "surface-variant": "#dce2f7",
+                      "on-error-container": "#93000a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "container-max": "1280px",
+                      "stack-lg": "32px",
+                      "stack-sm": "8px",
+                      "margin-mobile": "16px",
+                      "stack-md": "16px",
+                      "margin-desktop": "48px"
+              },
+              "fontFamily": {
+                      "display": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "caption": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "display": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "caption": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- Top Navigation (Desktop) -->
+<nav class="hidden md:flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20 bg-surface dark:bg-inverse-surface shadow-sm docked full-width top-0 z-50">
+<div class="flex items-center gap-4">
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed">PAES Pro</span>
+</div>
+<div class="flex items-center gap-stack-lg">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors transition-all duration-200" href="#">Dashboard</a>
+<a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary dark:border-primary-fixed pb-1 hover:text-primary dark:hover:text-primary-fixed transition-colors transition-all duration-200" href="#">Ensayos</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors transition-all duration-200" href="#">Contenidos</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors transition-all duration-200" href="#">Plan</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors transition-all duration-200" href="#">Comunidad</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden border border-outline-variant">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="A clean, professional headshot of a young student, brightly lit against a minimalist grey background. The lighting is soft and flattering, creating a high-end corporate or academic profile picture suitable for a modern educational platform. The color palette is neutral with a touch of deep blue." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCH7FjBjnWTkxSvUfAzHzAqoT8O8QeCM_eTRNq-rnRizEcSYCdY7wsQBVGjknqRco2oLNE9ZoBV6oOAsu0XfvSrluQau1UyFsh5S8kFnRYUc3joDgqOiGuT0bgU_Og0Q8T0Eil--OrcyUAj1XwRmwSqbRmEyeQWR0Qsb3uvBgFkcFxOznkPV4FLznNY-0dCDU0HIXMCL_AfVLj83y0pnXoXF1gfhfVOBqCN62FT-2TVvNan04_sbdHZ"/>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg md:py-[64px] flex flex-col gap-stack-lg pb-32 md:pb-stack-lg">
+<!-- Header Section -->
+<header class="text-center space-y-stack-sm mb-stack-md">
+<div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-container text-primary mb-4">
+<span class="material-symbols-outlined text-4xl" data-icon="emoji_events">emoji_events</span>
+</div>
+<h1 class="text-display font-display text-on-background">¡Ensayo Finalizado!</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Competencia Matemática M1 - Ensayo Forma 113</p>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Main Score Card -->
+<div class="col-span-1 md:col-span-8 bg-surface-container-lowest rounded-xl p-stack-lg shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant/30 flex flex-col items-center justify-center relative overflow-hidden">
+<!-- Background decoration -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary-fixed-dim/20 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 w-48 h-48 bg-secondary-fixed-dim/20 rounded-full blur-2xl -ml-24 -mb-24 pointer-events-none"></div>
+<div class="z-10 text-center space-y-4">
+<h2 class="text-label-md font-label-md text-on-surface-variant uppercase tracking-widest">Puntaje Estimado</h2>
+<div class="flex items-baseline justify-center gap-2">
+<span class="text-[80px] leading-none font-bold text-primary tracking-tight">720</span>
+<span class="text-headline-md font-headline-md text-on-surface-variant">pts</span>
+</div>
+<div class="inline-flex items-center gap-2 px-4 py-2 bg-surface-container-high rounded-full mt-4">
+<span class="material-symbols-outlined text-secondary-container" data-icon="flag">flag</span>
+<span class="text-label-md font-label-md text-on-surface">Meta: 750 pts</span>
+<span class="text-label-md font-label-md text-secondary ml-2 font-bold">-30 pts</span>
+</div>
+</div>
+<!-- Stats Row inside main card -->
+<div class="w-full grid grid-cols-3 gap-4 mt-stack-lg pt-stack-md border-t border-outline-variant/50 z-10">
+<div class="text-center">
+<p class="text-caption font-caption text-on-surface-variant">Respuestas Correctas</p>
+<p class="text-headline-md font-headline-md text-on-surface mt-1">42<span class="text-body-md text-on-surface-variant">/65</span></p>
+</div>
+<div class="text-center border-l border-r border-outline-variant/50">
+<p class="text-caption font-caption text-on-surface-variant">Omitidas</p>
+<p class="text-headline-md font-headline-md text-on-surface mt-1">5</p>
+</div>
+<div class="text-center">
+<p class="text-caption font-caption text-on-surface-variant">Incorrectas</p>
+<p class="text-headline-md font-headline-md text-error mt-1">18</p>
+</div>
+</div>
+</div>
+<!-- Time & Overview Card -->
+<div class="col-span-1 md:col-span-4 flex flex-col gap-gutter">
+<div class="bg-surface-container-lowest rounded-xl p-stack-md shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant/30 flex-1 flex flex-col justify-center">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary" data-icon="timer">timer</span>
+<h3 class="text-body-lg font-body-lg font-bold text-on-surface">Tiempo Total</h3>
+</div>
+<p class="text-headline-lg font-headline-lg text-on-surface">02:15:30</p>
+<p class="text-caption font-caption text-on-surface-variant mt-2">Promedio por pregunta: 2m 05s</p>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-stack-md shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant/30 flex-1 flex flex-col justify-center">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-secondary" data-icon="trending_up">trending_up</span>
+<h3 class="text-body-lg font-body-lg font-bold text-on-surface">Percentil</h3>
+</div>
+<p class="text-headline-lg font-headline-lg text-on-surface">85%</p>
+<p class="text-caption font-caption text-on-surface-variant mt-2">Estás sobre el 85% de los estudiantes</p>
+</div>
+</div>
+<!-- Subject Breakdown -->
+<div class="col-span-1 md:col-span-12 bg-surface-container-lowest rounded-xl p-stack-lg shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant/30">
+<h3 class="text-headline-md font-headline-md text-on-surface mb-stack-md">Desglose por Ejes Temáticos</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-lg">
+<!-- Eje 1 -->
+<div class="space-y-2">
+<div class="flex justify-between items-end mb-1">
+<span class="text-body-md font-body-md font-bold text-on-surface">Números</span>
+<span class="text-label-md font-label-md text-on-surface-variant">15/18 (83%)</span>
+</div>
+<div class="w-full h-3 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 83%"></div>
+</div>
+</div>
+<!-- Eje 2 -->
+<div class="space-y-2">
+<div class="flex justify-between items-end mb-1">
+<span class="text-body-md font-body-md font-bold text-on-surface">Álgebra y Funciones</span>
+<span class="text-label-md font-label-md text-on-surface-variant">12/20 (60%)</span>
+</div>
+<div class="w-full h-3 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-container rounded-full" style="width: 60%"></div>
+</div>
+</div>
+<!-- Eje 3 -->
+<div class="space-y-2">
+<div class="flex justify-between items-end mb-1">
+<span class="text-body-md font-body-md font-bold text-on-surface">Geometría</span>
+<span class="text-label-md font-label-md text-on-surface-variant">8/14 (57%)</span>
+</div>
+<div class="w-full h-3 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container rounded-full" style="width: 57%"></div>
+</div>
+</div>
+<!-- Eje 4 -->
+<div class="space-y-2">
+<div class="flex justify-between items-end mb-1">
+<span class="text-body-md font-body-md font-bold text-on-surface">Probabilidad y Estadística</span>
+<span class="text-label-md font-label-md text-on-surface-variant">7/13 (53%)</span>
+</div>
+<div class="w-full h-3 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 53%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="col-span-1 md:col-span-12 flex flex-col sm:flex-row gap-4 justify-center mt-stack-md">
+<a class="px-8 py-4 bg-primary text-on-primary rounded-lg font-label-md text-label-md font-bold shadow-md hover:bg-on-primary-fixed-variant transition-colors flex items-center justify-center gap-2" href="{{DATA:SCREEN:SCREEN_12}}"><span class="material-symbols-outlined" data-icon="error">error</span>Revisar Errores</a>
+<a class="px-8 py-4 bg-transparent border-2 border-primary text-primary rounded-lg font-label-md text-label-md font-bold hover:bg-primary/5 transition-colors flex items-center justify-center gap-2" href="#"><span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>Ver Todas las Respuestas</a>
+<a class="px-8 py-4 bg-surface-container text-on-surface rounded-lg font-label-md text-label-md font-bold hover:bg-surface-container-highest transition-colors flex items-center justify-center gap-2" href="#"><span class="material-symbols-outlined" data-icon="home">home</span>Volver al Inicio</a>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface dark:bg-inverse-surface border-t border-outline-variant shadow-[0_-4px_20px_rgba(0,0,0,0.05)] rounded-t-xl transition-all duration-300 ease-in-out">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:bg-surface-container-highest rounded-lg p-2" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-caption text-caption">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-full px-4 py-1 active:bg-surface-container-highest" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="edit_document">edit_document</span>
+<span class="font-caption text-caption">Exams</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:bg-surface-container-highest rounded-lg p-2" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="auto_stories">auto_stories</span>
+<span class="font-caption text-caption">Study</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:bg-surface-container-highest rounded-lg p-2" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="group">group</span>
+<span class="font-caption text-caption">Social</span>
+</a>
+</nav>
+</body></html>

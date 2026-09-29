@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout Premium - PAES Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-container": "#cea700",
+                      "background": "#f9f9ff",
+                      "tertiary": "#735c00",
+                      "surface-tint": "#1353d8",
+                      "on-secondary-fixed": "#341100",
+                      "inverse-on-surface": "#edf0ff",
+                      "surface-container": "#e9edff",
+                      "error-container": "#ffdad6",
+                      "secondary-container": "#fd761a",
+                      "primary-container": "#1a56db",
+                      "on-tertiary-container": "#4e3e00",
+                      "secondary-fixed-dim": "#ffb690",
+                      "on-tertiary-fixed": "#231b00",
+                      "surface": "#f9f9ff",
+                      "on-primary-fixed-variant": "#003dab",
+                      "surface-container-highest": "#dce2f7",
+                      "on-tertiary-fixed-variant": "#574500",
+                      "on-primary-fixed": "#00174d",
+                      "inverse-surface": "#293040",
+                      "inverse-primary": "#b5c4ff",
+                      "secondary-fixed": "#ffdbca",
+                      "primary-fixed-dim": "#b5c4ff",
+                      "tertiary-fixed": "#ffe083",
+                      "surface-container-high": "#e1e8fd",
+                      "on-error": "#ffffff",
+                      "on-primary-container": "#d4dcff",
+                      "primary-fixed": "#dbe1ff",
+                      "outline-variant": "#c3c5d7",
+                      "surface-bright": "#f9f9ff",
+                      "secondary": "#9d4300",
+                      "tertiary-fixed-dim": "#eec200",
+                      "on-secondary-fixed-variant": "#783200",
+                      "error": "#ba1a1a",
+                      "on-surface-variant": "#434654",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "on-background": "#141b2b",
+                      "on-primary": "#ffffff",
+                      "surface-dim": "#d3daef",
+                      "on-secondary-container": "#5c2400",
+                      "surface-container-low": "#f1f3ff",
+                      "on-surface": "#141b2b",
+                      "outline": "#737686",
+                      "primary": "#003fb1",
+                      "on-tertiary": "#ffffff",
+                      "surface-variant": "#dce2f7",
+                      "on-error-container": "#93000a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "container-max": "1280px",
+                      "stack-lg": "32px",
+                      "stack-sm": "8px",
+                      "margin-mobile": "16px",
+                      "stack-md": "16px",
+                      "margin-desktop": "48px"
+              },
+              "fontFamily": {
+                      "display": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "label-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "caption": ["Inter"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-inverse-surface shadow-sm sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-4">
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed">PAES Pro</span>
+</div>
+<nav class="hidden md:flex gap-8">
+<a class="text-on-surface-variant dark:text-surface-variant font-label-md text-label-md hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Dashboard</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-md text-label-md hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Ensayos</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-md text-label-md hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Contenidos</a>
+<a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary dark:border-primary-fixed pb-1 font-label-md text-label-md" href="#">Plan</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-md text-label-md hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Comunidad</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<img alt="User profile photo" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of a young student, brightly lit with a confident expression, set against a clean white background. The image should convey readiness and academic focus, fitting for a modern educational platform. High resolution, sharp focus, clean and professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXjULXEhHe4i1btKIOSowcUTSZiXgCZ9PjgOGmFgFc3sVQREI5TzIYVz3Y4i9K1NCVK5NnATHAibxizYCkowxp-G6DGJm6tGzPegeRyDRiiG_AVWOG7HpLqqWcnqK1hXvPtDnJ0aietcxhXebvQ302ua-7HA2d4THyIdFLR_kqTtx6OgA-5tzEO3sxpaW5EZSssN8s1rTSBkA3uQKqAdRnVkkqJQaHdzig4DgU6I_9n610POLhJV0e"/>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
+<div class="mb-stack-lg">
+<h1 class="text-headline-lg font-headline-lg text-on-background">Mejora tu preparación</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant mt-2">Estás a un paso de acceder a todas las herramientas Premium.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Payment Form Column -->
+<div class="lg:col-span-7 space-y-stack-md">
+<div class="bg-surface-container-lowest rounded-xl p-stack-md shadow-sm border border-outline-variant">
+<h2 class="text-headline-md font-headline-md text-on-surface mb-stack-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">payment</span>
+                        Método de Pago
+                    </h2>
+<!-- Payment Methods -->
+<div class="grid grid-cols-2 gap-4 mb-stack-md">
+<label class="cursor-pointer">
+<input checked="" class="peer sr-only" name="payment_method" type="radio"/>
+<div class="rounded-lg border-2 border-outline-variant p-4 flex flex-col items-center gap-2 peer-checked:border-primary peer-checked:bg-primary-container/10 transition-colors">
+<span class="material-symbols-outlined text-3xl text-on-surface-variant peer-checked:text-primary">credit_card</span>
+<span class="text-label-md font-label-md text-on-surface">Tarjeta de Crédito/Débito</span>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="payment_method" type="radio"/>
+<div class="rounded-lg border-2 border-outline-variant p-4 flex flex-col items-center gap-2 peer-checked:border-primary peer-checked:bg-primary-container/10 transition-colors">
+<span class="material-symbols-outlined text-3xl text-on-surface-variant peer-checked:text-primary">account_balance</span>
+<span class="text-label-md font-label-md text-on-surface">Webpay Plus</span>
+</div>
+</label>
+</div>
+<!-- Card Details Form -->
+<form class="space-y-4">
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-1">Nombre en la tarjeta</label>
+<input class="w-full rounded-lg border border-outline px-4 py-3 bg-surface-container-lowest text-body-md focus:border-primary focus:ring-2 focus:ring-primary-container focus:outline-none transition-shadow" placeholder="Juan Pérez" type="text"/>
+</div>
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-1">Número de tarjeta</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">credit_score</span>
+<input class="w-full rounded-lg border border-outline pl-12 pr-4 py-3 bg-surface-container-lowest text-body-md focus:border-primary focus:ring-2 focus:ring-primary-container focus:outline-none transition-shadow" placeholder="0000 0000 0000 0000" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-1">Vencimiento (MM/AA)</label>
+<input class="w-full rounded-lg border border-outline px-4 py-3 bg-surface-container-lowest text-body-md focus:border-primary focus:ring-2 focus:ring-primary-container focus:outline-none transition-shadow" placeholder="MM/AA" type="text"/>
+</div>
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-1 flex items-center gap-1">
+                                    CVV
+                                    <span class="material-symbols-outlined text-[16px] text-outline cursor-help" title="Código de 3 o 4 dígitos en el reverso de tu tarjeta">help</span>
+</label>
+<input class="w-full rounded-lg border border-outline px-4 py-3 bg-surface-container-lowest text-body-md focus:border-primary focus:ring-2 focus:ring-primary-container focus:outline-none transition-shadow" placeholder="123" type="text"/>
+</div>
+</div>
+</form>
+</div>
+</div>
+<!-- Order Summary Column -->
+<div class="lg:col-span-5 space-y-stack-md">
+<!-- Summary Card -->
+<div class="bg-surface-container-lowest rounded-xl p-stack-md shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container/20 rounded-bl-full -z-10"></div>
+<h2 class="text-headline-md font-headline-md text-on-surface mb-stack-sm">Resumen del Pedido</h2>
+<div class="flex justify-between items-center py-4 border-b border-outline-variant">
+<div>
+<h3 class="text-body-lg font-bold text-on-surface">Plan Premium</h3>
+<p class="text-caption font-caption text-on-surface-variant">Suscripción Mensual</p>
+</div>
+<span class="text-body-lg font-bold text-on-surface">$14.990</span>
+</div>
+<div class="py-4 border-b border-outline-variant">
+<div class="flex justify-between items-center mb-2">
+<span class="text-body-md font-body-md text-on-surface-variant">Subtotal</span>
+<span class="text-body-md font-body-md text-on-surface-variant">$14.990</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-body-md font-body-md text-on-surface-variant">Impuestos</span>
+<span class="text-body-md font-body-md text-on-surface-variant">$0</span>
+</div>
+</div>
+<div class="flex justify-between items-center py-4 mb-stack-sm">
+<span class="text-headline-md font-headline-md text-on-surface">Total</span>
+<span class="text-headline-md font-headline-md text-primary">$14.990</span>
+</div>
+<button class="w-full bg-primary hover:bg-on-primary-fixed-variant text-on-primary font-label-md text-label-md py-4 rounded-lg transition-colors flex justify-center items-center gap-2 shadow-md hover:shadow-lg">
+<span class="material-symbols-outlined" data-icon="lock">lock</span>
+                        Confirmar Pago
+                    </button>
+<p class="text-caption font-caption text-outline mt-4 text-center">
+                        Al confirmar el pago, aceptas nuestros Términos de Servicio y Política de Privacidad. Pago 100% seguro.
+                    </p>
+</div>
+<!-- Benefits Card -->
+<div class="bg-surface-container-low rounded-xl p-stack-md border border-outline-variant">
+<h3 class="text-label-md font-label-md font-bold text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">workspace_premium</span>
+                        Beneficios Premium incluidos
+                    </h3>
+<ul class="space-y-3">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check_circle</span>
+<span class="text-body-md font-body-md text-on-surface-variant">Ensayos ilimitados con retroalimentación instantánea.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check_circle</span>
+<span class="text-body-md font-body-md text-on-surface-variant">Análisis avanzado de estadísticas de rendimiento.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check_circle</span>
+<span class="text-body-md font-body-md text-on-surface-variant">Acceso a todas las videoclases magistrales.</span>
+</li>
+</ul>
+</div>
+<!-- Security Badges -->
+<div class="flex justify-center items-center gap-6 py-4">
+<div class="flex items-center gap-1 text-outline">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+<span class="text-caption font-caption">Cifrado SSL</span>
+</div>
+<div class="flex items-center gap-1 text-outline">
+<span class="material-symbols-outlined" data-icon="gpp_good">gpp_good</span>
+<span class="text-caption font-caption">Garantía Segura</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-inverse-surface border-t border-outline-variant w-full py-stack-lg mt-stack-lg">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<span class="text-body-lg font-bold text-primary dark:text-primary-fixed mb-4 md:mb-0">PAES Pro</span>
+<div class="flex gap-6 mb-4 md:mb-0">
+<a class="text-on-surface-variant dark:text-surface-variant font-caption text-caption hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200" href="#">Landing</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-caption text-caption hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200" href="#">Terms</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-caption text-caption hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200" href="#">Privacy</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-caption text-caption hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200" href="#">Sitemap</a>
+</div>
+<p class="text-secondary dark:text-secondary-fixed font-caption text-caption">© 2024 PAES Prep. Todos los derechos reservados.</p>
+</div>
+</footer>
+</body></html>

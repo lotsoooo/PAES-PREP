@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PAES Prep - Explicación de Pregunta</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-container": "#cea700",
+                      "background": "#f9f9ff",
+                      "tertiary": "#735c00",
+                      "surface-tint": "#1353d8",
+                      "on-secondary-fixed": "#341100",
+                      "inverse-on-surface": "#edf0ff",
+                      "surface-container": "#e9edff",
+                      "error-container": "#ffdad6",
+                      "secondary-container": "#fd761a",
+                      "primary-container": "#1a56db",
+                      "on-tertiary-container": "#4e3e00",
+                      "secondary-fixed-dim": "#ffb690",
+                      "on-tertiary-fixed": "#231b00",
+                      "surface": "#f9f9ff",
+                      "on-primary-fixed-variant": "#003dab",
+                      "surface-container-highest": "#dce2f7",
+                      "on-tertiary-fixed-variant": "#574500",
+                      "on-primary-fixed": "#00174d",
+                      "inverse-surface": "#293040",
+                      "inverse-primary": "#b5c4ff",
+                      "secondary-fixed": "#ffdbca",
+                      "primary-fixed-dim": "#b5c4ff",
+                      "tertiary-fixed": "#ffe083",
+                      "surface-container-high": "#e1e8fd",
+                      "on-error": "#ffffff",
+                      "on-primary-container": "#d4dcff",
+                      "primary-fixed": "#dbe1ff",
+                      "outline-variant": "#c3c5d7",
+                      "surface-bright": "#f9f9ff",
+                      "secondary": "#9d4300",
+                      "tertiary-fixed-dim": "#eec200",
+                      "on-secondary-fixed-variant": "#783200",
+                      "error": "#ba1a1a",
+                      "on-surface-variant": "#434654",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "on-background": "#141b2b",
+                      "on-primary": "#ffffff",
+                      "surface-dim": "#d3daef",
+                      "on-secondary-container": "#5c2400",
+                      "surface-container-low": "#f1f3ff",
+                      "on-surface": "#141b2b",
+                      "outline": "#737686",
+                      "primary": "#003fb1",
+                      "on-tertiary": "#ffffff",
+                      "surface-variant": "#dce2f7",
+                      "on-error-container": "#93000a",
+                      "success": "#059669",
+                      "on-success": "#ffffff",
+                      "success-container": "#d1fae5",
+                      "on-success-container": "#064e3b"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "container-max": "1280px",
+                      "stack-lg": "32px",
+                      "stack-sm": "8px",
+                      "margin-mobile": "16px",
+                      "stack-md": "16px",
+                      "margin-desktop": "48px"
+              },
+              "fontFamily": {
+                      "display": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "caption": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "display": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "caption": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen flex flex-col">
+<!-- Top Navigation (Suppressed for focused task, but kept structural header for context) -->
+<header class="bg-surface dark:bg-inverse-surface shadow-sm sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-4">
+<a class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2" href="#">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+<span class="font-label-md hidden md:inline">Volver a resultados</span>
+</a>
+</div>
+<div class="text-headline-md-mobile md:text-headline-md font-bold text-primary dark:text-primary-fixed">
+                PAES Pro
+            </div>
+<div class="flex items-center gap-4">
+<span class="bg-tertiary-container text-on-tertiary-container px-3 py-1 rounded-full font-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="workspace_premium">workspace_premium</span>
+                    Premium
+                </span>
+</div>
+</div>
+</header>
+<main class="flex-grow flex flex-col md:flex-row max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-stack-lg gap-gutter">
+<!-- Left Column: Question & Alternatives -->
+<section class="w-full md:w-1/2 flex flex-col gap-stack-lg">
+<!-- Context Header -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="bg-surface-container-high text-on-surface-variant px-2 py-1 rounded font-caption uppercase tracking-wider">Matemática M1</span>
+<span class="text-on-surface-variant font-caption">Pregunta 14 de 65</span>
+</div>
+<div class="flex items-center gap-2 text-error font-label-md">
+<span class="material-symbols-outlined text-[18px]" data-icon="cancel">cancel</span>
+                    Incorrecta
+                </div>
+</div>
+<!-- Question Card -->
+<div class="bg-surface-container-lowest rounded-xl p-stack-lg shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant/30">
+<h2 class="text-body-lg font-bold text-on-surface mb-stack-md">
+                    Si $f(x) = 2x^2 - 3x + 1$ y $g(x) = x - 2$, ¿cuál es el valor de $f(g(3))$?
+                </h2>
+<!-- Alternatives -->
+<div class="flex flex-col gap-stack-sm mt-stack-md">
+<!-- Option A (User's incorrect choice) -->
+<label class="flex items-center p-4 rounded-lg border-2 border-error bg-error-container/20 cursor-pointer transition-colors relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-error"></div>
+<input checked="" class="hidden" disabled="" name="q14" type="radio"/>
+<div class="w-8 h-8 rounded-full border-2 border-error flex items-center justify-center mr-4 bg-error text-on-error flex-shrink-0">
+<span class="material-symbols-outlined text-[16px]" data-icon="close">close</span>
+</div>
+<span class="text-body-md text-on-surface font-medium flex-grow">A) 10</span>
+<span class="text-error font-caption ml-2 whitespace-nowrap">Tu respuesta</span>
+</label>
+<!-- Option B -->
+<label class="flex items-center p-4 rounded-lg border border-outline-variant cursor-not-allowed opacity-50">
+<div class="w-8 h-8 rounded-full border-2 border-outline-variant flex items-center justify-center mr-4 text-on-surface-variant font-label-md flex-shrink-0">B</div>
+<span class="text-body-md text-on-surface font-medium">B) -1</span>
+</label>
+<!-- Option C (Correct Answer) -->
+<label class="flex items-center p-4 rounded-lg border-2 border-success bg-success-container/20 cursor-not-allowed relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-success"></div>
+<div class="w-8 h-8 rounded-full border-2 border-success flex items-center justify-center mr-4 bg-success text-on-success flex-shrink-0">
+<span class="material-symbols-outlined text-[16px]" data-icon="check">check</span>
+</div>
+<span class="text-body-md text-on-surface font-medium flex-grow">C) 0</span>
+<span class="text-success font-caption ml-2 whitespace-nowrap">Correcta</span>
+</label>
+<!-- Option D -->
+<label class="flex items-center p-4 rounded-lg border border-outline-variant cursor-not-allowed opacity-50">
+<div class="w-8 h-8 rounded-full border-2 border-outline-variant flex items-center justify-center mr-4 text-on-surface-variant font-label-md flex-shrink-0">D</div>
+<span class="text-body-md text-on-surface font-medium">D) 28</span>
+</label>
+</div>
+</div>
+</section>
+<!-- Right Column: Explanation & Video -->
+<section class="w-full md:w-1/2 flex flex-col gap-stack-lg">
+<div class="bg-surface-container-lowest rounded-xl p-stack-lg shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant/30 h-full flex flex-col">
+<div class="flex items-center gap-2 mb-stack-md border-b border-outline-variant/30 pb-4">
+<span class="material-symbols-outlined text-primary" data-icon="school">school</span>
+<h3 class="text-headline-md-mobile md:text-headline-md font-bold text-on-surface">Explicación Paso a Paso</h3>
+</div>
+<!-- Video Player Container (Premium Feature) -->
+<div class="relative w-full rounded-lg overflow-hidden bg-inverse-surface aspect-video mb-stack-lg shadow-md group">
+<img class="w-full h-full object-cover opacity-80 mix-blend-luminosity" data-alt="A high-quality, professional educational video still. A young, approachable male teacher standing in front of a modern digital whiteboard displaying mathematical equations. High-key lighting, bright and engaging, corporate modern aesthetic with deep blue accents reflecting the PAES Prep brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvxvBbBQ9xFsog1Nx69LEPdQFXk2qb8MKXYR1-zUmHxBm7u4-28etaDOVAVOdCKLKhc16Q73DWC2mYTXjmWgdwU8EiSMMuBzyQ8oXOx1G9PjDu4YAajkBqwKEnsdRlGlCpTOpVrt-8z_x0L-raOLi3W2LKUop64CHzYen6LFs2FsWrWmT9ZWQ2fuBZo9Un2XHG4xr1O7dYYKCDO-5qkM7LEfx1wNY3DMoIfPxJe13995xD8rQqgqwL"/>
+<!-- Play Button Overlay -->
+<button class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/20 transition-all">
+<div class="w-16 h-16 bg-primary/90 rounded-full flex items-center justify-center text-on-primary shadow-lg group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[32px]" data-icon="play_arrow">play_arrow</span>
+</div>
+</button>
+<!-- Premium Badge -->
+<div class="absolute top-4 left-4 bg-tertiary-container text-on-tertiary-container px-2 py-1 rounded font-caption flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]" data-icon="star">star</span>
+                         Explicación en Video
+                    </div>
+</div>
+<!-- Text Explanation -->
+<div class="prose prose-sm md:prose-base text-on-surface-variant flex-grow space-y-4">
+<p>Para resolver este problema de funciones compuestas, $f(g(3))$, debemos seguir el orden de las operaciones, trabajando desde adentro hacia afuera.</p>
+<ol class="list-decimal pl-5 space-y-2">
+<li>
+<strong class="text-on-surface">Paso 1: Evaluar la función interna $g(x)$ en $x = 3$.</strong><br/>
+                            Sustituimos $x = 3$ en la expresión de $g(x)$:
+                            <br/>$g(3) = 3 - 2 = 1$
+                        </li>
+<li>
+<strong class="text-on-surface">Paso 2: Evaluar la función externa $f(x)$ usando el resultado anterior.</strong><br/>
+                            Ahora debemos calcular $f(1)$, sustituyendo $x = 1$ en la expresión de $f(x)$:
+                            <br/>$f(1) = 2(1)^2 - 3(1) + 1$
+                            <br/>$f(1) = 2(1) - 3 + 1$
+                            <br/>$f(1) = 2 - 3 + 1$
+                            <br/>$f(1) = 0$
+                        </li>
+</ol>
+<div class="bg-surface-container p-4 rounded-lg mt-stack-md border-l-4 border-primary">
+<strong class="text-primary block mb-1">Error Común:</strong>
+<p class="text-caption">Es probable que hayas calculado $f(3)$ primero y luego evaluado eso en $g$, es decir $g(f(3))$, lo cual te daría 10. Recuerda que $f(g(x))$ no es lo mismo que $g(f(x))$.</p>
+</div>
+</div>
+</div>
+<!-- Navigation Actions -->
+<div class="flex justify-end gap-4 mt-auto">
+<button class="px-6 py-3 bg-primary text-on-primary rounded-lg font-label-md font-medium hover:bg-on-primary-fixed-variant transition-colors shadow-sm flex items-center gap-2">
+                    Siguiente error
+                    <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</section>
+</main>
+</body></html>

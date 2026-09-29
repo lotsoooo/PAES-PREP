@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard - PAES Pro</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#4e3e00",
+                        "secondary": "#9d4300",
+                        "tertiary-fixed-dim": "#eec200",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#ffdbca",
+                        "inverse-on-surface": "#edf0ff",
+                        "surface-container-low": "#f1f3ff",
+                        "surface-container-highest": "#dce2f7",
+                        "on-primary-container": "#d4dcff",
+                        "outline": "#737686",
+                        "secondary-fixed-dim": "#ffb690",
+                        "secondary-container": "#fd761a",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#5c2400",
+                        "surface-container-high": "#e1e8fd",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "on-primary-fixed": "#00174d",
+                        "on-secondary-fixed-variant": "#783200",
+                        "on-error": "#ffffff",
+                        "tertiary": "#735c00",
+                        "tertiary-container": "#cea700",
+                        "surface-bright": "#f9f9ff",
+                        "tertiary-fixed": "#ffe083",
+                        "on-background": "#141b2b",
+                        "on-surface-variant": "#434654",
+                        "background": "#f9f9ff",
+                        "on-tertiary-fixed": "#231b00",
+                        "primary-fixed": "#dbe1ff",
+                        "surface-tint": "#1353d8",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#141b2b",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#d3daef",
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#b5c4ff",
+                        "on-primary-fixed-variant": "#003dab",
+                        "surface-container": "#e9edff",
+                        "on-error-container": "#93000a",
+                        "primary": "#003fb1",
+                        "primary-container": "#1a56db",
+                        "inverse-surface": "#293040",
+                        "surface": "#f9f9ff",
+                        "outline-variant": "#c3c5d7",
+                        "surface-variant": "#dce2f7",
+                        "on-secondary-fixed": "#341100",
+                        "primary-fixed-dim": "#b5c4ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "stack-lg": "32px",
+                        "container-max": "1280px",
+                        "margin-desktop": "48px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "caption": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased min-h-screen flex">
+<!-- DESKTOP SIDE NAV BAR -->
+<nav class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-surface-container-low border-r border-outline-variant py-stack-lg px-stack-md z-40">
+<!-- Header -->
+<div class="flex items-center gap-4 mb-stack-lg px-4">
+<a class="block w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden flex-shrink-0 border border-outline-variant" href="{{DATA:SCREEN:SCREEN_9}}">
+<img alt="Student avatar" class="w-full h-full object-cover" data-alt="A close-up portrait of a cheerful high school student with a modern haircut, looking directly at the camera with a confident smile. The lighting is bright and even, set against a soft, out-of-focus high-key white background, conveying a sense of optimism and focus suitable for an educational platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_nMlCH57YFFiQPEQbwuYGJp9N_cm_roBoolyeG1owMLJzwwC8S1ZKR3ADVi01QgUb2E4hWqOsxivG1sI157s4zUjHx5Ry7UkazGWonkZGbNqbwF9bh3BpTp_2SQxiAwo-Kd6PK9lLb18_BDOCcklu1_7inRx-kfljhzB81Av5K_9Zqp3uWivxX3yarBQNFXuOdkbJMCThablaD8717RoGWtrqDLpwfFUeG3ytPjhbegnyJ2NsRAHh"/>
+</a>
+<div>
+<h1 class="text-headline-md font-headline-md font-bold text-primary">PAES Prep</h1>
+<p class="font-caption text-caption text-on-surface-variant">Admisión 2024</p>
+</div>
+</div>
+<!-- Main Links -->
+<ul class="flex flex-col gap-1 flex-1">
+<!-- Active Tab: Dashboard -->
+<li>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-lg font-bold transition-transform scale-98 active:scale-95" href="{{DATA:SCREEN:SCREEN_23}}">
+<span class="material-symbols-outlined filled">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+</li>
+<!-- Inactive Tabs -->
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors duration-200" href="{{DATA:SCREEN:SCREEN_21}}">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-label-md text-label-md">My Exams</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors duration-200" href="{{DATA:SCREEN:SCREEN_17}}">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-md text-label-md">Content</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors duration-200" href="{{DATA:SCREEN:SCREEN_18}}">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-md text-label-md">Study Plan</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors duration-200" href="{{DATA:SCREEN:SCREEN_19}}">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Statistics</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors duration-200" href="{{DATA:SCREEN:SCREEN_8}}">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-md text-label-md">Community</span>
+</a>
+</li>
+</ul>
+<!-- Footer Actions -->
+<div class="mt-auto flex flex-col gap-4">
+<button class="w-full py-3 px-4 bg-tertiary-container text-on-tertiary-container rounded-lg font-label-md text-label-md font-bold flex justify-center items-center gap-2 hover:bg-tertiary-fixed transition-colors shadow-sm">
+<span class="material-symbols-outlined">workspace_premium</span>
+                Upgrade to Premium
+            </button>
+<ul class="flex flex-col gap-1 border-t border-outline-variant pt-4">
+<li>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors duration-200" href="{{DATA:SCREEN:SCREEN_4}}">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md text-label-md">Help</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- MOBILE BOTTOM NAV BAR -->
+<nav class="md:hidden flex fixed bottom-0 left-0 w-full z-50 justify-around items-center px-4 py-2 bg-surface border-t border-outline-variant rounded-t-xl shadow-[0_-4px_20px_rgba(0,0,0,0.05)] transition-all duration-300 ease-in-out">
+<!-- Active Tab: Home (Maps to Dashboard) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:bg-surface-container-highest" href="{{DATA:SCREEN:SCREEN_23}}">
+<span class="material-symbols-outlined filled">home</span>
+<span class="font-caption text-caption mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="{{DATA:SCREEN:SCREEN_21}}">
+<span class="material-symbols-outlined">edit_document</span>
+<span class="font-caption text-caption mt-1">Exams</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="{{DATA:SCREEN:SCREEN_17}}">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-caption text-caption mt-1">Study</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="{{DATA:SCREEN:SCREEN_8}}">
+<span class="material-symbols-outlined">group</span>
+<span class="font-caption text-caption mt-1">Social</span>
+</a>
+</nav>
+<!-- MAIN CONTENT CANVAS -->
+<main class="flex-1 md:ml-64 w-full flex flex-col pb-24 md:pb-8">
+<!-- Mobile Top Header (Visible only on mobile for brand/profile context since SideNav is hidden) -->
+<header class="md:hidden flex justify-between items-center w-full px-margin-mobile py-4 bg-surface shadow-sm z-30 sticky top-0">
+<h1 class="text-headline-lg-mobile font-headline-lg-mobile font-bold text-primary">PAES Prep</h1>
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-1 bg-surface-container-high px-2 py-1 rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-secondary text-sm">local_fire_department</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">12</span>
+</div>
+<a class="block w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant" href="{{DATA:SCREEN:SCREEN_9}}">
+<img alt="Student avatar" class="w-full h-full object-cover" data-alt="A close-up portrait of a cheerful high school student with a modern haircut, looking directly at the camera with a confident smile. The lighting is bright and even, set against a soft, out-of-focus high-key white background, conveying a sense of optimism and focus suitable for an educational platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUpWo7aXYYYP9Dy2mrYFIYavgmfsw5nPSvtA-RRx1T053hs8K7iko-Pnjvtu6dkv2Xcil4nTBpJhjJCbf1goBvudm8Xr19j02zB6u6VFhffqG5nZP7JiUx-1XTeT3Df9AtFF6-OHciGm9U7OPR-pnHmJPZBy7jYJZkkyiA9dW7Zah9Bkad5hyIsOaljohGyrren0hAUFlt9kY2HV36lCO_yoPAfzULWa0VrOSY69S3hIheupFW_X4H"/>
+</a>
+</div>
+</header>
+<div class="max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-stack-lg space-y-stack-lg flex-1">
+<!-- Welcome & Top Stats Row -->
+<section class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">
+                        ¡Hola, <span class="text-primary">Valentina</span>!
+                    </h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-xl">
+                        Tu camino a la universidad está en marcha. Hoy es un buen día para superar tus metas.
+                    </p>
+</div>
+<!-- Desktop quick stats -->
+<div class="hidden md:flex items-center gap-4">
+<div class="bg-surface-container-lowest px-4 py-2 rounded-xl border border-outline-variant shadow-sm flex items-center gap-3">
+<div class="bg-secondary-fixed text-secondary-container p-2 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined filled">local_fire_department</span>
+</div>
+<div>
+<p class="font-caption text-caption text-on-surface-variant">Racha actual</p>
+<p class="font-headline-md text-headline-md font-bold text-on-surface">12 <span class="text-sm font-normal text-on-surface-variant">días</span></p>
+</div>
+</div>
+</div>
+</section>
+<!-- Premium Banner -->
+<section class="w-full bg-gradient-to-r from-primary-container to-surface-container-highest rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm border border-primary-fixed-dim">
+<div class="flex items-center gap-4 md:gap-6">
+<div class="hidden md:flex w-16 h-16 bg-surface-container-lowest rounded-full items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary text-3xl">rocket_launch</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md font-bold text-on-primary-container">Desbloquea todo tu potencial</h3>
+<p class="font-body-md text-body-md text-on-surface mt-1">Accede a ensayos ilimitados, tutorías AI y reportes avanzados.</p>
+</div>
+</div>
+<button class="w-full md:w-auto px-6 py-3 bg-primary text-on-primary font-label-md text-label-md rounded-full shadow-md hover:bg-primary-fixed-variant transition-colors whitespace-nowrap">
+                    Upgrade to Premium
+                </button>
+</section>
+<!-- Bento Grid Main Content -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Main Action Card (Hero) -->
+<div class="col-span-1 md:col-span-8 bg-surface-container-lowest rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant overflow-hidden flex flex-col relative group hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary-fixed-dim rounded-bl-full opacity-20 -z-10 transition-transform group-hover:scale-110 duration-500"></div>
+<div class="p-6 md:p-8 flex flex-col h-full justify-between z-10">
+<div>
+<div class="inline-flex items-center gap-2 bg-surface-container px-3 py-1 rounded-full border border-outline-variant mb-4">
+<span class="material-symbols-outlined text-primary text-sm">stars</span>
+<span class="font-caption text-caption font-bold text-primary">Recomendado para ti</span>
+</div>
+<h3 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface leading-tight mb-2">
+                                Ensayo de Diagnóstico: Matemáticas
+                            </h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">
+                                Evalúa tu nivel actual en Álgebra, Geometría y Probabilidades. Tiempo estimado: 60 min.
+                            </p>
+</div>
+<div class="mt-8 flex items-center gap-4">
+<a class="px-8 py-4 bg-primary text-on-primary font-label-md text-label-md rounded-xl shadow-md hover:bg-primary-fixed-variant transition-colors flex items-center gap-2" href="{{DATA:SCREEN:SCREEN_22}}">
+                                COMENZAR
+                                <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+<span class="font-caption text-caption text-on-surface-variant">65 preguntas</span>
+</div>
+</div>
+</div>
+<!-- Progress Overview (Right Column) -->
+<div class="col-span-1 md:col-span-4 flex flex-col gap-gutter">
+<!-- Score Goal Widget -->
+<div class="bg-surface-container-lowest rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant p-6 flex-1 flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-label-md text-label-md font-bold text-on-surface uppercase tracking-wider">Objetivo PAES</h3>
+<span class="material-symbols-outlined text-outline">flag</span>
+</div>
+<div class="flex-1 flex flex-col justify-center items-center relative">
+<!-- Circular Progress Placeholder (CSS driven) -->
+<div class="relative w-32 h-32 flex items-center justify-center mb-4">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="45" stroke="#dce2f7" stroke-width="8"></circle>
+<!-- 680 / 850 = ~80% -->
+<circle class="transition-all duration-1000 ease-out" cx="50" cy="50" fill="none" r="45" stroke="#003fb1" stroke-dasharray="282.7" stroke-dashoffset="56.5" stroke-width="8"></circle>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="font-headline-lg text-headline-lg font-bold text-primary">680</span>
+<span class="font-caption text-caption text-on-surface-variant">Actual</span>
+</div>
+</div>
+<div class="flex justify-between w-full px-4 border-t border-surface-container-high pt-4 mt-2">
+<div class="text-center">
+<p class="font-caption text-caption text-on-surface-variant">Meta</p>
+<p class="font-body-md text-body-md font-bold text-on-surface">850</p>
+</div>
+<div class="text-center">
+<p class="font-caption text-caption text-on-surface-variant">Brecha</p>
+<p class="font-body-md text-body-md font-bold text-secondary">170</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Completed Exams Mini Card -->
+<div class="bg-surface-container-lowest rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant p-5 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container-high rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined filled">task_alt</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-bold text-on-surface">Ensayos listos</p>
+<p class="font-caption text-caption text-on-surface-variant">Este mes</p>
+</div>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-primary">4</span>
+</div>
+</div>
+</div>
+<!-- Weaknesses Section (Debilidades) -->
+<section class="mt-stack-lg">
+<div class="flex justify-between items-end mb-6 border-b border-outline-variant pb-4">
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Áreas a mejorar</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Basado en tus últimos 3 ensayos</p>
+</div>
+<button class="text-primary font-label-md text-label-md hover:underline flex items-center gap-1">
+                        Ver detalle <span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Weakness Card 1: Algebra -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant p-6 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all cursor-pointer group">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 bg-error-container text-on-error-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">function</span>
+</div>
+<span class="font-label-md text-label-md text-error bg-error-container px-2 py-1 rounded-md opacity-80">Prioridad Alta</span>
+</div>
+<h3 class="font-body-lg text-body-lg font-bold text-on-surface mb-2">Álgebra y Funciones</h3>
+<div class="mt-4">
+<div class="flex justify-between font-caption text-caption mb-2">
+<span class="text-on-surface-variant">Rendimiento actual</span>
+<span class="font-bold text-on-surface">42%</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden">
+<div class="bg-error h-2 rounded-full" style="width: 42%"></div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant group-hover:border-primary-fixed-dim transition-colors">
+<span class="text-primary font-label-md text-label-md flex items-center gap-2 group-hover:gap-3 transition-all">
+                                Repasar materia <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</span>
+</div>
+</div>
+<!-- Weakness Card 2: Geometry -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant p-6 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all cursor-pointer group">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 bg-secondary-fixed text-secondary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">category</span>
+</div>
+<span class="font-label-md text-label-md text-secondary-container bg-secondary-fixed px-2 py-1 rounded-md opacity-80">En proceso</span>
+</div>
+<h3 class="font-body-lg text-body-lg font-bold text-on-surface mb-2">Geometría 3D</h3>
+<div class="mt-4">
+<div class="flex justify-between font-caption text-caption mb-2">
+<span class="text-on-surface-variant">Rendimiento actual</span>
+<span class="font-bold text-on-surface">58%</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden">
+<div class="bg-secondary h-2 rounded-full" style="width: 58%"></div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant group-hover:border-primary-fixed-dim transition-colors">
+<span class="text-primary font-label-md text-label-md flex items-center gap-2 group-hover:gap-3 transition-all">
+                                Continuar módulo <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</span>
+</div>
+</div>
+<!-- Decorative/Empty State Card -->
+<div class="hidden lg:flex bg-surface-container border border-dashed border-outline-variant rounded-xl p-6 items-center justify-center text-center opacity-60">
+<div>
+<span class="material-symbols-outlined text-outline text-4xl mb-2">check_circle</span>
+<p class="font-body-md text-body-md text-on-surface-variant">¡Vas muy bien en el resto de los módulos!</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</body></html>

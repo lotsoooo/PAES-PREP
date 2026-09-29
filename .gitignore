@@ -1,0 +1,39 @@
+# dependencias
+node_modules/
+.pnp
+.pnp.js
+
+# build
+dist/
+build/
+*.tsbuildinfo
+
+# entorno
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# artefactos de drizzle
+apps/api/drizzle/meta/_journal.json.bak
+
+# almacenamiento local
+apps/api/uploads/*
+!apps/api/uploads/.gitkeep
+
+# tests
+coverage/
+test-results/
+playwright-report/
+blob-report/
+.playwright/
+
+# SO / editores
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.log
+npm-debug.log*
+bun-debug.log*
