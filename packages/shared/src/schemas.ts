@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { ROLES, TEMAS, TIPOS_CONTENIDO, TIPOS_PUBLICACION } from '../constants.js';
+import { ROLES, TEMAS, TIPOS_CONTENIDO, TIPOS_PUBLICACION } from './constants.js';
 
 /* ==========================================================================
  * Formato de error de la API: { error: { code, message, details? } }
@@ -140,7 +140,9 @@ export const actualizarPreferenciasSchema = z
   .strict();
 
 export const eliminarCuentaSchema = z.object({
-  confirmacion: z.literal('ELIMINAR', 'Debes escribir ELIMINAR para confirmar'),
+  confirmacion: z.literal('ELIMINAR', {
+    errorMap: () => ({ message: 'Debes escribir ELIMINAR para confirmar' }),
+  }),
 });
 
 /* ==========================================================================

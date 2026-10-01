@@ -532,8 +532,8 @@ create table if not exists publicaciones (
   cuerpo            text not null check (char_length(cuerpo) between 1 and 8000),
   estado            estado_publicacion not null default 'visible',
   resuelta          boolean not null default false,
-  mejor_respuesta_id uuid,
-  Reportado         integer not null default 0,
+  mejor_respuesta_id uuid,                            -- FK agregada tras crear comentarios
+  votos             integer not null default 0,
   busqueda          text generated always as (
                       setweight(to_tsvector('spanish', coalesce(titulo, '')), 'A') ||
                       setweight(to_tsvector('spanish', coalesce(cuerpo, '')), 'B')
@@ -541,12 +541,6 @@ create table if not exists publicaciones (
   creado_en         timestamptz not null default now(),
   actualizado_en    timestamptz not null default now()
 );
-
-alter table public.publicaciones
-  drop constraint if exists publicaciones_mejor_respuesta_fk;
-alter table public.publicaciones
-  add  constraint publicaciones_mejor_respuesta_fk
-  foreign key (mejor_respuesta_id) references public.comentarios(id) on delete set null;
 
 create index if not exists publicaciones_busqueda_idx
   on public.publicaciones using gin (busqueda);
@@ -576,6 +570,15 @@ create table if not exists comentarios (
 );
 
 create index if not exists comentarios_publicacion_idx on public.comentarios (publicacion_id, creado_en);
+
+-- La publicación apunta a su mejor respuesta. Se declara acá, y no junto a
+-- publicaciones, porque comentarios referencia publicaciones y la relación es
+-- circular: la FK necesita que ambas tablas ya existan.
+alter table public.publicaciones
+  drop constraint if exists publicaciones_mejor_respuesta_fk;
+alter table public.publicaciones
+  add  constraint publicaciones_mejor_respuesta_fk
+  foreign key (mejor_respuesta_id) references public.comentarios(id) on delete set null;
 
 -- 9.5 SEGUIMIENTOS
 create table if not exists seguidores (
@@ -688,13 +691,17 @@ create trigger usuarios_crear_preferencias after insert on public.usuarios
   for each row execute function public.tg_crear_preferencias();
 
 -- 13.3 Contadores denormalizados
+--
+-- Nota: en un trigger de fila, OLD no está asignado en INSERT y NEW no lo
+-- está en DELETE. Por eso el id se lee según TG_OP; usar coalesce(new, old)
+-- lanzaría "record is not assigned yet".
 create or replace function public.tg_contar_votos() returns trigger
 language plpgsql as $$
 declare v_id uuid;
 begin
-  v_id := coalesce(new.publicacion_id, old.publicacion_id);
+  v_id := case when tg_op = 'DELETE' then old.publicacion_id else new.publicacion_id end;
   update public.publicaciones
-     set Reportado = Reportado + (case when tg_op = 'INSERT' then 1 else -1 end)
+     set votos = greatest(0, votos + (case when tg_op = 'INSERT' then 1 else -1 end))
    where id = v_id;
   return null;
 end $$;
@@ -707,7 +714,7 @@ create or replace function public.tg_contar_seguidores() returns trigger
 language plpgsql as $$
 declare v_id uuid;
 begin
-  v_id := coalesce(new.seguido_id, old.seguido_id);
+  v_id := case when tg_op = 'DELETE' then old.seguido_id else new.seguido_id end;
   insert into public.perfiles_publicos (usuario_id, seguidores)
   values (v_id, 0)
   on conflict (usuario_id) do nothing;
@@ -727,7 +734,7 @@ create or replace function public.tg_rating_tutor() returns trigger
 language plpgsql as $$
 declare v_tutor uuid;
 begin
-  v_tutor := coalesce(new.tutor_id, old.tutor_id);
+  v_tutor := case when tg_op = 'DELETE' then old.tutor_id else new.tutor_id end;
   update public.perfiles_publicos pp
      set rating_promedio = agg.prom,
          rating_cantidad = agg.cnt
@@ -765,7 +772,7 @@ create or replace function public.tg_contar_preguntas() returns trigger
 language plpgsql as $$
 declare v_ensayo uuid;
 begin
-  v_ensayo := coalesce(new.ensayo_id, old.ensayo_id);
+  v_ensayo := case when tg_op = 'DELETE' then old.ensayo_id else new.ensayo_id end;
   update public.ensayos
      set preguntas_count = (
            select count(*) from public.ensayo_preguntas ep where ep.ensayo_id = v_ensayo
@@ -785,6 +792,7 @@ create trigger ensayo_preguntas_contador after insert or delete on public.ensayo
 -- 14.1 Precisión por eje: alimenta "Recomendado para ti" (menor = punto débil)
 create or replace view public.v_precision_por_eje as
 select
+  i.usuario_id,
   re.eje_id,
   e.materia_id,
   m.codigo       as materia_codigo,
@@ -793,20 +801,16 @@ select
   count(*)::int                                        as total,
   sum(re.correctas)::int                              as correctas,
   round(avg(re.pct_logro)::numeric, 2)                 as precision,
-  max(i.financiado_hasta)                              as ultimo_intento
+  max(i.entregado_en)                                  as ultimo_intento
 from public.resultados_eje re
+join public.intentos i on i.id = re.intento_id and i.estado = 'entregado'
 join public.ejes e   on e.id = re.eje_id
 join public.materias m on m.id = e.materia_id
-join lateral (
-  select min(i.entregado_en) as entregado_hasta
-    from public.intentos i
-   where i.id = re.intento_id and i.estado = 'entregado'
-) i on true
 where re.total > 0
-group by re.eje_id, e.materia_id, m.codigo, e.codigo, e.nombre;
+group by i.usuario_id, re.eje_id, e.materia_id, m.codigo, e.codigo, e.nombre;
 
 comment on view public.v_precision_por_eje is
-  'Precisión (%) por eje temático. El eje con menor precisión es el punto débil recomendado.';
+  'Precisión (%) por usuario y eje temático. El eje con menor precisión es el punto débil recomendado.';
 
 -- 14.2 Resumen del intento con slug de ensayo y datos de carrera
 create or replace view public.v_intentos_resumen as

@@ -2,6 +2,7 @@
   "name": "paes-pro",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "PAES Pro — plataforma de preparación para la PAES",
   "workspaces": [
     "apps/*",
@@ -35,6 +36,7 @@
     "globals": "^15.14.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.2.11",
+    "@types/bun": "^1.1.14",
     "prettier": "^3.4.2",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.18.1"

@@ -1,0 +1,112 @@
+import type { PreguntaSeed } from './tipos';
+
+export const PREGUNTAS_M2: PreguntaSeed[] = [
+  {
+    clave: 'M2-A-1',
+    materia: 'M2',
+    eje: 'A',
+    tipo: 'multiple',
+    enunciado: 'Resuelve $\\log_2 x = 5$. Cual es el valor de $x$?',
+    explicacion: 'Un logaritmo es el exponente: $x = 2^5 = 32$.',
+    dificultad: 2,
+    alternativas: [
+      { texto: '$x = 32$', esCorrecta: true },
+      { texto: '$x = 10$', esCorrecta: false },
+      { texto: '$x = 25$', esCorrecta: false },
+      { texto: '$x = 2/5$', esCorrecta: false },
+    ],
+  },
+  {
+    clave: 'M2-A-2',
+    materia: 'M2',
+    eje: 'A',
+    tipo: 'multiple',
+    enunciado: 'Cual es el dominio de $f(x) = \\log(x - 3)$?',
+    explicacion: 'El argumento debe ser positivo: $x - 3 > 0$, es decir $x > 3$.',
+    dificultad: 2,
+    alternativas: [
+      { texto: '$x > 3$', esCorrecta: true },
+      { texto: '$x < 3$', esCorrecta: false },
+      { texto: '$x \\geq 3$', esCorrecta: false },
+      { texto: 'Todos los reales', esCorrecta: false },
+    ],
+  },
+  {
+    clave: 'M2-B-1',
+    materia: 'M2',
+    eje: 'B',
+    tipo: 'multiple',
+    enunciado:
+      'Cuanto vale el producto punto entre $\\vec{a} = (2, 3)$ y $\\vec{b} = (-1, 4)$?',
+    explicacion: 'El producto punto suma los productos por componente: $2(-1) + 3(4) = -2 + 12 = 10$.',
+    dificultad: 2,
+    alternativas: [
+      { texto: '$10$', esCorrecta: true },
+      { texto: '$-10$', esCorrecta: false },
+      { texto: '$16$', esCorrecta: false },
+      { texto: '$2$', esCorrecta: false },
+    ],
+  },
+  {
+    clave: 'M2-B-2',
+    materia: 'M2',
+    eje: 'B',
+    tipo: 'multiple',
+    enunciado: 'Cual es el modulo del numero complejo $3 + 4i$?',
+    explicacion: 'El modulo es la distancia al origen: $\\sqrt{3^2 + 4^2} = \\sqrt{25} = 5$.',
+    dificultad: 2,
+    alternativas: [
+      { texto: '$5$', esCorrecta: true },
+      { texto: '$7$', esCorrecta: false },
+      { texto: '$\\sqrt{7}$', esCorrecta: false },
+      { texto: '$12$', esCorrecta: false },
+    ],
+  },
+  {
+    clave: 'M2-C-1',
+    materia: 'M2',
+    eje: 'C',
+    tipo: 'multiple',
+    enunciado:
+      'Una variable aleatoria discreta toma valores 1, 2 y 3 con probabilidades 0,2 / 0,5 y 0,3. Cual es su esperanza?',
+    explicacion:
+      'La esperanza pondera cada valor por su probabilidad: $1(0{,}2) + 2(0{,}5) + 3(0{,}3) = 2{,}1$.',
+    dificultad: 3,
+    alternativas: [
+      { texto: '$2{,}1$', esCorrecta: true },
+      { texto: '$2$', esCorrecta: false },
+      { texto: '$2{,}5$', esCorrecta: false },
+      { texto: '$3$', esCorrecta: false },
+    ],
+  },
+  {
+    clave: 'M2-D-1',
+    materia: 'M2',
+    eje: 'D',
+    tipo: 'multiple',
+    enunciado: 'Cual es el limite de $\\lim_{x \\to 0} \\frac{\\sin x}{x}$?',
+    explicacion: 'Es el limite clasico de la trigonometria infinitesimal y vale 1 radian.',
+    dificultad: 3,
+    alternativas: [
+      { texto: '$1$', esCorrecta: true },
+      { texto: '$0$', esCorrecta: false },
+      { texto: 'No existe', esCorrecta: false },
+      { texto: '$\\pi$', esCorrecta: false },
+    ],
+  },
+  {
+    clave: 'M2-D-2',
+    materia: 'M2',
+    eje: 'D',
+    tipo: 'multiple',
+    enunciado: 'Cual es la derivada de $f(x) = 3x^2$?',
+    explicacion: 'Por la regla de la potencia, $f\'(x) = 2 \\cdot 3x = 6x$.',
+    dificultad: 2,
+    alternativas: [
+      { texto: '$6x$', esCorrecta: true },
+      { texto: '$3x$', esCorrecta: false },
+      { texto: '$6$', esCorrecta: false },
+      { texto: '$x^2$', esCorrecta: false },
+    ],
+  },
+];

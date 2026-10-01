@@ -12,7 +12,7 @@
     "test": "bun test tests",
     "db:reset": "bun run src/db/reset.ts",
     "db:seed": "bun run src/db/seed.ts",
-    "db:pull": "drizzle-kit pull"
+    "db:pull": "bun run src/db/pull.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.716.0",

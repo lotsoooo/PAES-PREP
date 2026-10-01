@@ -249,31 +249,8 @@ join public.ejes    e on e.materia_id = m.id
 on conflict (ensayo_id, eje_id) do nothing;
 
 -- ---------------------------------------------------------------------------
--- COMUNIDAD — publicaciones del diseño
+-- COMUNIDAD
+-- Las publicaciones las crea apps/api/src/db/seed.ts, porque dependen de los
+-- usuarios demo (que nacen en ese script, después de aplicar este archivo).
+-- Ver docs/DECISIONES.md D-009.
 -- ---------------------------------------------------------------------------
-insert into public.publicaciones (usuario_id, materia_id, tipo, titulo, cuerpo)
-select u.id, m.id, 'tip', 'Tip rápido: Factorización por agrupación',
-  E'Cuando un polinomio tiene cuatro términos, agrupa los dos primeros y los dos últimos, saca el factor común de cada grupo y, si el segundo queda negativo, extrae un $-1$.\n\nEjemplo: $x^3 - 4x^2 - x + 4 = x^2(x-4) - 1(x-4) = (x^2-1)(x-4) = (x-1)(x+1)(x-4)$.\n\nEs mucho más rápido que la división sintética cuando funciona. #M1 #algebra'
-from public.usuarios u, public.materias m
-where u.email = 'carlos.mendoza@demo.cl' and m.codigo = 'M1'
-  and not exists (
-    select 1 from public.publicaciones p where p.titulo = 'Tip rápido: Factorización por agrupación'
-  );
-
-insert into public.publicaciones (usuario_id, materia_id, tipo, titulo, cuerpo)
-select u.id, m.id, 'duda', '¿Diferencia entre permutación y combinación?',
-  E'En el ejercicio 4 me piden "de cuántas formas puedo elegir 3 preguntas de 10" y marqué $\\binom{10}{3}$, pero el enunciado dice "ordenar". ¿Cuándo me corresponde una permutación y cuándo una combinación?'
-from public.usuarios u, public.materias m
-where u.email = 'martina@demo.cl' and m.codigo = 'M1'
-  and not exists (
-    select 1 from public.publicaciones p where p.titulo = '¿Diferencia entre permutación y combinación?'
-  );
-
-insert into public.publicaciones (usuario_id, materia_id, tipo, titulo, cuerpo)
-select u.id, m.id, 'duda', 'Logaritmos: no entiendo el cambio de base',
-  E'Nunca me sale bien el cambio de base. Si tengo $\\log_2 10$, ¿por qué puedo escribir $\\frac{\\log 10}{\\log 2}$? ¿Qué está pasando con las bases?'
-from public.usuarios u, public.materias m
-where u.email = 'martina@demo.cl' and m.codigo = 'M2'
-  and not exists (
-    select 1 from public.publicaciones p where p.titulo = 'Logaritmos: no entiendo el cambio de base'
-  );

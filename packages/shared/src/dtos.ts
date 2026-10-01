@@ -340,7 +340,8 @@ export interface DTOComentario {
   respuestas: DTOComentario[];
 }
 
-export interface DTOPublicacionDetalle extends DTOPublicacion {
+/** El detalle reemplaza el contador `comentarios` (number) por la lista real. */
+export interface DTOPublicacionDetalle extends Omit<DTOPublicacion, 'comentarios'> {
   comentarios: DTOComentario[];
   soyAutor: boolean;
   puedeMarcarMejor: boolean;
