@@ -39,7 +39,7 @@ autoguardado de ensayos y el límite de planes.
 
 ## D-003 · Radios: equivalencia entre DESIGN.md y Stitch
 
-**Decisión.** Los radios de `design/academic_velocity/DESIGN.md` y los de los
+**Decisión.** Los radios de `design/stitch/academic_velocity/DESIGN.md` y los de los
 HTML exportados por Stitch usan los mismos valores con nombres distintos:
 
 | DESIGN.md / Stitch | Valor | Clase Tailwind |
