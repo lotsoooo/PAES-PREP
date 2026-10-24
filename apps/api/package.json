@@ -12,7 +12,8 @@
     "test": "bun test --env-file=../../.env tests",
     "db:reset": "bun run --env-file=../../.env src/db/reset.ts",
     "db:seed": "bun run --env-file=../../.env src/db/seed.ts",
-    "db:pull": "bun run --env-file=../../.env src/db/pull.ts"
+    "db:pull": "bun run --env-file=../../.env src/db/pull.ts",
+    "db:migrate": "bun run --env-file=../../.env src/db/migrate.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.716.0",

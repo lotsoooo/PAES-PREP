@@ -7,3 +7,5 @@ export * from './constants.js';
 export * from './schemas.js';
 export * from './dtos.js';
 export * from './format.js';
+export * from './dtos-producto.js';
+export * from './schemas-producto.js';

@@ -20,7 +20,7 @@ export type Prueba = (typeof PRUEBAS)[number];
 export const PRUEBAS_LABEL: Record<Prueba, string> = {
   M1: 'Matemáticas 1',
   M2: 'Matemáticas 2',
-  CL: 'Lenguaje y Comunicación',
+  CL: 'Competencia Lectora',
   CIENCIAS: 'Ciencias',
   HISTORIA: 'Historia y Ciencias Sociales',
 };
@@ -102,3 +102,33 @@ export const DIAS_PARA_REINICIAR_RACHA = 1;
 
 /** Minutos de vigencia del enlace de recuperación de contraseña. */
 export const MINUTOS_TOKEN_RECUPERACION = 30;
+
+/** Nombre único de la marca (el prototipo de Stitch mezclaba "PAES Prep"). */
+export const BRAND_NAME = 'PAES Pro';
+
+/** Prueba de las materias de ciencias (BIO/FIS/QUI rinden "CIENCIAS"). */
+export const PRUEBA_DE_MATERIA: Record<string, Prueba> = {
+  M1: 'M1',
+  M2: 'M2',
+  CL: 'CL',
+  BIO: 'CIENCIAS',
+  FIS: 'CIENCIAS',
+  QUI: 'CIENCIAS',
+  HIST: 'HISTORIA',
+};
+
+/** Etiquetas en mayúsculas de categoría (DESIGN.md label-md). */
+export const MATERIA_ETIQUETA: Record<string, string> = {
+  M1: 'Matemática M1',
+  M2: 'Matemática M2',
+  CL: 'Competencia Lectora',
+  BIO: 'Ciencias · Biología',
+  FIS: 'Ciencias · Física',
+  QUI: 'Ciencias · Química',
+  HIST: 'Historia y Cs. Sociales',
+  CIENCIAS: 'Ciencias',
+  HISTORIA: 'Historia y Cs. Sociales',
+};
+
+/** Precio mensual Premium en CLP (la BD es la fuente; esto es el respaldo visual). */
+export const PRECIO_PREMIUM_CLP = 14990;

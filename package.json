@@ -24,6 +24,7 @@
     "db:reset": "bun run --cwd apps/api db:reset",
     "db:pull": "bun run --cwd apps/api db:pull",
     "db:seed": "bun run --cwd apps/api db:seed",
+    "db:migrate": "bun run --cwd apps/api db:migrate",
     "prepare": "husky"
   },
   "devDependencies": {

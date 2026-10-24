@@ -29,3 +29,20 @@ export async function verificarConexion(): Promise<boolean> {
 export async function cerrarConexion(): Promise<void> {
   await sql.end({ timeout: 5 });
 }
+
+/**
+ * Con esta configuración (pooler + prepare:false en Bun) postgres.js devuelve
+ * timestamptz como texto y no acepta Date como parámetro. Regla del proyecto:
+ * se envían strings ISO y se normaliza al leer con estos helpers (D-015).
+ */
+export function aIso(valor: unknown): string {
+  return new Date(valor as string).toISOString();
+}
+
+export function aIsoONull(valor: unknown): string | null {
+  return valor == null ? null : new Date(valor as string).toISOString();
+}
+
+export function aMs(valor: unknown): number {
+  return new Date(valor as string).getTime();
+}
