@@ -12,10 +12,24 @@
 -- ============================================================================
 -- 0. EXTENSIONES
 -- ============================================================================
-create extension if not exists pgcrypto;   -- gen_random_uuid()
-create extension if not exists citext;     -- emails sin distinción de mayúsculas
-create extension if not exists pg_trgm;    -- búsqueda full-text difusa (comunidad)
-create extension if not exists unaccent;   -- búsqueda sin tildes
+-- En Supabase las extensiones viven en el schema `extensions`; en Docker/Neon,
+-- en `public` (o el default). Se intenta primero `extensions` y si el rol no
+-- puede, se cae al esquema por defecto. `search_path` incluye `extensions` para
+-- que las opclass (gin_trgm_ops) resuelvan sin calificar.
+create schema if not exists extensions;
+do $$ begin
+  create extension if not exists pgcrypto with schema extensions;
+exception when insufficient_privilege then create extension if not exists pgcrypto; end $$;
+do $$ begin
+  create extension if not exists citext with schema extensions;
+exception when insufficient_privilege then create extension if not exists citext; end $$;
+do $$ begin
+  create extension if not exists pg_trgm with schema extensions;
+exception when insufficient_privilege then create extension if not exists pg_trgm; end $$;
+do $$ begin
+  create extension if not exists unaccent with schema extensions;
+exception when insufficient_privilege then create extension if not exists unaccent; end $$;
+set search_path to public, extensions;
 
 -- ============================================================================
 -- 1. ENUMS
@@ -534,7 +548,7 @@ create table if not exists publicaciones (
   resuelta          boolean not null default false,
   mejor_respuesta_id uuid,                            -- FK agregada tras crear comentarios
   votos             integer not null default 0,
-  busqueda          text generated always as (
+  busqueda          tsvector generated always as (
                       setweight(to_tsvector('spanish', coalesce(titulo, '')), 'A') ||
                       setweight(to_tsvector('spanish', coalesce(cuerpo, '')), 'B')
                     ) stored,
@@ -544,8 +558,16 @@ create table if not exists publicaciones (
 
 create index if not exists publicaciones_busqueda_idx
   on public.publicaciones using gin (busqueda);
-create index if not exists publicaciones_titulo_trgm_idx
-  on public.publicaciones using gin (titulo gin_trgm_ops);
+do $$
+declare ext_schema text;
+begin
+  select n.nspname into ext_schema
+    from pg_extension e join pg_namespace n on n.oid = e.extnamespace
+   where e.extname = 'pg_trgm';
+  execute format(
+    'create index if not exists publicaciones_titulo_trgm_idx on public.publicaciones using gin (titulo %I.gin_trgm_ops)',
+    ext_schema);
+end $$;
 create index if not exists publicaciones_feed_idx
   on public.publicaciones (estado, creado_en desc);
 
@@ -648,10 +670,17 @@ create table if not exists actividad_diaria (
 -- ============================================================================
 -- 12. ÍNDICES DE BÚSQUEDA FULL-TEXT
 -- ============================================================================
-create index if not exists carreras_nombre_trgm_idx  on public.carreras using gin (nombre gin_trgm_ops);
-create index if not exists universidades_nombre_trgm_idx on public.universidades using gin (nombre gin_trgm_ops);
-create index if not exists colegios_nombre_trgm_idx on public.colegios using gin (nombre gin_trgm_ops);
-create index if not exists comentarios_cuerpo_trgm_idx on public.comentarios using gin (cuerpo gin_trgm_ops);
+do $$
+declare ext_schema text;
+begin
+  select n.nspname into ext_schema
+    from pg_extension e join pg_namespace n on n.oid = e.extnamespace
+   where e.extname = 'pg_trgm';
+  execute format('create index if not exists carreras_nombre_trgm_idx on public.carreras using gin (nombre %I.gin_trgm_ops)', ext_schema);
+  execute format('create index if not exists universidades_nombre_trgm_idx on public.universidades using gin (nombre %I.gin_trgm_ops)', ext_schema);
+  execute format('create index if not exists colegios_nombre_trgm_idx on public.colegios using gin (nombre %I.gin_trgm_ops)', ext_schema);
+  execute format('create index if not exists comentarios_cuerpo_trgm_idx on public.comentarios using gin (cuerpo %I.gin_trgm_ops)', ext_schema);
+end $$;
 
 -- ============================================================================
 -- 13. FUNCIONES Y TRIGGERS

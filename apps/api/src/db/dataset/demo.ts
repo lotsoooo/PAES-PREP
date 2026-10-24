@@ -11,20 +11,20 @@ const NAMESPACE_PAES_PRO = '8f1b2c34-5d6e-4f70-8a91-b2c3d4e5f607';
 export function uuidEstable(clave: string): string {
   const hex = createHash('sha1')
     .update(`${NAMESPACE_PAES_PRO}:${clave}`)
-    .digest('hex');
+    .digest('hex')
+    .slice(0, 32);
 
-  // Forzamos versión 5 y variante RFC 4122.
-  const v = hex.slice(0, 12) + '5' + hex.slice(13, 16);
-  const r = hex.slice(16, 16 + 4);
-  const variante = ((parseInt(r, 16) & 0x3) | 0x8).toString(16);
-  const v2 = `${v}${variante}${hex.slice(20, 32)}`;
+  // Forzamos versión 5 (dígito 13) y variante RFC 4122 (dígito 17 = 8..b).
+  const conVersion = hex.slice(0, 12) + '5' + hex.slice(13);
+  const variante = ((parseInt(conVersion[16]!, 16) & 0x3) | 0x8).toString(16);
+  const v5 = conVersion.slice(0, 16) + variante + conVersion.slice(17);
 
   return [
-    v2.slice(0, 8),
-    v2.slice(8, 12),
-    v2.slice(12, 16),
-    v2.slice(16, 20),
-    v2.slice(20, 32),
+    v5.slice(0, 8),
+    v5.slice(8, 12),
+    v5.slice(12, 16),
+    v5.slice(16, 20),
+    v5.slice(20, 32),
   ].join('-');
 }
 

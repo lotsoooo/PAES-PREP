@@ -5,14 +5,14 @@
   "type": "module",
   "main": "./src/index.ts",
   "scripts": {
-    "dev": "bun --watch src/index.ts",
+    "dev": "bun --watch --env-file=../../.env src/index.ts",
     "build": "bun build --target=bun --outdir=dist src/index.ts",
     "start": "bun run dist/index.js",
     "typecheck": "tsc --noEmit",
-    "test": "bun test tests",
-    "db:reset": "bun run src/db/reset.ts",
-    "db:seed": "bun run src/db/seed.ts",
-    "db:pull": "bun run src/db/pull.ts"
+    "test": "bun test --env-file=../../.env tests",
+    "db:reset": "bun run --env-file=../../.env src/db/reset.ts",
+    "db:seed": "bun run --env-file=../../.env src/db/seed.ts",
+    "db:pull": "bun run --env-file=../../.env src/db/pull.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.716.0",

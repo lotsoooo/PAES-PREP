@@ -44,12 +44,14 @@ async function sembrarUsuarios(): Promise<Map<string, string>> {
     const id = uuidEstable(u.clave);
     ids.set(u.clave, id);
 
+    // Se resuelven con await (no como subquery anidada): postgres.js 3.x
+    // serializa mal los fragmentos `sql` anidados y rompe el SQL generado.
     const carreraId = u.carrera
-      ? sql`select id from carreras where nombre = ${u.carrera}`
+      ? (await sql`select id from carreras where nombre = ${u.carrera}`)[0]?.id ?? null
       : null;
 
     const colegioId = u.colegioDominio
-      ? sql`select id from colegios where dominio_email = ${u.colegioDominio}`
+      ? (await sql`select id from colegios where dominio_email = ${u.colegioDominio}`)[0]?.id ?? null
       : null;
 
     const fechaExamen = u.fechaExamenDiasAdelante

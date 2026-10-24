@@ -134,3 +134,57 @@ contraseñas, algo que no se puede expresar en SQL plano.
 
 **Consecuencia.** `bun run db:reset` carga el SQL; `bun run db:seed` agrega los
 datos demo.
+
+---
+
+## D-010 · Extensions de Postgres resueltas en `extensions` o `public`
+
+**Decisión.** El esquema crea las extensiones (`pg_trgm`, `unaccent`, `citext`,
+`pgcrypto`) dentro de `extensions` y, si el rol no puede, cae al esquema por
+defecto. Los índices GIN sobre columnas de texto se crean con
+`execute format(... %I.gin_trgm_ops ...)` resolviendo el esquema real de
+`pg_trgm` en tiempo de ejecución.
+
+**Motivo.** En Supabase las extensiones viven en `extensions`, no en `public`, y
+la opclass `gin_trgm_ops` no se encuentra si se referencia sin calificar. En
+Docker local (Postgres 16) viven en `public`. Un `create index ... using gin
+(col gin_trgm_ops)` sin calificar fallaba con `data type text has no default
+operator class for access method "gin"`.
+
+**Consecuencia.** El mismo `database/schema.sql` aplica idéntico en Supabase,
+Neon y Docker sin variantes por proveedor.
+
+---
+
+## D-011 · `publicaciones.busqueda` es `tsvector`, no `text`
+
+**Decisión.** La columna generada `busqueda` se declara `tsvector`.
+
+**Motivo.** Estaba declarada `text` aunque la expresión `to_tsvector(...)` es de
+tipo `tsvector`, lo que forzaba un cast implícito a texto y dejaba el índice GIN
+`publicaciones_busqueda_idx` sin operator class válida.
+
+---
+
+## D-012 · El seed resuelve FKs con `await` en vez de subqueries anidadas
+
+**Decisión.** `sembrarUsuarios` obtiene `carrera_id` y `colegio_id` con una
+consulta previa y pasa el valor escalar al `insert`.
+
+**Motivo.** Con postgres.js 3.4.x, anidar un fragmento `sql` dentro de otro
+(`values (${sql\`select ...\`})`) se serializa como texto y produce
+`syntax error at or near "select"`. Se reprodujo con y sin `prepare: false`.
+
+**Consecuencia.** Regla del proyecto: no anidar fragmentos `sql`; resolver el
+valor antes con `await`.
+
+---
+
+## D-013 · `uuidEstable` produce UUID v5 de 32 hex
+
+**Decisión.** `uuidEstable` toma 32 hex del SHA-1, fuerza versión 5 (dígito 13)
+y variante RFC 4122 (dígito 17), y formatea 8-4-4-4-12.
+
+**Motivo.** La versión anterior encadenaba slices que daban 28 hex totales
+(`2caa4e1a-54cf-59de-bc80-e7893bb00`), un UUID inválido que Postgres rechazaba
+con `invalid input syntax for type uuid`.
