@@ -57,12 +57,13 @@ export default defineConfig({
     },
   },
   server: {
+    watch: { ignored: ['**/e2e/resultados/**', '**/e2e/capturas/**'] },
     port: 5173,
     strictPort: true,
     proxy: {
       // En desarrollo el API corre en 3000; /api evita CORS y misma origen.
       '/api': {
-        target: 'http://localhost:3000',
+        target: process.env.API_PROXY_TARGET ?? 'http://localhost:3000',
         changeOrigin: true,
       },
     },

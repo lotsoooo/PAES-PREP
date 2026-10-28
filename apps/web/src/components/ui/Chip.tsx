@@ -1,18 +1,18 @@
-import type { HTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from 'react';
 import { cn } from '@/lib/cn';
+import { Icono } from './Icono';
 
 export type TonoChip = 'neutro' | 'primario' | 'naranjo' | 'dorado' | 'exito' | 'error';
 
 /**
- * Los tonos respetan la regla de color por función:
- * naranjo solo para recomendaciones IA / puntos débiles,
- * dorado solo para Premium, verde solo para completado/correcto.
+ * Color por función: naranjo solo para IA, recomendaciones y puntos débiles;
+ * dorado solo para Premium; verde para completado o correcto.
  */
 const tonos: Record<TonoChip, string> = {
   neutro: 'bg-surface-container text-on-surface-variant',
-  primario: 'bg-primary-container/15 text-primary',
-  naranjo: 'bg-secondary-container/20 text-secondary',
-  dorado: 'bg-tertiary-container/25 text-tertiary',
+  primario: 'bg-primary-fixed text-on-primary-fixed-variant',
+  naranjo: 'bg-secondary-fixed text-on-secondary-fixed-variant',
+  dorado: 'bg-tertiary-fixed text-on-tertiary-fixed-variant',
   exito: 'bg-success-container text-on-success-container',
   error: 'bg-error-container text-on-error-container',
 };
@@ -20,71 +20,78 @@ const tonos: Record<TonoChip, string> = {
 export interface PropsChip extends HTMLAttributes<HTMLSpanElement> {
   tono?: TonoChip;
   icono?: string;
-  relleno?: boolean;
+  iconoRelleno?: boolean;
+  tamano?: 'sm' | 'md';
 }
 
-/**
- * Variante "relleno": fondo sólido del color del tono, en vez del tinte.
- * Se usa para el estado activo de los chips de la biblioteca.
- */
-const rellenos: Record<TonoChip, string> = {
-  neutro: 'bg-surface-container-high text-on-surface',
-  primario: 'bg-primary text-on-primary',
-  naranjo: 'bg-secondary text-on-secondary',
-  dorado: 'bg-tertiary text-on-tertiary',
-  exito: 'bg-success text-on-success',
-  error: 'bg-error text-on-error',
-};
-
-export function Chip({ tono = 'neutro', icono, relleno, className, children, ...props }: PropsChip) {
+/** Pill de estado o categoría. Nunca se corta: el texto siempre cabe. */
+export function Chip({ tono = 'neutro', icono, iconoRelleno, tamano = 'md', className, children, ...props }: PropsChip) {
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-1 rounded-full px-2.5 py-1',
-        'text-label-md font-medium whitespace-nowrap',
-        relleno ? rellenos[tono] : tonos[tono],
+        'inline-flex max-w-full shrink-0 items-center gap-1 rounded-full font-medium whitespace-nowrap',
+        tamano === 'sm' ? 'px-2 py-0.5 text-caption' : 'px-3 py-1 text-[13px] leading-5',
+        tonos[tono],
         className,
       )}
       {...props}
     >
-      {icono && (
-        <span aria-hidden="true" className="material-symbols-outlined text-base">
-          {icono}
-        </span>
-      )}
+      {icono && <Icono nombre={icono} relleno={iconoRelleno} className={tamano === 'sm' ? 'text-sm' : 'text-base'} />}
       {children}
     </span>
   );
 }
 
-/** Chip filtrable: botón con aria-pressed. */
-export function ChipFiltro({
-  activo,
-  onClick,
-  children,
-  className,
-  ...props
-}: {
+export interface PropsChipFiltro extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'> {
   activo: boolean;
   onClick: () => void;
-  children: React.ReactNode;
-} & Omit<HTMLAttributes<HTMLButtonElement>, 'onClick'>) {
+  icono?: string;
+  contador?: number;
+  children: ReactNode;
+}
+
+/**
+ * Chip de filtro (botón con aria-pressed). Alto 40px, texto completo sin
+ * truncar: en Stitch los chips de búsqueda cortaban la palabra.
+ */
+export function ChipFiltro({ activo, onClick, icono, contador, children, className, ...props }: PropsChipFiltro) {
   return (
     <button
       type="button"
       onClick={onClick}
       aria-pressed={activo}
       className={cn(
-        'inline-flex items-center gap-1.5 rounded-full px-4 min-h-9',
-        'text-label-md font-medium transition-colors',
+        'inline-flex min-h-10 shrink-0 items-center gap-1.5 rounded-full border px-4 text-label-md font-medium whitespace-nowrap',
+        'transition-[background-color,color,border-color] duration-150',
         activo
-          ? 'bg-primary text-on-primary'
-          : 'bg-surface-container text-on-surface-variant hover:bg-surface-container-high',
+          ? 'border-primary bg-primary text-on-primary'
+          : 'border-border-strong bg-surface-container-lowest text-on-surface-variant hover:border-outline hover:text-on-surface',
         className,
       )}
       {...props}
     >
+      {icono && <Icono nombre={activo ? 'check' : icono} className="text-lg" />}
       {children}
+      {contador !== undefined && (
+        <span className={cn('tabular-nums', activo ? 'text-on-primary/80' : 'text-outline')}>{contador}</span>
+      )}
     </button>
+  );
+}
+
+/** Contador numérico pequeño (notificaciones, pestañas). */
+export function Insignia({ valor, tono = 'primario', className }: { valor: number; tono?: 'primario' | 'error' | 'neutro'; className?: string }) {
+  return (
+    <span
+      className={cn(
+        'inline-flex min-w-5 items-center justify-center rounded-full px-1.5 text-caption font-semibold tabular-nums',
+        tono === 'primario' && 'bg-primary text-on-primary',
+        tono === 'error' && 'bg-error text-on-error',
+        tono === 'neutro' && 'bg-surface-container-high text-on-surface-variant',
+        className,
+      )}
+    >
+      {valor}
+    </span>
   );
 }

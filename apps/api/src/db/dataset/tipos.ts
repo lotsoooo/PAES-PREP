@@ -21,7 +21,13 @@ export interface PreguntaSeed {
   enunciado: string;
   /** Solo en comprensión lectora. */
   textoBase?: string;
+  /** Pasos numerados, uno por línea: "1. …
+2. …". */
   explicacion: string;
+  /** Error frecuente que lleva a la alternativa incorrecta más elegida. */
+  errorComun?: string;
+  /** Video de la explicación (solo URL real verificada). */
+  videoUrl?: string;
   dificultad: 1 | 2 | 3 | 4 | 5;
   alternativas: [AlternativaSeed, AlternativaSeed, AlternativaSeed, AlternativaSeed];
 }
@@ -35,6 +41,7 @@ export function esPreguntaValida(p: unknown): p is PreguntaSeed {
   if (q.tipo !== 'multiple' && q.tipo !== 'comprension_lectora') return false;
   if (typeof q.enunciado !== 'string' || q.enunciado.length === 0) return false;
   if (typeof q.explicacion !== 'string' || q.explicacion.length === 0) return false;
+  if (q.errorComun !== undefined && typeof q.errorComun !== 'string') return false;
   if (q.tipo === 'comprension_lectora' && typeof q.textoBase !== 'string') return false;
   if (typeof q.dificultad !== 'number' || q.dificultad < 1 || q.dificultad > 5) return false;
   if (!Array.isArray(q.alternativas) || q.alternativas.length !== 4) return false;

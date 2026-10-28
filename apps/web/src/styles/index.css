@@ -19,7 +19,8 @@
    El tema oscuro deriva los tokens; en oscuro el azul primario se aclara para
    mantener el contraste AA sobre superficie oscura.
    -------------------------------------------------------------------------- */
-:root {
+:root,
+.light {
   /* Superficies */
   --pal-surface: #f9f9ff;
   --pal-surface-dim: #d3daef;
@@ -84,7 +85,7 @@
   /* Éxito / completado — verde esmeralda */
   --pal-success: #047857;
   --pal-on-success: #ffffff;
-  --pal-success-container: #d1fae5;
+  --pal-success-container: #ecfdf5;
   --pal-on-success-container: #064e3b;
 
   /* Estructura */
@@ -94,67 +95,70 @@
 }
 
 .dark {
-  --pal-surface: #11151f;
-  --pal-surface-dim: #0d111a;
-  --pal-surface-bright: #293040;
-  --pal-surface-container-lowest: #0a0e16;
-  --pal-surface-container-low: #171d2c;
-  --pal-surface-container: #1c2333;
-  --pal-surface-container-high: #232b3d;
-  --pal-surface-container-highest: #2b3448;
-  --pal-surface-variant: #293040;
+  /* Paleta oscura derivada de los mismos roles (brief: surface ≈ #0f1420,
+     cards ≈ #161c2b, primario ≈ #b5c4ff). Las cards quedan un escalón más
+     claras que el fondo, como en claro. */
+  --pal-surface: #0f1420;
+  --pal-surface-dim: #0b0f19;
+  --pal-surface-bright: #2a3449;
+  --pal-surface-container-lowest: #161c2b;
+  --pal-surface-container-low: #131927;
+  --pal-surface-container: #1b2233;
+  --pal-surface-container-high: #222a3d;
+  --pal-surface-container-highest: #2a3449;
+  --pal-surface-variant: #2a3449;
   --pal-surface-tint: #b5c4ff;
-  --pal-background: #0d111a;
+  --pal-background: #0f1420;
 
-  --pal-on-surface: #e8ecf7;
-  --pal-on-surface-variant: #b6bccd;
-  --pal-on-background: #e8ecf7;
-  --pal-inverse-surface: #e8ecf7;
+  --pal-on-surface: #e6eaf5;
+  --pal-on-surface-variant: #b4bacb;
+  --pal-on-background: #e6eaf5;
+  --pal-inverse-surface: #e6eaf5;
   --pal-inverse-on-surface: #1b2130;
-  --pal-outline: #8a90a2;
-  --pal-outline-variant: #3a4358;
+  --pal-outline: #8c92a4;
+  --pal-outline-variant: #384157;
 
   --pal-primary: #b5c4ff;
   --pal-on-primary: #00174d;
-  --pal-primary-container: #1a56db;
-  --pal-on-primary-container: #d4dcff;
+  --pal-primary-container: #2c5fd6;
+  --pal-on-primary-container: #e4e9ff;
   --pal-inverse-primary: #003fb1;
 
   --pal-secondary: #ffb690;
-  --pal-on-secondary: #5c2400;
-  --pal-secondary-container: #c85f10;
-  --pal-on-secondary-container: #ffdbca;
+  --pal-on-secondary: #4a1c00;
+  --pal-secondary-container: #fd761a;
+  --pal-on-secondary-container: #2d0f00;
 
   --pal-tertiary: #eec200;
   --pal-on-tertiary: #3d2f00;
-  --pal-tertiary-container: #9a7c00;
-  --pal-on-tertiary-container: #ffe083;
+  --pal-tertiary-container: #cea700;
+  --pal-on-tertiary-container: #2b2200;
 
   --pal-error: #ffb4ab;
   --pal-on-error: #690005;
-  --pal-error-container: #93000a;
+  --pal-error-container: #5c1a17;
   --pal-on-error-container: #ffdad6;
 
-  --pal-primary-fixed: #2b3448;
-  --pal-primary-fixed-dim: #3a4358;
+  --pal-primary-fixed: #24304f;
+  --pal-primary-fixed-dim: #34436b;
   --pal-on-primary-fixed: #dbe1ff;
   --pal-on-primary-fixed-variant: #b5c4ff;
-  --pal-secondary-fixed: #5c2400;
-  --pal-secondary-fixed-dim: #783200;
+  --pal-secondary-fixed: #4a2512;
+  --pal-secondary-fixed-dim: #6b3415;
   --pal-on-secondary-fixed: #ffdbca;
   --pal-on-secondary-fixed-variant: #ffb690;
-  --pal-tertiary-fixed: #3d2f00;
+  --pal-tertiary-fixed: #3a3110;
   --pal-tertiary-fixed-dim: #574500;
   --pal-on-tertiary-fixed: #ffe083;
   --pal-on-tertiary-fixed-variant: #eec200;
 
   --pal-success: #34d399;
-  --pal-on-success: #06392b;
-  --pal-success-container: #065f46;
+  --pal-on-success: #052e22;
+  --pal-success-container: #0d3b2e;
   --pal-on-success-container: #a7f3d0;
 
-  --pal-border: #2b3448;
-  --pal-border-strong: #3a4358;
+  --pal-border: #262f44;
+  --pal-border-strong: #384157;
   --pal-ring: #b5c4ff;
 }
 
@@ -328,6 +332,21 @@
     border-radius: var(--radius-sm);
   }
 
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
   ::selection {
     background-color: var(--pal-primary-fixed);
     color: var(--pal-on-primary-fixed);
@@ -373,7 +392,7 @@
 .icon-filled {
   font-variation-settings:
     'FILL' 1,
-    'wgHT' 400,
+    'wght' 400,
     'GRAD' 0,
     'opsz' 24;
 }
@@ -416,6 +435,48 @@
   line-height: 1.75;
 }
 
+/* Markdown + KaTeX (TextoMat) */
+.texto-mat > * + * {
+  margin-top: 0.75em;
+}
+.texto-mat ul {
+  list-style: disc;
+  padding-left: 1.25em;
+}
+.texto-mat ol {
+  list-style: decimal;
+  padding-left: 1.25em;
+}
+.texto-mat li + li {
+  margin-top: 0.25em;
+}
+.texto-mat strong {
+  font-weight: 600;
+}
+.texto-mat a {
+  color: var(--pal-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.texto-mat h2,
+.texto-mat h3 {
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+.texto-mat blockquote {
+  border-left: 3px solid var(--pal-outline-variant);
+  padding-left: 1em;
+  color: var(--pal-on-surface-variant);
+}
+.texto-mat code:not([class*='math']) {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--pal-surface-container);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+
 /* Scrollbar discreto */
 .scrollbar-fino {
   scrollbar-width: thin;
@@ -430,6 +491,85 @@
 .scrollbar-fino::-webkit-scrollbar-thumb {
   background-color: var(--pal-outline-variant);
   border-radius: var(--radius-full);
+}
+
+/* Enlace "Saltar al contenido" (WCAG 2.4.1) */
+.saltar-contenido {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 100;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  background-color: var(--pal-primary);
+  color: var(--pal-on-primary);
+  font-weight: 600;
+  transition: top 150ms ease;
+}
+
+.saltar-contenido:focus-visible {
+  top: 16px;
+}
+
+/* Entrada suave de vistas y bloques (solo transform/opacity) */
+@keyframes entrar {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animar-entrada {
+  animation: entrar 420ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animar-aparecer {
+  animation: aparecer 240ms ease-out both;
+}
+
+@keyframes entrar-derecha {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes entrar-izquierda {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.animar-lado-derecha {
+  animation: entrar-derecha 260ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.animar-lado-izquierda {
+  animation: entrar-izquierda 260ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@media (pointer: fine) {
+  html {
+    overscroll-behavior: none;
+  }
 }
 
 /* Only for screen readers */

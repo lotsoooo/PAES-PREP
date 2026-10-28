@@ -3,6 +3,7 @@ import { createMiddleware } from 'hono/factory';
 import type { Rol } from '@paes-pro/shared';
 import { verificarAcceso } from './tokens.js';
 import { noAutorizado, prohibido } from './errores.js';
+import { sql } from '../db/client.js';
 
 export interface UsuarioSesion {
   id: string;
@@ -27,7 +28,16 @@ export const leerSesion = createMiddleware<Entorno>(async (c, next) => {
   let usuario: UsuarioSesion | null = null;
   if (cabecera?.startsWith('Bearer ')) {
     const reclamos = await verificarAcceso(cabecera.slice(7));
-    if (reclamos) usuario = { id: reclamos.sub, rol: reclamos.rol };
+    if (reclamos) {
+      // La firma no basta: logout, eliminación y revocación de sesiones deben
+      // invalidar el acceso inmediatamente. El rol actual proviene de la BD.
+      const [activa] = await sql<{ id: string; rol: Rol }[]>`
+        select u.id, u.rol from usuarios u
+         where u.id = ${reclamos.sub} and u.eliminado_en is null
+           and exists (select 1 from sesiones s where s.usuario_id = u.id
+             and s.familia_id = ${reclamos.sid} and s.revocado_en is null and s.expira_en > now())`;
+      if (activa) usuario = { id: activa.id, rol: activa.rol };
+    }
   }
   c.set('usuario', usuario);
   await next();

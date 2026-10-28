@@ -4,6 +4,7 @@ import { secureHeaders } from 'hono/secure-headers';
 import { config } from './config.js';
 import { verificarConexion, cerrarConexion } from './db/client.js';
 import { HttpError } from './http/errores.js';
+import { origenPermitido } from './services/seguridad.js';
 import { leerSesion, type Entorno } from './http/app.js';
 import { auth } from './routes/auth.js';
 import { catalogos } from './routes/catalogos.js';
@@ -19,7 +20,7 @@ import { cuaderno } from './routes/cuaderno.js';
 import { comunidad } from './routes/comunidad.js';
 import { tutores } from './routes/tutores.js';
 import { notificaciones } from './routes/notificaciones.js';
-import { premium } from './routes/premium.js';
+import { premium, premiumPublico } from './routes/premium.js';
 import { ia } from './routes/ia.js';
 import { buscar } from './routes/buscar.js';
 
@@ -33,6 +34,16 @@ app.use(
     credentials: true,
   }),
 );
+// CSRF: las cookies de sesión son SameSite=Lax, pero además una escritura con
+// Origin ajeno se rechaza. El retorno de Webpay llega desde Transbank a propósito.
+const ORIGENES = [config.WEB_ORIGIN, config.APP_URL];
+app.use('/api/*', async (c, next) => {
+  const escritura = !['GET', 'HEAD', 'OPTIONS'].includes(c.req.method);
+  if (escritura && !c.req.path.endsWith('/premium/webpay/retorno') && !origenPermitido(c.req.header('origin'), ORIGENES)) {
+    return c.json({ error: { code: 'FORBIDDEN', message: 'Origen no permitido.' } }, 403);
+  }
+  await next();
+});
 app.use('/api/*', leerSesion);
 
 app.get('/api/v1/health', async (c) => {
@@ -55,6 +66,8 @@ v1.route('/cuaderno', cuaderno);
 v1.route('/comunidad', comunidad);
 v1.route('/comunidad/tutores', tutores);
 v1.route('/notificaciones', notificaciones);
+// El retorno de Webpay es público: llega desde Transbank, sin access token.
+v1.route('/premium', premiumPublico);
 v1.route('/premium', premium);
 v1.route('/ia', ia);
 v1.route('/buscar', buscar);

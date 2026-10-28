@@ -6,11 +6,12 @@ import { TemaContext } from './tema';
 const CLAVE_ALMACEN = 'paes-pro-tema';
 
 function leerPreferencia(): Tema {
-  if (typeof localStorage === 'undefined') return 'sistema';
-  const guardada = localStorage.getItem(CLAVE_ALMACEN);
-  return guardada === 'claro' || guardada === 'oscuro' || guardada === 'sistema'
-    ? guardada
-    : 'sistema';
+  try {
+    const guardada = localStorage.getItem(CLAVE_ALMACEN);
+    return guardada === 'claro' || guardada === 'oscuro' || guardada === 'sistema' ? guardada : 'sistema';
+  } catch {
+    return 'sistema';
+  }
 }
 
 function resolver(tema: Tema, consultaOscuro: boolean): 'claro' | 'oscuro' {
@@ -44,7 +45,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const raiz = document.documentElement;
     raiz.classList.toggle('dark', tema === 'oscuro');
     raiz.classList.toggle('light', tema === 'claro');
-    localStorage.setItem(CLAVE_ALMACEN, preferencia);
+    try { localStorage.setItem(CLAVE_ALMACEN, preferencia); } catch { /* El tema sigue funcionando en memoria. */ }
+    const color = getComputedStyle(raiz).getPropertyValue('--pal-background').trim();
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', color);
   }, [tema, preferencia]);
 
   const valor = useMemo(

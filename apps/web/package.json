@@ -44,9 +44,11 @@
     "remark-math": "^6.0.0",
     "sonner": "^1.7.1",
     "tailwind-merge": "^2.6.0",
+    "zod": "^3.24.1",
     "zustand": "^5.0.2"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
     "@playwright/test": "^1.49.1",
     "@tailwindcss/vite": "^4.0.0",
     "@testing-library/jest-dom": "^6.6.3",

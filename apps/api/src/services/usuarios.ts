@@ -1,6 +1,7 @@
 import type { DTOUsuario, Rol } from '@paes-pro/shared';
 import { sql, aIso } from '../db/client.js';
 import { noEncontrado } from '../http/errores.js';
+import { config } from '../config.js';
 
 /** Fila plana que devuelve `consultaUsuario`. */
 interface FilaUsuario {
@@ -64,6 +65,11 @@ async function consultaUsuario(id: string): Promise<FilaUsuario | undefined> {
               join planes_suscripcion ps on ps.id = s.plan_id
              where s.usuario_id = u.id and s.estado = 'activa'
                and (s.termina_en is null or s.termina_en > now())
+               and (${config.NODE_ENV !== 'production'} or (s.proveedor = 'webpay' and exists (
+                 select 1 from pagos p where p.usuario_id = s.usuario_id and p.estado = 'aprobado'
+                   and p.payload_respuesta->>'ambientePago' = 'real'
+                   and p.payload_respuesta->>'suscripcionId' = s.id::text
+               )))
              order by s.inicia_en desc limit 1) as plan_codigo
       from usuarios u
       left join colegios co on co.id = u.colegio_id
@@ -156,6 +162,11 @@ export async function esPremium(usuarioId: string): Promise<boolean> {
        where s.usuario_id = ${usuarioId} and s.estado = 'activa'
          and (s.termina_en is null or s.termina_en > now())
          and ps.codigo in ('premium', 'anual')
+         and (${config.NODE_ENV !== 'production'} or (s.proveedor = 'webpay' and exists (
+           select 1 from pagos p where p.usuario_id = s.usuario_id and p.estado = 'aprobado'
+             and p.payload_respuesta->>'ambientePago' = 'real'
+             and p.payload_respuesta->>'suscripcionId' = s.id::text
+         )))
     ) as ok`;
   return Boolean(fila?.ok);
 }

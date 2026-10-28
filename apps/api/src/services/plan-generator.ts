@@ -50,9 +50,7 @@ export function calcularDistribucion(
   codigosDisponibles: string[],
 ): DistribucionCalculada[] {
   const disponibles = new Set(codigosDisponibles);
-  const base = areaCarrera
-    ? (DISTRIBUCIONES_POR_AREA[areaCarrera] ?? DISTRIBUCION_POR_DEFECTO)
-    : DISTRIBUCION_POR_DEFECTO;
+  const base = distribucionBaseDeArea(areaCarrera);
 
   const filtrada = Object.entries(base).filter(([codigo]) => disponibles.has(codigo));
 
@@ -70,6 +68,104 @@ export function calcularDistribucion(
     porcentaje: redondear((p / suma) * 100),
     horasSemana: 0,
   }));
+}
+
+/** Quita tildes y pasa a minúsculas para comparar nombres de área. */
+function normalizarArea(texto: string): string {
+  return texto.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
+}
+
+/**
+ * Distribución base por área de la carrera. El catálogo guarda las áreas con
+ * tilde ("Economía", "Tecnología") y la tabla sin ella: se comparan normalizadas.
+ */
+export function distribucionBaseDeArea(areaCarrera: string | null): Record<string, number> {
+  if (!areaCarrera) return DISTRIBUCION_POR_DEFECTO;
+  const buscada = normalizarArea(areaCarrera);
+  const clave = Object.keys(DISTRIBUCIONES_POR_AREA).find((k) => normalizarArea(k) === buscada);
+  return clave ? DISTRIBUCIONES_POR_AREA[clave]! : DISTRIBUCION_POR_DEFECTO;
+}
+
+/** Materia que representa a cada prueba PAES en el plan. */
+const MATERIAS_DE_PRUEBA: Record<string, string[]> = {
+  M1: ['M1'],
+  M2: ['M2'],
+  CL: ['CL'],
+  HISTORIA: ['HIST'],
+  CIENCIAS: ['BIO', 'FIS', 'QUI'],
+};
+
+/** Peso que recibe una prueba elegida que la carrera no pondera. */
+const PESO_MINIMO_PRUEBA = 15;
+
+/** Brecha (puntos PAES) desde la que el factor deja de crecer. */
+const BRECHA_TOPE = 400;
+
+/**
+ * Factor de prioridad según la brecha meta − puntaje actual de una prueba:
+ * 0,5 si ya alcanzó la meta, 1,5 con la brecha tope o sin datos (se asume la
+ * brecha completa), lineal entre medio.
+ */
+export function factorBrecha(brecha: number | null): number {
+  if (brecha === null) return 1.5;
+  if (brecha <= 0) return 0.5;
+  return 0.5 + Math.min(brecha, BRECHA_TOPE) / BRECHA_TOPE;
+}
+
+/**
+ * Distribución por prueba: peso de la prueba para la carrera × brecha entre la
+ * meta y el puntaje actual estimado de esa prueba. Las pruebas que el usuario
+ * eligió entran aunque la carrera no las pondere (con un peso mínimo); sin
+ * pruebas elegidas se usan las de la carrera.
+ *
+ * @param brechaPorMateria meta − puntaje actual por código de materia; null o
+ *   ausente = sin intentos (se asume la brecha completa).
+ */
+export function calcularDistribucionPorBrecha(opciones: {
+  areaCarrera: string | null;
+  codigosDisponibles: string[];
+  pruebasObjetivo: string[];
+  brechaPorMateria: Record<string, number | null>;
+}): DistribucionCalculada[] {
+  const disponibles = new Set(opciones.codigosDisponibles);
+  const base = distribucionBaseDeArea(opciones.areaCarrera);
+
+  const pesos = new Map<string, number>();
+  if (opciones.pruebasObjetivo.length > 0) {
+    for (const prueba of opciones.pruebasObjetivo) {
+      const candidatas = (MATERIAS_DE_PRUEBA[prueba] ?? []).filter((c) => disponibles.has(c));
+      if (candidatas.length === 0) continue;
+      // Ciencias: la materia que pondera la carrera; si ninguna, la primera disponible.
+      const elegida = candidatas.find((c) => base[c] !== undefined) ?? candidatas[0]!;
+      pesos.set(elegida, base[elegida] ?? PESO_MINIMO_PRUEBA);
+    }
+  }
+  if (pesos.size === 0) {
+    for (const [codigo, peso] of Object.entries(base)) {
+      if (disponibles.has(codigo)) pesos.set(codigo, peso);
+    }
+  }
+  if (pesos.size === 0) {
+    return calcularDistribucion(opciones.areaCarrera, opciones.codigosDisponibles);
+  }
+
+  const ponderados = [...pesos.entries()].map(
+    ([codigo, peso]) => [codigo, peso * factorBrecha(opciones.brechaPorMateria[codigo] ?? null)] as const,
+  );
+  const suma = ponderados.reduce((acc, [, p]) => acc + p, 0);
+
+  const resultado = ponderados.map(([materiaCodigo, p]) => ({
+    materiaCodigo,
+    porcentaje: redondear((p / suma) * 100),
+    horasSemana: 0,
+  }));
+  // Ajuste de redondeo para que sume exactamente 100.
+  const diferencia = redondear(100 - resultado.reduce((a, d) => a + d.porcentaje, 0));
+  if (diferencia !== 0 && resultado.length > 0) {
+    const mayor = resultado.reduce((m, d) => (d.porcentaje > m.porcentaje ? d : m));
+    mayor.porcentaje = redondear(mayor.porcentaje + diferencia);
+  }
+  return resultado.sort((a, b) => b.porcentaje - a.porcentaje);
 }
 
 /** Reparte las horas semanales; la suma cuadra exactamente con horasSemana. */

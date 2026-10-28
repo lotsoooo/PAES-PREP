@@ -48,8 +48,12 @@ export const guardarRespuestaSchema = z
     alternativaId: z.string().uuid().nullable().optional(),
     esMarcada: z.boolean().optional(),
     tiempoSegundos: z.number().int().min(0).max(36_000).optional(),
+    baseGuardadoEn: z.string().datetime().nullable().optional(),
   })
-  .strict();
+  .strict()
+  .refine((dato) => dato.alternativaId !== undefined || dato.esMarcada !== undefined || dato.tiempoSegundos !== undefined, {
+    message: 'Indica una respuesta, una marca o el tiempo dedicado.',
+  });
 
 export const crearIntentoSchema = z.object({ ensayoSlug: z.string().min(1).max(180) }).strict();
 
@@ -84,14 +88,12 @@ export const planSemanaQuerySchema = z.object({
 export const checkoutSandboxSchema = z
   .object({
     plan: z.enum(['premium', 'anual']),
-    metodo: z.enum(['tarjeta', 'webpay']),
-    tokenTarjeta: z.string().min(1).max(80).optional(),
-    ultimos4: z.string().regex(/^\d{4}$/).optional(),
+    metodo: z.literal('webpay'),
   })
   .strict();
 
 export const confirmarWebpaySchema = z
-  .object({ token: z.string().min(1), aprobar: z.boolean().optional() })
+  .object({ token: z.string().min(1).max(128), aprobar: z.boolean().optional() })
   .strict();
 
 /** Tokens que entrega el formulario sandbox según la tarjeta de prueba. */

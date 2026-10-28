@@ -1,7 +1,8 @@
 import { sql } from './client.js';
 import { aFechaISO, rachaDesdeFechas } from '../services/fechas.js';
 import { calcularDistribucion, generarTareas, repartirHoras } from '../services/plan-generator.js';
-import { PREGUNTAS, validarDataset } from './dataset/index.js';
+import { convertirPuntaje } from '../services/scoring/puntaje.js';
+import { ENSAYOS_SEED, PREGUNTAS, validarDataset } from './dataset/index.js';
 import {
   PASSWORD_DEMO,
   PERFILES_PUBLICOS,
@@ -186,52 +187,51 @@ async function sembrarPreguntas(): Promise<Map<string, { preguntaId: string; alt
 // ---------------------------------------------------------------------------
 
 /**
- * Enlaza los ítems a los ensayos ya sembrados por `database/seed.sql`.
- * Los ensayos reciben los ítems de su materia; el diagnóstico y los completos
- * se llevan todos, y la pregunta más fácil de cada eje se ordena al inicio.
+ * Aplica `ENSAYOS_SEED` a los ensayos ya sembrados por `database/seed.sql`:
+ * actualiza sus datos y reemplaza su lista de preguntas por la del dataset, en
+ * el orden declarado. Solo toca la tabla puente: las respuestas de los
+ * intentos apuntan a `preguntas`, no a `ensayo_preguntas` (D-024).
  */
 async function sembrarEnsayoPreguntas(): Promise<void> {
   const ensayos = await sql<{ id: string; slug: string; materia_id: string }[]>`
     select id, slug, materia_id from ensayos
   `;
   if (ensayos.length === 0) throw new Error('No hay ensayos: ejecuta antes database/seed.sql');
+  const porSlug = new Map(ensayos.map((e) => [e.slug, e]));
+  const dificultadPor = new Map(PREGUNTAS.map((p) => [p.clave, p.dificultad]));
 
-  // uuid -> clave lógica, porque `uuidEstable` no es invertible y el esquema
-  // no guarda la clave: la reconstruimos desde el dataset en memoria.
-  const clavePorId = new Map<string, { clave: string; dificultad: number }>();
-  for (const p of PREGUNTAS) {
-    clavePorId.set(uuidEstable(`pregunta:${p.clave}`), {
-      clave: p.clave,
-      dificultad: p.dificultad,
-    });
-  }
+  for (const conf of ENSAYOS_SEED) {
+    const en = porSlug.get(conf.slug);
+    if (!en) throw new Error(`El ensayo ${conf.slug} no existe: revisa database/seed.sql`);
 
-  for (const en of ensayos) {
-    const items = await sql<{ id: string; difficulty: number }[]>`
-      select p.id, p.difficulty
-      from preguntas p
-      where p.materia_id = ${en.materia_id}
-      order by p.difficulty, p.enunciado
-    `;
-    if (items.length === 0) continue;
-
-    for (const [pos, item] of items.entries()) {
-      const meta = clavePorId.get(item.id);
-      if (!meta) {
-        throw new Error(
-          `La pregunta ${item.id} del ensayo ${en.slug} no pertenece al dataset`,
-        );
-      }
-      await sql`
-        insert into ensayo_preguntas (ensayo_id, pregunta_id, posicion, puntaje)
-        values (${en.id}, ${item.id}, ${pos}, ${10 + meta.dificultad * 2})
-        on conflict (ensayo_id, posicion) do update set
-          pregunta_id = excluded.pregunta_id,
-          puntaje = excluded.puntaje
+    await sql.begin(async (tx) => {
+      await tx`
+        update ensayos set
+          titulo = ${conf.titulo}, descripcion = ${conf.descripcion},
+          duracion_min = ${conf.duracionMin}, premium = ${conf.premium},
+          nivel = ${conf.nivel}, es_diagnostico = ${conf.esDiagnostico}
+        where id = ${en.id}
       `;
-    }
+      await tx`delete from ensayo_preguntas where ensayo_id = ${en.id}`;
+      for (const [pos, clave] of conf.preguntas.entries()) {
+        await tx`
+          insert into ensayo_preguntas (ensayo_id, pregunta_id, posicion, puntaje)
+          values (${en.id}, ${uuidEstable(`pregunta:${clave}`)}, ${pos + 1}, ${10 + (dificultadPor.get(clave) ?? 1) * 2})
+        `;
+      }
+      await tx`update ensayos set preguntas_count = ${conf.preguntas.length} where id = ${en.id}`;
 
-    await sql`update ensayos set preguntas_count = ${items.length} where id = ${en.id}`;
+      if (conf.pesosEje) {
+        for (const [codigo, peso] of Object.entries(conf.pesosEje)) {
+          await tx`
+            insert into ensayo_ejes (ensayo_id, eje_id, peso)
+            select ${en.id}, e.id, ${peso} from ejes e
+            where e.materia_id = ${en.materia_id} and e.codigo = ${codigo}
+            on conflict (ensayo_id, eje_id) do update set peso = excluded.peso
+          `;
+        }
+      }
+    });
   }
 }
 
@@ -240,46 +240,54 @@ async function sembrarEnsayoPreguntas(): Promise<void> {
 // ---------------------------------------------------------------------------
 
 /**
- * Perfiles de Answer history. `acierto` es la probabilidad de responder
- * bien cada item, para que los graficos de precision tengan forma y no
- * sean planos. El valor es fijo: el seed es reproducible.
+ * Perfiles del historial demo. `aciertoPorDificultad` es la probabilidad de
+ * acertar en el intento más reciente; `mejora` es cuánto más bajo partía el
+ * primero (en puntos de probabilidad), para que la evolución tenga forma.
+ * Todo es determinista: el seed produce siempre los mismos datos.
  */
 interface PerfilHistorial {
   usuario: string;
-  /** Probabilidad por dificultad (1..5) de acertar. */
   aciertoPorDificultad: [number, number, number, number, number];
-  /** Numero de intentos a generar hacia atras. */
+  /** Diferencia de acierto entre el primer y el último intento (negativa = baja). */
+  mejora: number;
+  /** Probabilidad de dejar una pregunta en blanco. */
+  omision: number;
   intentos: number;
-  /** Dias entre intento e intento. */
   cadaDias: number;
-  /** Numero de items que responde por intento. */
-  itemsPorIntento: number;
+  /** Puede rendir ensayos Premium. */
+  premium: boolean;
 }
 
 const PERFILES_HISTORIAL: PerfilHistorial[] = [
   {
     usuario: 'usuario:valentina',
-    // Perfil solido y parejo: racha larga, precision alta y estable.
-    aciertoPorDificultad: [0.95, 0.9, 0.8, 0.7, 0.55],
+    // Sólida y constante: sube a lo largo del mes.
+    aciertoPorDificultad: [0.9, 0.82, 0.7, 0.58, 0.45],
+    mejora: 0.2,
+    omision: 0.03,
     intentos: 12,
     cadaDias: 2,
-    itemsPorIntento: 8,
+    premium: true,
   },
   {
     usuario: 'usuario:martina',
-    // Perfil en mejora: sube a lo largo de los intentos.
-    aciertoPorDificultad: [0.85, 0.75, 0.6, 0.45, 0.3],
+    // En mejora clara desde un punto de partida bajo.
+    aciertoPorDificultad: [0.8, 0.68, 0.55, 0.42, 0.3],
+    mejora: 0.28,
+    omision: 0.06,
     intentos: 6,
     cadaDias: 4,
-    itemsPorIntento: 6,
+    premium: false,
   },
   {
     usuario: 'usuario:carlos',
-    // Perfil en descenso: parte bien y se estanca.
-    aciertoPorDificultad: [0.7, 0.55, 0.45, 0.3, 0.2],
+    // Parte bien y se estanca.
+    aciertoPorDificultad: [0.7, 0.55, 0.45, 0.32, 0.22],
+    mejora: -0.06,
+    omision: 0.1,
     intentos: 4,
     cadaDias: 6,
-    itemsPorIntento: 5,
+    premium: false,
   },
 ];
 
@@ -306,28 +314,59 @@ function hashSemilla(texto: string): number {
   return h >>> 0;
 }
 
-async function sembrarIntentos(usuarios: Map<string, string>): Promise<Map<string, string[]>> {
-  const ramos = await sql<{ prueba: string }[]>`
-    select distinct prueba from ensayos
-  `;
-  const idsPorPrueba = new Map<string, string[]>();
+interface ItemEnsayo {
+  pregunta_id: string;
+  dificultad: number;
+  eje_id: string | null;
+  alternativa_correcta: string | null;
+  alternativas: string[];
+}
 
-  for (const { prueba } of ramos) {
-    const ids = await sql<{ id: string }[]>`
-      select en.id from ensayos en
-      join materias m on m.id = en.materia_id
-      where en.prueba = ${prueba}
-      order by en.duracion_min desc, en.titulo
+/**
+ * Intentos M1 entregados de los usuarios demo. Cada intento responde el ensayo
+ * completo y su puntaje sale de la misma tabla de conversión que usa el API.
+ * Los ids son estables, así que al volver a sembrar se reemplazan (solo los
+ * intentos creados por el seed; nunca los que el usuario rindió de verdad).
+ */
+async function sembrarIntentos(usuarios: Map<string, string>): Promise<Map<string, string[]>> {
+  const ensayosM1 = await sql<{ id: string; premium: boolean; duracion_min: number }[]>`
+    select id, premium, duracion_min from ensayos where prueba = 'M1' order by duracion_min, titulo
+  `;
+  const tramos = (
+    await sql<{ pct_logro_min: number; pct_logro_max: number; puntaje_min: number; puntaje_max: number }[]>`
+      select pct_logro_min, pct_logro_max, puntaje_min, puntaje_max from conversion_puntaje
+      where prueba = 'M1' and version = (select max(version) from conversion_puntaje where prueba = 'M1')
+      order by pct_logro_min
+    `
+  ).map((t) => ({
+    pctLogroMin: Number(t.pct_logro_min),
+    pctLogroMax: Number(t.pct_logro_max),
+    puntajeMin: Number(t.puntaje_min),
+    puntajeMax: Number(t.puntaje_max),
+  }));
+
+  const itemsPorEnsayo = new Map<string, ItemEnsayo[]>();
+  for (const en of ensayosM1) {
+    const filas = await sql<ItemEnsayo[]>`
+      select ep.pregunta_id, p.difficulty as dificultad, p.eje_id,
+             (select id from alternativas where pregunta_id = p.id and es_correcta limit 1) as alternativa_correcta,
+             array(select id from alternativas where pregunta_id = p.id order by posicion) as alternativas
+      from ensayo_preguntas ep
+      join preguntas p on p.id = ep.pregunta_id
+      where ep.ensayo_id = ${en.id}
+      order by ep.posicion
     `;
-    idsPorPrueba.set(prueba, ids.map((r) => r.id));
+    itemsPorEnsayo.set(en.id, filas);
   }
 
-  // Fechas de entrega por usuario, para calcular la racha despues.
+  // Fechas de entrega por usuario, para calcular la racha después.
   const entregasPorUsuario = new Map<string, string[]>();
 
   for (const perfil of PERFILES_HISTORIAL) {
     const usuarioId = usuarios.get(perfil.usuario);
     if (!usuarioId) continue;
+    const disponibles = ensayosM1.filter((e) => perfil.premium || !e.premium);
+    if (disponibles.length === 0 || tramos.length === 0) continue;
 
     const entregas: string[] = [];
 
@@ -335,96 +374,84 @@ async function sembrarIntentos(usuarios: Map<string, string>): Promise<Map<strin
       const clave = `intento:${perfil.usuario}:${n}`;
       const intentoId = uuidEstable(clave);
       const rand = rngConSemilla(hashSemilla(clave));
-
-      const iniciada = masDias(hoy(), -(n * perfil.cadaDias + 1));
-      iniciada.setHours(17, 30, 0, 0);
-      const duracionMin = 30 + Math.floor(rand() * 4) * 15;
-      const entregada = new Date(iniciada.getTime() + duracionMin * 60_000);
-
-      const items = await sql<
-        {
-          ensayo_id: string;
-          pregunta_id: string;
-          dificultad: number;
-          eje_id: string | null;
-          alternativa_correcta: string | null;
-        }[]
-      >`
-        select ep.ensayo_id, ep.pregunta_id, p.difficulty as dificultad, p.eje_id,
-               a.id as alternativa_correcta
-        from ensayo_preguntas ep
-        join ensayos en on en.id = ep.ensayo_id
-        join preguntas p on p.id = ep.pregunta_id
-        left join lateral (
-          select id from alternativas
-          where pregunta_id = p.id and es_correcta
-          limit 1
-        ) a on true
-        where en.prueba = 'M1'
-        order by ep.posicion
-        limit ${perfil.itemsPorIntento}
-      `;
+      const ensayo = disponibles[n % disponibles.length]!;
+      const items = itemsPorEnsayo.get(ensayo.id) ?? [];
       if (items.length === 0) continue;
 
-      const ensayoId = items[0]!.ensayo_id;
+      // n = intentos-1 es el más antiguo: parte con `mejora` menos de acierto.
+      const avance = perfil.intentos > 1 ? 1 - n / (perfil.intentos - 1) : 1;
+      const ajuste = -perfil.mejora * (1 - avance);
 
       const respuestas = items.map((item) => {
-        const p = Math.max(0, Math.min(0.99, perfil.aciertoPorDificultad[item.dificultad - 1] ?? 0.5));
-        return { item, correcta: rand() < p };
+        const base = perfil.aciertoPorDificultad[item.dificultad - 1] ?? 0.5;
+        const p = Math.max(0.05, Math.min(0.97, base + ajuste + (rand() - 0.5) * 0.08));
+        const omitida = rand() < perfil.omision;
+        const correcta = !omitida && rand() < p;
+        const incorrectas = item.alternativas.filter((a) => a !== item.alternativa_correcta);
+        const elegida = omitida
+          ? null
+          : correcta
+            ? item.alternativa_correcta
+            : (incorrectas[Math.floor(rand() * incorrectas.length)] ?? null);
+        return { item, correcta, elegida, segundos: 40 + Math.floor(rand() * 110) };
       });
 
       const correctas = respuestas.filter((r) => r.correcta).length;
+      const omitidas = respuestas.filter((r) => r.elegida === null).length;
       const pctLogro = Number(((correctas / respuestas.length) * 100).toFixed(2));
+      const puntaje = convertirPuntaje(tramos, pctLogro);
+      const segundos = respuestas.reduce((a, r) => a + r.segundos, 0);
+      const duracionMin = Math.min(ensayo.duracion_min, Math.ceil(segundos / 60));
 
-      // Puntaje segun la conversion de la prueba M1 sembrada en seed.sql.
-      const puntaje = 100 + Math.round((pctLogro / 100) * 900);
+      const iniciada = masDias(hoy(), -(n * perfil.cadaDias + 1));
+      iniciada.setHours(17, 30, 0, 0);
+      const entregada = new Date(iniciada.getTime() + duracionMin * 60_000);
+      const expira = new Date(iniciada.getTime() + ensayo.duracion_min * 60_000);
 
-      await sql`
-        insert into intentos (
-          id, usuario_id, ensayo_id, estado, iniciado_en, expira_en, entregado_en,
-          duracion_min, correctas, incorrectas, omitidas, pct_logro, puntaje
-        )
-        values (
-          ${intentoId}, ${usuarioId}, ${ensayoId}, 'entregado'::estado_intento,
-          ${iniciada.toISOString()}, ${entregada.toISOString()}, ${entregada.toISOString()},
-          ${duracionMin}, ${correctas}, ${respuestas.length - correctas}, 0,
-          ${pctLogro}, ${puntaje}
-        )
-        on conflict (id) do nothing
-      `;
-
-      for (const [pos, r] of respuestas.entries()) {
-        const alternativas = await sql<{ id: string }[]>`
-          select id from alternativas where pregunta_id = ${r.item.pregunta_id} order by posicion
-        `;
-        // Acierta: marca la correcta. Falla: marca otra cualquiera.
-        const elegida = r.correcta
-          ? r.item.alternativa_correcta
-          : (alternativas.find((a) => a.id !== r.item.alternativa_correcta)?.id ?? null);
-
-        await sql`
-          insert into respuestas (
-            intento_id, pregunta_id, alternativa_id, es_marcada, tiempo_segundos
+      await sql.begin(async (tx) => {
+        await tx`
+          insert into intentos (
+            id, usuario_id, ensayo_id, estado, iniciado_en, expira_en, entregado_en,
+            duracion_min, correctas, incorrectas, omitidas, pct_logro, puntaje
           )
-          values (${intentoId}, ${r.item.pregunta_id}, ${elegida}, true, ${20 + pos * 7})
-          on conflict (intento_id, pregunta_id) do nothing
+          values (
+            ${intentoId}, ${usuarioId}, ${ensayo.id}, 'entregado'::estado_intento,
+            ${iniciada.toISOString()}, ${expira.toISOString()}, ${entregada.toISOString()},
+            ${duracionMin}, ${correctas}, ${respuestas.length - correctas - omitidas}, ${omitidas},
+            ${pctLogro}, ${puntaje}
+          )
+          on conflict (id) do update set
+            ensayo_id = excluded.ensayo_id, estado = excluded.estado,
+            iniciado_en = excluded.iniciado_en, expira_en = excluded.expira_en,
+            entregado_en = excluded.entregado_en, duracion_min = excluded.duracion_min,
+            correctas = excluded.correctas, incorrectas = excluded.incorrectas,
+            omitidas = excluded.omitidas, pct_logro = excluded.pct_logro, puntaje = excluded.puntaje
         `;
+        await tx`delete from respuestas where intento_id = ${intentoId}`;
+        await tx`delete from resultados_eje where intento_id = ${intentoId}`;
 
-        if (r.item.eje_id) {
-          await sql`
-            insert into resultados_eje (intento_id, eje_id, total, correctas, pct_logro)
-            select ${intentoId}, ${r.item.eje_id}, 1, ${r.correcta ? 1 : 0},
-                   ${r.correcta ? 100 : 0}
-            on conflict (intento_id, eje_id) do update set
-              total = resultados_eje.total + 1,
-              correctas = resultados_eje.correctas + excluded.correctas,
-              pct_logro = round(
-                (resultados_eje.correctas + excluded.correctas)::numeric
-                / (resultados_eje.total + 1) * 100, 2
-              )
+        for (const r of respuestas) {
+          await tx`
+            insert into respuestas (intento_id, pregunta_id, alternativa_id, es_marcada, tiempo_segundos)
+            values (${intentoId}, ${r.item.pregunta_id}, ${r.elegida}, false, ${r.segundos})
           `;
         }
-      }
+
+        const porEje = new Map<string, { total: number; correctas: number }>();
+        for (const r of respuestas) {
+          if (!r.item.eje_id) continue;
+          const acc = porEje.get(r.item.eje_id) ?? { total: 0, correctas: 0 };
+          acc.total += 1;
+          if (r.correcta) acc.correctas += 1;
+          porEje.set(r.item.eje_id, acc);
+        }
+        for (const [ejeId, acc] of porEje) {
+          await tx`
+            insert into resultados_eje (intento_id, eje_id, total, correctas, pct_logro)
+            values (${intentoId}, ${ejeId}, ${acc.total}, ${acc.correctas}, ${Number(((acc.correctas / acc.total) * 100).toFixed(2))})
+          `;
+        }
+      });
 
       entregas.push(iso(entregada));
     }
@@ -434,6 +461,7 @@ async function sembrarIntentos(usuarios: Map<string, string>): Promise<Map<strin
 
   return entregasPorUsuario;
 }
+
 
 // ---------------------------------------------------------------------------
 // 5. RACHAS
@@ -622,18 +650,20 @@ async function sembrarComunidad(usuarios: Map<string, string>): Promise<void> {
 
     await sql`
       insert into perfiles_publicos (
-        usuario_id, titulo, especialidad, bio, verificado,
+        usuario_id, titulo, especialidad, bio, verificado, es_demo,
         rating_promedio, rating_cantidad, seguidores
       )
       values (
-        ${usuarioId}, ${p.titulo}, ${p.especialidad}, ${p.bio}, ${p.verificado},
+        -- Perfil de ejemplo: nunca "verificado" (no hay verificación real detrás).
+        ${usuarioId}, ${p.titulo}, ${p.especialidad}, ${p.bio}, false, true,
         ${p.rating}, ${p.ratingCantidad}, ${p.seguidores}
       )
       on conflict (usuario_id) do update set
         titulo = excluded.titulo,
         especialidad = excluded.especialidad,
         bio = excluded.bio,
-        verificado = excluded.verificado
+        verificado = false,
+        es_demo = true
     `;
   }
 

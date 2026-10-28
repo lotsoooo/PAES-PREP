@@ -1,138 +1,115 @@
-import type { ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import { cn } from '@/lib/cn';
+import { Button } from './Button';
+import { Icono } from './Icono';
 
-export interface PropsSkeleton {
-  className?: string;
-  variante?: 'rect' | 'circulo' | 'texto';
-  ancho?: string | number;
-  alto?: string | number;
-  cantidad?: number;
-}
-
-export function Skeleton({
-  className,
-  variante = 'rect',
-  ancho,
-  alto,
-  cantidad = 1,
-}: PropsSkeleton) {
-  const base = 'animate-pulse rounded bg-surface-container-high';
-  const styles: Record<typeof variante, string> = {
-    rect: cn(base, 'h-4'),
-    circulo: cn(base, 'rounded-full size-10'),
-    texto: cn(base, 'h-3'),
-  };
-
-  const render = () => (
+/**
+ * Bloque de carga plano del tamaño real del valor que reemplaza (sin shimmer).
+ * Se usa dentro del layout final para que nada salte cuando llegan los datos.
+ */
+export function Skeleton({ className, style }: { className?: string; style?: CSSProperties }) {
+  return (
     <span
-      className={cn(styles[variante], className)}
-      style={{ width: ancho, height: alto }}
       aria-hidden="true"
+      style={style}
+      className={cn('block animate-pulse rounded-sm bg-surface-container-high', className)}
     />
   );
+}
 
-  if (cantidad <= 1) return render();
-
+/** Región en carga, anunciada a lectores de pantalla una sola vez. */
+export function Cargando({ etiqueta = 'Cargando…', children, className }: { etiqueta?: string; children: ReactNode; className?: string }) {
   return (
-    <div className="flex flex-col gap-2">
-      {Array.from({ length: cantidad }).map((_, i) => (
-        <span key={i}>{render()}</span>
-      ))}
+    <div role="status" aria-live="polite" aria-busy="true" className={className}>
+      <span className="sr-only">{etiqueta}</span>
+      {children}
     </div>
   );
 }
 
-export function SkeletonCard() {
+export function SkeletonCard({ className, lineas = 3 }: { className?: string; lineas?: number }) {
   return (
-    <div className="rounded-md border border-border bg-surface-container-lowest p-5 shadow-card">
-      <div className="flex items-center gap-3">
-        <Skeleton variante="circulo" />
-        <div className="flex-1 space-y-2">
-          <Skeleton variante="texto" ancho="70%" />
-          <Skeleton variante="texto" ancho="40%" />
-        </div>
-      </div>
+    <div className={cn('rounded-md border border-border bg-surface-container-lowest p-6 shadow-card', className)}>
+      <Skeleton className="h-6 w-28 rounded-full" />
+      <Skeleton className="mt-4 h-7 w-3/4" />
       <div className="mt-4 space-y-2">
-        <Skeleton ancho="100%" />
-        <Skeleton ancho="90%" />
-        <Skeleton ancho="60%" />
-      </div>
-      <div className="mt-4 flex justify-between">
-        <Skeleton ancho={80} />
-        <Skeleton ancho={100} />
+        {Array.from({ length: lineas }).map((_, i) => (
+          <Skeleton key={i} className="h-4" style={{ width: `${92 - i * 14}%` }} />
+        ))}
       </div>
     </div>
   );
 }
 
+/**
+ * Estado vacío: conserva el marco del bloque, explica en una frase y ofrece
+ * la siguiente acción.
+ */
 export function EstadoVacio({
-  icono = 'folder_open',
+  icono = 'inbox',
   titulo,
   descripcion,
   accion,
+  compacto,
   className,
 }: {
   icono?: string;
   titulo: string;
-  descripcion: string;
+  descripcion?: ReactNode;
   accion?: ReactNode;
+  compacto?: boolean;
   className?: string;
 }) {
   return (
     <div
       className={cn(
-        'flex flex-col items-center justify-center py-10 text-center',
+        'flex flex-col items-center justify-center rounded-md border border-dashed border-outline-variant bg-surface-container-low/60 text-center',
+        compacto ? 'px-5 py-8' : 'px-6 py-14',
         className,
       )}
     >
-      <div className="flex size-16 items-center justify-center rounded-full bg-surface-container">
-        <span aria-hidden="true" className="material-symbols-outlined text-4xl text-on-surface-variant">
-          {icono}
-        </span>
-      </div>
-      <h3 className="mt-4 text-headline-md text-on-surface">{titulo}</h3>
-      <p className="mt-2 max-w-md text-body-md text-on-surface-variant">{descripcion}</p>
+      <Icono nombre={icono} className={cn('text-outline', compacto ? 'text-3xl' : 'text-4xl')} />
+      <h3 className={cn('mt-3 text-on-surface', compacto ? 'text-body-md font-semibold' : 'text-body-lg font-semibold')}>
+        {titulo}
+      </h3>
+      {descripcion && <p className="mt-1 max-w-md text-body-md text-on-surface-variant">{descripcion}</p>}
       {accion && <div className="mt-5">{accion}</div>}
     </div>
   );
 }
 
+/** Error dentro del bloque que falló: qué pasó y un botón para reintentar. */
 export function EstadoError({
-  titulo = 'Ocurrió un error',
-  descripcion = 'Inténtalo nuevamente en unos segundos.',
+  titulo = 'No pudimos cargar esta sección',
+  descripcion = 'Revisa tu conexión e inténtalo de nuevo.',
   onReintentar,
   cargando,
+  compacto,
   className,
 }: {
   titulo?: string;
-  descripcion?: string;
+  descripcion?: ReactNode;
   onReintentar?: () => void;
   cargando?: boolean;
+  compacto?: boolean;
   className?: string;
 }) {
   return (
     <div
+      role="alert"
       className={cn(
-        'flex flex-col items-center justify-center py-10 text-center',
+        'flex flex-col items-center justify-center rounded-md border border-border bg-surface-container-lowest text-center',
+        compacto ? 'px-5 py-8' : 'px-6 py-14',
         className,
       )}
     >
-      <div className="flex size-16 items-center justify-center rounded-full bg-error-container">
-        <span aria-hidden="true" className="material-symbols-outlined text-4xl text-on-error-container">
-          error
-        </span>
-      </div>
-      <h3 className="mt-4 text-headline-md text-on-surface">{titulo}</h3>
-      <p className="mt-2 max-w-md text-body-md text-on-surface-variant">{descripcion}</p>
+      <Icono nombre="cloud_off" className="text-3xl text-error" />
+      <h3 className="mt-3 text-body-md font-semibold text-on-surface">{titulo}</h3>
+      <p className="mt-1 max-w-md text-body-md text-on-surface-variant">{descripcion}</p>
       {onReintentar && (
-        <button
-          type="button"
-          onClick={onReintentar}
-          disabled={cargando}
-          className="mt-5 min-h-11 rounded px-5 text-body-md font-medium text-primary transition-colors hover:bg-primary/10 disabled:opacity-50"
-        >
-          {cargando ? 'Reintentando…' : 'Reintentar'}
-        </button>
+        <Button variante="secundario" tamano="sm" className="mt-4" onClick={onReintentar} cargando={cargando} iconoIzquierdo="refresh">
+          Reintentar
+        </Button>
       )}
     </div>
   );

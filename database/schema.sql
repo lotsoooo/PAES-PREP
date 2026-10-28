@@ -530,6 +530,7 @@ create table if not exists perfiles_publicos (
   especialidad      text,
   bio               text,
   verificado        boolean not null default false,
+  es_demo           boolean not null default false, -- perfil de ejemplo del seed (003)
   rating_promedio   numeric(3,2) not null default 0 check (rating_promedio between 0 and 5),
   rating_cantidad   integer not null default 0,
   seguidores        integer not null default 0,
@@ -867,17 +868,13 @@ join public.ensayos e on e.id = i.ensayo_id
 join public.materias m on m.id = e.materia_id;
 
 -- 14.3 Percentil: comparación contra los demás intentos del mismo ensayo
+-- Percentil solo con 30 o más estudiantes distintos (003): con menos, null.
 create or replace function public.percentil_ensayo(p_ensayo uuid, p_puntaje integer)
 returns numeric language sql stable as $$
   select case
-           when count(*) = 0 then null
+           when count(distinct usuario_id) < 30 then null
            else round(
-             (select count(*) from (
-                select puntaje from public.intentos
-                 where ensayo_id = p_ensayo and estado = 'entregado' and puntaje is not null
-             ) s2
-              where s2.puntaje <= p_puntaje)::numeric
-             * 100 / count(*), 2)
+             (count(*) filter (where puntaje <= p_puntaje))::numeric * 100 / count(*), 2)
          end
   from public.intentos
    where ensayo_id = p_ensayo and estado = 'entregado' and puntaje is not null;

@@ -7,6 +7,8 @@ const esquema = z.object({
 
   WEB_ORIGIN: z.string().default('http://localhost:5173'),
   APP_URL: z.string().default('http://localhost:5173'),
+  /** URL pública del API: Webpay vuelve aquí antes de redirigir a la app. */
+  API_PUBLIC_URL: z.string().default('http://localhost:3000'),
 
   JWT_SECRET: z.string().min(32, 'JWT_SECRET debe tener al menos 32 caracteres'),
   REFRESH_SECRET: z.string().min(32, 'REFRESH_SECRET debe tener al menos 32 caracteres'),
@@ -26,6 +28,9 @@ const esquema = z.object({
   STORAGE_LOCAL_DIR: z.string().default('uploads'),
 
   PAYMENT_PROVIDER: z.enum(['mock', 'webpay']).default('mock'),
+  PAYMENT_SANDBOX_ENABLED: z.enum(['true', 'false']).default('false').transform((v) => v === 'true'),
+  PAYMENT_LIVE_ENABLED: z.enum(['true', 'false']).default('false').transform((v) => v === 'true'),
+  PREMIUM_TRIAL_DAYS: z.coerce.number().int().min(1).max(30).default(7),
   TRANSBANK_INTEGRATION_TYPE: z.enum(['integration', 'production']).default('integration'),
   TRANSBANK_API_KEY: z.string().optional(),
   TRANSBANK_API_SECRET: z.string().optional(),
@@ -38,6 +43,13 @@ const esquema = z.object({
 
   RATE_LIMIT_LOGIN: z.coerce.number().int().default(5),
   RATE_LIMIT_VENTANA_MIN: z.coerce.number().int().default(1),
+
+  // Tutor IA: si falta, se usa el tutor simulado.
+  ANTHROPIC_API_KEY: z.string().optional(),
+  AI_PAID_ENABLED: z.enum(['true', 'false']).default('false').transform((v) => v === 'true'),
+  ANTHROPIC_MODEL: z.string().min(1).max(100).optional(),
+  AI_MAX_OUTPUT_TOKENS: z.coerce.number().int().min(256).max(4096).default(2048),
+  AI_REQUESTS_PER_DAY: z.coerce.number().int().min(1).max(100).default(30),
 });
 
 export type Config = z.infer<typeof esquema>;

@@ -14,6 +14,7 @@ import type {
   DTOEje,
   DTOIntentoResumen,
   DTOMateria,
+  DTONotificacion,
   DTOPlan,
   DTOPlanSuscripcion,
   DTOPrecisionEje,
@@ -24,6 +25,7 @@ import type {
   DTOPuntoHistorial,
   DTORacha,
   DTOResultados,
+  DTOSuscripcion,
   DTOTareaPlan,
   DTOUniversidad,
   DTOUsuario,
@@ -354,6 +356,8 @@ export interface DTOTutorResumen {
   titulo: string | null;
   especialidad: string | null;
   verificado: boolean;
+  /** Perfil de ejemplo: rating y seguidores ilustrativos, sin verificación real. */
+  demo: boolean;
   ratingPromedio: number;
   seguidores: number;
   loSigo: boolean;
@@ -376,7 +380,7 @@ export interface DTOBusquedaComunidad {
 
 export interface DTOResumenNotificaciones {
   noLeidas: number;
-  recientes: import('./dtos.js').DTONotificacion[];
+  recientes: DTONotificacion[];
 }
 
 /* ==========================================================================
@@ -386,9 +390,12 @@ export interface DTOResumenNotificaciones {
 export interface DTOEstadoSuscripcion {
   esPremium: boolean;
   planActual: DTOPlanSuscripcion;
-  suscripcion: import('./dtos.js').DTOSuscripcion | null;
+  suscripcion: DTOSuscripcion | null;
   pruebaDisponible: boolean;
   proveedor: 'mock' | 'webpay';
+  modoPago: 'simulado' | 'integracion' | 'real' | 'no_disponible';
+  pagosDisponibles: boolean;
+  diasPrueba: number;
 }
 
 export interface DTOResultadoCheckout {
@@ -397,6 +404,9 @@ export interface DTOResultadoCheckout {
   mensaje: string;
   /** Webpay: URL a la que se redirige para pagar. */
   redirectUrl: string | null;
+  /** Redirección POST al formulario hospedado por Transbank. */
+  tokenRedireccion?: string;
+  modoPago?: 'simulado' | 'integracion' | 'real' | 'no_disponible';
 }
 
 /* ==========================================================================

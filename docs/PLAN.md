@@ -3,6 +3,28 @@
 Documento vivo. El avance real está en `docs/PROGRESO.md`; las decisiones, en
 `docs/DECISIONES.md`.
 
+## Revisión de continuidad, 2026-10-28
+
+Las secciones iniciales de este documento describen el arranque histórico, no
+el estado actual. Claude dejó 34 archivos de pantalla y módulos API completos
+en el árbol de trabajo. No se recrean ni se cambia de stack. El inventario real
+está en `INVENTARIO_STITCH.md`; las verificaciones, en `PRUEBAS.md`.
+
+La especificación vigente es el prompt maestro v2.0 entregado en la conversación.
+No se encontró un archivo local `PROMPT_MAESTRO_PAES_PRO.md`; no se simula haberlo leído.
+
+Orden de continuidad: cerrar fallos del motor de ensayos y autorización;
+comprobar páginas públicas y componentes comunes; preparar pruebas con una BD
+aislada; completar flujos privados y comparación visual ruta por ruta; terminar
+moderación, integraciones externas y auditoría integral. Los gates incompletos
+quedan abiertos aunque las pantallas existan. No se aplican migraciones a la BD
+remota durante esta revisión.
+
+Riesgos prioritarios: falta de prueba concurrente con Postgres aislado,
+recuperación SMTP sin prueba de entrega, pasarela y almacenamiento externos sin
+prueba real, calendario oficial por configurar, ausencia de políticas legales
+aprobadas y cobertura visual parcial. No hay certificación de producción.
+
 ## 1. Lo que ya existe (Fase 0)
 
 | Pieza | Estado al empezar |

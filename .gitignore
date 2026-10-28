@@ -13,6 +13,7 @@ build/
 .env.local
 .env.*.local
 !.env.example
+/tok4.txt
 
 # artefactos de drizzle
 apps/api/drizzle/meta/_journal.json.bak
@@ -37,3 +38,8 @@ Thumbs.db
 *.log
 npm-debug.log*
 bun-debug.log*
+
+# capturas visuales de Playwright
+apps/web/e2e/capturas/
+apps/web/e2e/resultados/
+output/

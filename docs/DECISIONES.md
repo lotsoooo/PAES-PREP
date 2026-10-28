@@ -3,6 +3,71 @@
 Cada decisión relevante, con su motivo. Si algo cambia, se agrega una entrada
 nueva en vez de reescribir la anterior.
 
+## Revisión 2026-10-28 · decisiones vigentes de continuidad
+
+Estas entradas prevalecen sobre las decisiones históricas incompatibles.
+
+### D-033 · Pagos simulados segregados (sustituye D-020 y D-031)
+
+Se elimina la captura de número, vencimiento y CVV, incluso en el simulador.
+El proveedor simulado exige habilitación explícita fuera de producción. No
+hay fallback silencioso si Webpay carece de configuración. En producción los
+beneficios dependen de pagos reales aprobados; los resultados del navegador
+no conceden permisos. Confirmación, monto/orden/sesión y transición de plan
+se validan en servidor. El resultado consulta al API; un fallo de red queda
+pendiente de conciliación y no se anuncia como «rechazado sin cobro».
+Pruebas unitarias con transporte controlado; pasarela externa sin verificar.
+
+### D-034 · Ensayos: revisión de respuesta y entrega atómica
+
+Se serializa creación/cuota por usuario y guardado/entrega por intento. El
+guardado compara la revisión previa y conserva reintentos idénticos. Cierre,
+puntaje, actividad, repaso y notificaciones se agrupan en una transacción.
+Los intentos expirados cuentan en los agregados. El navegador conserva una
+cola de cambios por intento y espera a vaciarla antes de la entrega manual.
+La expiración se decide en servidor y el reloj visual usa tiempo monotónico.
+Conflictos entre pestañas se muestran, sin sobrescribir silenciosamente.
+Pendiente: prueba concurrente real en Postgres y mejor UI para resolver el conflicto.
+
+### D-035 · Calendario sin fechas inventadas
+
+Se retira el cálculo del «primer lunes de diciembre». `PROCESO_ADMISION` en
+`apps/web/src/config/marca.ts` debe completarse con año, fecha y fuente oficial
+verificados. Hasta entonces se muestra «por confirmar»; una fecha elegida por
+el estudiante sí habilita su cuenta regresiva. Días civiles calculados para
+America/Santiago, sin compensación UTC fija. Revisar la configuración antes de publicar.
+
+### D-036 · Costos e integraciones externas
+
+Tener una clave de IA no habilita gasto por sí solo. Se requieren
+`AI_PAID_ENABLED`, modelo y clave; cuotas y tokens se limitan en servidor.
+Sin habilitación se usa demostración rotulada en PAES-Bot. SMTP debe enviar
+realmente o devolver indisponibilidad; nunca se imprime un token de recuperación.
+No se cambiaron credenciales ni se habilitaron cargos, correos, IA paga o despliegues.
+
+### D-037 · Fidelidad, accesibilidad y evidencia
+
+Se conserva Inter/Academic Velocity. Se declara la escala tipográfica al
+combinador de clases para impedir que elimine los colores accesibles de texto.
+La banda de estadísticas usa el par primary/on-primary en ambos temas. Los
+iconos PWA derivan del SVG local de marca. El navegador de 65 preguntas amplía
+la maqueta de examen y exige más altura en escritorio; es una mejora funcional
+del prompt. Capturas con sufijo `fixture` usan API simulada y no prueban la BD.
+
+### D-038 · Aislamiento y cierre de fases
+
+El API antiguo en 3000 se conserva. Para revisar el código actual se usa 3001
+y `API_PROXY_TARGET`. Docker Desktop está instalado pero el daemon no está
+disponible. No se ejecutan pruebas que creen usuarios, seed o migraciones
+contra la BD existente. Los gates de fases privadas permanecen abiertos.
+No se hace un commit masivo del trabajo previo mezclado y sin revisar.
+
+Pendientes de decisión humana antes de lanzamiento: calendario oficial,
+precio/descuento anual y límites comerciales definitivos, políticas de
+privacidad/términos, verificación de tutores, proveedor de video, mensajería
+directa y operación/backups. El botón «Mensaje» de tutor mantiene el alcance
+parcial D-030: publicación con mención, no chat privado.
+
 ---
 
 ## D-001 · Fuente de verdad del modelo de datos: SQL canónico
@@ -272,3 +337,128 @@ conserva.
 **Motivo.** La guía de Vercel pide Title Case, pero esa es una convención del
 inglés; en español la norma (RAE) es mayúscula solo al inicio y en nombres
 propios.
+
+---
+
+## D-023 · Un solo AppShell
+
+**Decisión.** Escritorio (≥1024 px): sidebar fijo de 256 px + topbar con
+buscador (Ctrl/⌘ K), notificaciones, configuración y avatar. Móvil y tablet:
+topbar compacta + barra inferior Inicio · Ensayos · Estudio · Comunidad · Perfil.
+El modo examen y la sesión de repaso usan un layout de foco sin navegación.
+
+**Motivo.** Stitch mezclaba sidebar y barra superior, a veces en la misma
+pantalla. "Estudio" agrupa plan, contenidos, repaso y estadísticas en móvil
+para no pasar de cinco destinos.
+
+---
+
+## D-024 · El seed reemplaza la lista de preguntas de cada ensayo
+
+**Decisión.** `sembrarEnsayoPreguntas` aplica `ENSAYOS_SEED`: actualiza los
+datos del ensayo y reemplaza sus filas de `ensayo_preguntas` en una
+transacción.
+
+**Motivo.** La versión anterior asignaba a cada ensayo todas las preguntas de
+su materia, por lo que el "ensayo M1 completo" no tenía las 65 preguntas del
+banco y los ensayos temáticos mezclaban ejes. `ensayo_preguntas` es solo la
+tabla puente: las respuestas de los intentos referencian `preguntas`, así que
+reemplazarla no borra el historial de nadie.
+
+---
+
+## D-025 · Ofertas académicas con puntajes de corte aproximados
+
+**Decisión.** Migración `002_ofertas_academicas.sql` con 70 combinaciones
+carrera × universidad reales y un puntaje de corte aproximado.
+
+**Motivo.** La tabla estaba vacía y el onboarding no podía mostrar
+universidades. Los cortes son una referencia para fijar la meta, no la tabla
+oficial del DEMRE: así se indica en el archivo y en la interfaz.
+
+---
+
+## D-026 · Historial demo realista y con la conversión del API
+
+**Decisión.** Los intentos demo responden el ensayo completo, usan la tabla
+`conversion_puntaje` (la misma que el API) y siguen una curva de mejora por
+perfil. Al volver a sembrar se reemplazan solo los intentos con ids del seed.
+
+**Motivo.** Antes cada intento respondía 5–8 preguntas fáciles con una
+conversión lineal propia: casi todos daban 1000 y los gráficos quedaban planos.
+También mezclaba preguntas de varios ensayos en un mismo intento y acumulaba
+`resultados_eje` en cada ejecución.
+
+---
+
+## D-027 · Contraste de la meta naranja en gráficos
+
+**Decisión.** La línea de meta naranja (`secondary-container`) siempre lleva
+etiqueta de texto "Meta N" y los gráficos tienen vista de tabla.
+
+**Motivo.** El naranjo sobre blanco tiene 2,63:1 (bajo 3:1 para elementos
+gráficos). Se conserva por ser el color de marca de DESIGN.md para la meta,
+pero nunca es la única forma de leer el dato.
+
+---
+
+## D-028 · Color por función en casos que Stitch pintaba distinto
+
+- **Dificultad** usa punto verde / ámbar-azul / rojo con texto; el dorado queda
+  solo para Premium.
+- **Marcar para revisar** (modo examen) es azul con ícono de marcador; el
+  naranjo se usa para el cronómetro bajo 10 min y ejes débiles.
+- **Tarjeta Premium** en Planes es dorada, no azul como en Stitch.
+- **Colores por materia** en el plan generado son tintes de azul.
+- **Banner Premium y portadas de contenido** usan color plano e ícono, sin
+  degradados ni fotos de stock (no hay imágenes con licencia en `/public`).
+
+---
+
+## D-029 · Modo examen: 4 alternativas y atajos
+
+Las preguntas PAES vigentes tienen 4 alternativas (D-019). Atajos A–D / 1–4
+para responder, ←/→ navegar, M marcar, G abrir el navegador de preguntas. La
+E solo aparece si un ítem trae 5 alternativas. Avisos a 10 y 5 minutos y envío
+automático al llegar a 0, con `expira_en` del servidor como autoridad (D-004).
+
+---
+
+## D-030 · Comunidad: editor y alcance
+
+- Subrayado con `++texto++` (Markdown no lo tiene y no se acepta HTML crudo).
+- "Mensaje" en el perfil de tutor abre Crear publicación con la mención: no hay
+  mensajería directa en el API (pendiente de producto).
+- Los filtros de Búsqueda son de selección única porque el API acepta una
+  materia; Stitch mostraba checkboxes.
+- Borrador de publicación solo en `localStorage` del navegador.
+
+---
+
+## D-031 · Pagos sandbox sin datos de tarjeta
+
+La tarjeta se valida en el navegador (Luhn, vencimiento, CVV) y al API solo
+viajan un token de prueba (`TOKENS_SANDBOX`) y los últimos 4 dígitos. Webpay
+pasa por una pantalla de Transbank simulada (`/app/premium/webpay`) y vuelve a
+`/app/premium/resultado`, que entiende `token_ws` y `TBK_TOKEN` como el Webpay
+real. Corrección en `routes/premium.ts`: los `sql.json(x)` sobre columnas
+`jsonb` fallaban con el pooler (`prepare: false`) y se cambiaron por
+`${JSON.stringify(x)}::jsonb`.
+
+---
+
+## D-032 · Otras decisiones de interfaz
+
+- Login: colegio opcional como combobox (variante "con colegio"); el banner
+  muestra el error real del servidor; se quitaron los links de debug.
+- El botón de Google usa los colores oficiales de Google en un SVG (única
+  excepción a "sin hex"); solo aparece si `/auth/proveedores` lo habilita.
+- Onboarding con tres pasos (meta, disponibilidad, pruebas). M1 y CL vienen
+  marcadas por ser obligatorias.
+- Configuración: navegación lateral en escritorio y pestañas desplazables en
+  móvil; los switches se guardan con "Guardar cambios" y toast.
+- Lecciones sin video (D-016) se leen con avance por scroll en tramos de 25 %.
+- Arrastrar y soltar tareas del plan solo en escritorio y hacia hoy en
+  adelante; en móvil se reprograma con el menú.
+- Detrás de los candados Premium de Estadísticas hay datos de ejemplo
+  borrosos y ocultos a lectores de pantalla, nunca los datos reales.

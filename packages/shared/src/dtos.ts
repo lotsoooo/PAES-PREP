@@ -113,6 +113,8 @@ export interface DTORespuestaActual {
   alternativaId: string | null;
   esMarcada: boolean;
   tiempoSegundos: number;
+  /** Revisión opaca del último guardado, para detectar cambios desde otra pestaña. */
+  guardadoEn?: string;
 }
 
 /** Solo después de entregar. */
@@ -162,6 +164,8 @@ export interface DTOIntento extends DTOIntentoResumen {
   ensayoId: string;
   duracionMin: number;
   expiraEn: string;
+  /** Referencia del servidor: el reloj local no decide la duración del ensayo. */
+  servidorAhora?: string;
   preguntas: DTOPregunta[];
   indiceActual: number;
   esPremium: boolean;
@@ -355,6 +359,8 @@ export interface DTOPerfilPublico {
     especialidad: string | null;
     bio: string | null;
     verificado: boolean;
+    /** Perfil de ejemplo: rating y seguidores ilustrativos, sin verificación real. */
+    demo: boolean;
     ratingPromedio: number;
     ratingCantidad: number;
     seguidores: number;

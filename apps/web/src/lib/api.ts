@@ -1,4 +1,4 @@
-import { servicios } from './servicios.js';
+import { servicios } from './servicios';
 
 /** Error normalizado del API: { error: { code, message, details? } }. */
 export class ApiError extends Error {
@@ -31,34 +31,39 @@ const BASE_URL: string =
   (import.meta.env.VITE_API_URL as string | undefined) ?? '/api/v1';
 
 /**
- * Client HTTP tipado. Adjunta el access token desde el store en memoria y
- * refresca de forma transparente ante un 401 (una sola vez, sin carreras).
+ * Cliente HTTP tipado. Adjunta el access token (en memoria) y, ante un 401,
+ * refresca una sola vez de forma transparente: varios 401 simultáneos
+ * comparten el mismo refresh.
  */
-type Refrescador = () => Promise<string | null>;
+interface ConfigAuth {
+  token: () => string | null;
+  refrescar: () => Promise<string | null>;
+  alPerderSesion: () => void;
+}
 
-let obtenerToken: Refrescador = async () => null;
-let alExpirar: (() => void) | null = null;
+let auth: ConfigAuth = {
+  token: () => null,
+  refrescar: async () => null,
+  alPerderSesion: () => {},
+};
 
-export function configurarAuth(
-  refrescador: Refrescador,
-  alPerderSesion: () => void,
-): void {
-  obtenerToken = refrescador;
-  alExpirar = alPerderSesion;
+export function configurarAuth(config: ConfigAuth): void {
+  auth = config;
 }
 
 interface OpcionesPeticion extends Omit<RequestInit, 'body'> {
   body?: unknown;
-  /** Permite reintentar tras un refresh sin bucles infinitos. */
+  /** Evita bucles: tras un refresh se reintenta una sola vez. */
   _reintento?: boolean;
+  /** No intentar refrescar (usado por el propio refresh y el login). */
+  sinRefresh?: boolean;
 }
 
 let refreshEnVuelo: Promise<string | null> | null = null;
 
-/** Deduplica los refresh concurrentes: varios 401 generan una sola petición. */
 async function refrescarToken(): Promise<string | null> {
   if (!refreshEnVuelo) {
-    refreshEnVuelo = obtenerToken().finally(() => {
+    refreshEnVuelo = auth.refrescar().finally(() => {
       refreshEnVuelo = null;
     });
   }
@@ -69,17 +74,19 @@ export async function peticion<T>(
   ruta: string,
   opciones: OpcionesPeticion = {},
 ): Promise<T> {
-  const { body, headers, _reintento, ...resto } = opciones;
+  const { body, headers, _reintento, sinRefresh, ...resto } = opciones;
 
   const cabeceras = new Headers(headers);
   if (body !== undefined && !(body instanceof FormData)) {
     cabeceras.set('Content-Type', 'application/json');
   }
 
-  const token = await obtenerToken();
+  const token = auth.token();
   if (token) cabeceras.set('Authorization', `Bearer ${token}`);
 
-  const respuesta = await fetch(`${BASE_URL}${ruta}`, {
+  let respuesta: Response;
+  try {
+    respuesta = await fetch(`${BASE_URL}${ruta}`, {
     ...resto,
     headers: cabeceras,
     credentials: 'include',
@@ -89,14 +96,17 @@ export async function peticion<T>(
         : body instanceof FormData
           ? body
           : JSON.stringify(body),
-  });
+    });
+  } catch {
+    throw new ApiError(0, 'NETWORK_ERROR', 'No hay conexión con el servidor. Revisa tu internet e inténtalo de nuevo.');
+  }
 
-  if (respuesta.status === 401 && !_reintento) {
+  if (respuesta.status === 401 && !_reintento && !sinRefresh) {
     const nuevo = await refrescarToken();
     if (nuevo) {
       return peticion<T>(ruta, { ...opciones, _reintento: true });
     }
-    alExpirar?.();
+    auth.alPerderSesion();
   }
 
   if (respuesta.status === 204) return undefined as T;
@@ -151,3 +161,10 @@ export function query(params: Record<string, string | number | boolean | undefin
 }
 
 export { servicios };
+
+/** URL absoluta de un archivo servido por el API (avatares, imágenes). */
+export function urlArchivo(url: string | null | undefined): string | null {
+  if (!url) return null;
+  if (/^https?:\/\//.test(url)) return url;
+  return url.startsWith('/api/') ? url.replace(/^\/api\/v1/, BASE_URL) : url;
+}
