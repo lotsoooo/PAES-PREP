@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Planes Premium - PAES Prep</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#737686",
+                        "surface-container": "#e9edff",
+                        "on-surface-variant": "#434654",
+                        "tertiary-container": "#cea700",
+                        "surface-variant": "#dce2f7",
+                        "inverse-primary": "#b5c4ff",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#ffb690",
+                        "on-primary": "#ffffff",
+                        "on-background": "#141b2b",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#231b00",
+                        "primary": "#003fb1",
+                        "on-secondary-fixed": "#341100",
+                        "secondary-fixed": "#ffdbca",
+                        "on-primary-fixed": "#00174d",
+                        "inverse-surface": "#293040",
+                        "on-primary-fixed-variant": "#003dab",
+                        "inverse-on-surface": "#edf0ff",
+                        "tertiary": "#735c00",
+                        "primary-fixed-dim": "#b5c4ff",
+                        "surface-tint": "#1353d8",
+                        "on-secondary-container": "#5c2400",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "tertiary-fixed": "#ffe083",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#1a56db",
+                        "surface-container-low": "#f1f3ff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#783200",
+                        "tertiary-fixed-dim": "#eec200",
+                        "outline-variant": "#c3c5d7",
+                        "on-primary-container": "#d4dcff",
+                        "surface-dim": "#d3daef",
+                        "on-surface": "#141b2b",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e1e8fd",
+                        "secondary-container": "#fd761a",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#4e3e00",
+                        "secondary": "#9d4300",
+                        "surface": "#f9f9ff",
+                        "surface-container-highest": "#dce2f7",
+                        "primary-fixed": "#dbe1ff",
+                        "background": "#f9f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "stack-lg": "32px",
+                        "margin-desktop": "48px",
+                        "stack-md": "16px",
+                        "container-max": "1280px",
+                        "stack-sm": "8px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "display": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-screen w-64 flex flex-col p-stack-md z-40 bg-surface-container-low border-r border-outline-variant">
+<div class="flex items-center gap-3 mb-stack-lg">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary font-headline-md">
+                P
+            </div>
+<div>
+<h1 class="font-headline-md text-headline-md text-primary">PAES Prep</h1>
+<p class="font-caption text-caption text-on-surface-variant">Academic Excellence</p>
+</div>
+</div>
+<ul class="flex-1 space-y-2">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">quiz</span>
+                    My Exams
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+                    Content
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+                    Study Plan
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+                    Statistics
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">group</span>
+                    Community
+                </a>
+</li>
+</ul>
+<div class="mt-auto pt-stack-md">
+<button class="w-full py-3 bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm">
+                Start Study Session
+            </button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-64 min-h-screen">
+<!-- TopNavBar (Semantic match for "Account/Settings/Upgrade" intent, but keeping it minimal) -->
+<header class="flex justify-between items-center w-full px-margin-desktop h-16 sticky top-0 z-50 bg-surface shadow-sm">
+<div class="flex items-center">
+<!-- Search bar placeholder if needed, matching JSON structure roughly -->
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 rounded-full border border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary-container outline-none font-body-md text-body-md w-64" placeholder="Search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4 text-primary">
+<button class="p-2 hover:bg-surface-container transition-colors rounded-full text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 hover:bg-surface-container transition-colors rounded-full text-on-surface-variant">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden border border-outline-variant">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="A close up, professional headshot of a smiling young adult student, bright lighting, clean white background, conveying confidence and academic readiness. High resolution, clear details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBprmEfvr7RI5O9LIveOZcIoD6BHeYxlFnhsM3LoiZ2jDZDvVveXyPJDbzwyXiy5b_6HTp5plAEz5D4Pl5wvj5kLo6wTjYRmuKjNoX7oEBN7b2yN6eS7ETU-Zi8gWP4dnN7oOMRPRLGzZTthpG3Fx6GcwYceO0B6s4Z2IKC9qmJfcotcL4msdXBnLbUwHPgm4a077k5w1WRc6AZXTbjqPg-6S7zvjoUHsca49lGJEft-ozeA59Yjeol"/>
+</div>
+</div>
+</header>
+<!-- Plans Content -->
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
+<div class="text-center mb-stack-lg">
+<h2 class="font-display text-display text-on-background mb-stack-sm md:text-display text-headline-lg-mobile">Maximiza tu Puntaje PAES</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">Elige el plan que mejor se adapte a tu ritmo de estudio. Desbloquea todo el potencial de nuestra IA para asegurar tu ingreso a la universidad.</p>
+</div>
+<!-- Bento Grid / Plans Container -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter max-w-5xl mx-auto">
+<!-- Free Plan Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-stack-lg shadow-sm flex flex-col hover:shadow-md transition-shadow">
+<div class="mb-stack-md">
+<span class="inline-block px-3 py-1 rounded-full bg-surface-variant text-on-surface-variant font-label-md text-label-md mb-2">Básico</span>
+<h3 class="font-headline-lg text-headline-lg text-on-background">Gratis</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Para estudiantes que recién comienzan su preparación.</p>
+</div>
+<div class="font-display text-display text-on-background mb-stack-md">
+                        $0 <span class="font-body-md text-body-md text-on-surface-variant font-normal tracking-normal">/ mes</span>
+</div>
+<ul class="space-y-4 mb-stack-lg flex-1">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span class="font-body-md text-body-md text-on-background">1 Ensayo PAES completo al mes</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span class="font-body-md text-body-md text-on-background">Acceso a guías de estudio básicas</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span class="font-body-md text-body-md text-on-background">Estadísticas generales de rendimiento</span>
+</li>
+<li class="flex items-start gap-3 opacity-50">
+<span class="material-symbols-outlined text-outline">cancel</span>
+<span class="font-body-md text-body-md text-outline line-through">Tutoría con IA (PAES-Bot)</span>
+</li>
+<li class="flex items-start gap-3 opacity-50">
+<span class="material-symbols-outlined text-outline">cancel</span>
+<span class="font-body-md text-body-md text-outline line-through">Explicaciones en video detalladas</span>
+</li>
+</ul>
+<button class="w-full py-3 rounded-lg border border-primary text-primary font-label-md text-label-md hover:bg-surface-container transition-colors">
+                        Tu Plan Actual
+                    </button>
+</div>
+<!-- Premium Plan Card -->
+<div class="bg-surface-container-lowest rounded-xl border-2 border-primary p-stack-lg shadow-[0_8px_30px_rgba(0,0,0,0.08)] flex flex-col relative transform lg:-translate-y-4">
+<!-- Premium Badge -->
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-on-primary px-4 py-1 rounded-full font-label-md text-label-md shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">star</span> Recomendado
+                    </div>
+<div class="mb-stack-md mt-2">
+<h3 class="font-headline-lg text-headline-lg text-primary">Premium</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Preparación intensiva y personalizada sin límites.</p>
+</div>
+<div class="font-display text-display text-on-background mb-stack-md">
+                        $14.990 <span class="font-body-md text-body-md text-on-surface-variant font-normal tracking-normal">/ mes</span>
+</div>
+<ul class="space-y-4 mb-stack-lg flex-1">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary fill">check_circle</span>
+<span class="font-body-md text-body-md text-on-background font-medium">Ensayos PAES Ilimitados</span>
+</li>
+<li class="flex items-start gap-3 bg-primary-fixed/20 p-2 rounded-md">
+<span class="material-symbols-outlined text-primary fill">psychology</span>
+<span class="font-body-md text-body-md text-on-primary-fixed font-medium">Tutoría 24/7 con IA Avanzada</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary fill">check_circle</span>
+<span class="font-body-md text-body-md text-on-background font-medium">Analytics avanzados de brechas de aprendizaje</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary fill">check_circle</span>
+<span class="font-body-md text-body-md text-on-background font-medium">Explicaciones en video paso a paso</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary fill">check_circle</span>
+<span class="font-body-md text-body-md text-on-background font-medium">Prioridad en soporte</span>
+</li>
+</ul>
+<button class="w-full py-4 rounded-lg bg-primary text-on-primary font-headline-md text-headline-md hover:bg-primary-fixed-variant transition-colors shadow-md flex justify-center items-center gap-2">
+                        Probar 7 días Gratis
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<p class="text-center mt-3 font-caption text-caption text-on-surface-variant">Cancela en cualquier momento.</p>
+</div>
+</div>
+<!-- Features Highlight Bento -->
+<div class="mt-stack-lg max-w-5xl mx-auto pt-stack-lg border-t border-outline-variant">
+<h3 class="font-headline-md text-headline-md text-center mb-stack-lg">¿Por qué elegir Premium?</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Feature 1 -->
+<div class="bg-surface p-6 rounded-xl border border-outline-variant/50 text-center flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center mb-4">
+<span class="material-symbols-outlined">school</span>
+</div>
+<h4 class="font-headline-md text-body-lg font-bold mb-2">Aprendizaje Adaptativo</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">La IA identifica tus puntos débiles y ajusta el plan de estudio en tiempo real para maximizar tu puntaje.</p>
+</div>
+<!-- Feature 2 -->
+<div class="bg-surface p-6 rounded-xl border border-outline-variant/50 text-center flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center mb-4">
+<span class="material-symbols-outlined">play_circle</span>
+</div>
+<h4 class="font-headline-md text-body-lg font-bold mb-2">Videos Resolutivos</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Miles de ejercicios PAES resueltos paso a paso por profesores expertos en video.</p>
+</div>
+<!-- Feature 3 -->
+<div class="bg-surface p-6 rounded-xl border border-outline-variant/50 text-center flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center mb-4">
+<span class="material-symbols-outlined">monitoring</span>
+</div>
+<h4 class="font-headline-md text-body-lg font-bold mb-2">Métricas Precisas</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Visualiza tu progreso histórico y compara tu rendimiento simulado con los puntajes de corte reales.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

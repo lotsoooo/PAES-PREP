@@ -1,0 +1,246 @@
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>PAES Prep - Objetivo Académico</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#cea700",
+                        "background": "#f9f9ff",
+                        "tertiary": "#735c00",
+                        "surface-tint": "#1353d8",
+                        "on-secondary-fixed": "#341100",
+                        "inverse-on-surface": "#edf0ff",
+                        "surface-container": "#e9edff",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#fd761a",
+                        "primary-container": "#1a56db",
+                        "on-tertiary-container": "#4e3e00",
+                        "secondary-fixed-dim": "#ffb690",
+                        "on-tertiary-fixed": "#231b00",
+                        "surface": "#f9f9ff",
+                        "on-primary-fixed-variant": "#003dab",
+                        "surface-container-highest": "#dce2f7",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "on-primary-fixed": "#00174d",
+                        "inverse-surface": "#293040",
+                        "inverse-primary": "#b5c4ff",
+                        "secondary-fixed": "#ffdbca",
+                        "primary-fixed-dim": "#b5c4ff",
+                        "tertiary-fixed": "#ffe083",
+                        "surface-container-high": "#e1e8fd",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#d4dcff",
+                        "primary-fixed": "#dbe1ff",
+                        "outline-variant": "#c3c5d7",
+                        "surface-bright": "#f9f9ff",
+                        "secondary": "#9d4300",
+                        "tertiary-fixed-dim": "#eec200",
+                        "on-secondary-fixed-variant": "#783200",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#434654",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#141b2b",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#d3daef",
+                        "on-secondary-container": "#5c2400",
+                        "surface-container-low": "#f1f3ff",
+                        "on-surface": "#141b2b",
+                        "outline": "#737686",
+                        "primary": "#003fb1",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#dce2f7",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "stack-lg": "32px",
+                        "stack-sm": "8px",
+                        "margin-mobile": "16px",
+                        "stack-md": "16px",
+                        "margin-desktop": "48px"
+                    },
+                    "fontFamily": {
+                        "display": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background min-h-screen font-body-md text-on-background antialiased flex flex-col items-center justify-center p-margin-mobile md:p-margin-desktop">
+<!-- Progress Bar (Top) -->
+<div class="fixed top-0 left-0 w-full h-2 bg-surface-container-high z-50">
+<div class="h-full bg-primary" style="width: 25%;"></div>
+</div>
+<!-- Main Content Container -->
+<main class="w-full max-w-2xl bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant p-stack-lg flex flex-col gap-stack-lg relative overflow-hidden">
+<!-- Decorative Header Element -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container rounded-full blur-3xl opacity-20 -mr-16 -mt-16 pointer-events-none"></div>
+<!-- Header Section -->
+<header class="flex flex-col gap-stack-sm z-10">
+<h1 class="font-headline-lg text-headline-lg md:font-display md:text-display text-primary">¿Cuál es tu meta?</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                Cuéntanos a qué carrera y universidad quieres entrar. Esto nos ayudará a personalizar tu plan de estudio.
+            </p>
+</header>
+<!-- Search Section -->
+<section class="flex flex-col gap-stack-sm z-10">
+<label class="sr-only" for="career-search">Buscar carrera y universidad</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg py-4 pl-12 pr-4 font-body-lg text-body-lg text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary-container transition-all" id="career-search" placeholder="Ej: Ingeniería Comercial, U. de Chile..." type="text">
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface hidden" id="clear-search" type="button">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Popular Options (Tags) -->
+<div class="mt-stack-sm">
+<p class="font-label-md text-label-md text-on-surface-variant mb-stack-sm">Opciones populares</p>
+<div class="flex flex-wrap gap-2">
+<button class="bg-surface-container hover:bg-surface-container-high text-on-surface border border-outline-variant rounded-full px-4 py-2 font-label-md text-label-md transition-colors flex items-center gap-2 group">
+<span class="material-symbols-outlined text-[18px] text-primary group-hover:scale-110 transition-transform">medical_services</span>
+                        Medicina - U. de Chile
+                    </button>
+<button class="bg-surface-container hover:bg-surface-container-high text-on-surface border border-outline-variant rounded-full px-4 py-2 font-label-md text-label-md transition-colors flex items-center gap-2 group">
+<span class="material-symbols-outlined text-[18px] text-primary group-hover:scale-110 transition-transform">engineering</span>
+                        Ingeniería - PUC
+                    </button>
+<button class="bg-surface-container hover:bg-surface-container-high text-on-surface border border-outline-variant rounded-full px-4 py-2 font-label-md text-label-md transition-colors flex items-center gap-2 group">
+<span class="material-symbols-outlined text-[18px] text-primary group-hover:scale-110 transition-transform">gavel</span>
+                        Derecho - U. de Chile
+                    </button>
+<button class="bg-surface-container hover:bg-surface-container-high text-on-surface border border-outline-variant rounded-full px-4 py-2 font-label-md text-label-md transition-colors flex items-center gap-2 group">
+<span class="material-symbols-outlined text-[18px] text-primary group-hover:scale-110 transition-transform">architecture</span>
+                        Arquitectura - PUC
+                    </button>
+</div>
+</div>
+</section>
+<!-- Selected Goal Display (Hidden by default, shown via JS simulation) -->
+<section class="hidden flex flex-col gap-stack-sm bg-surface-container-low border border-outline-variant rounded-lg p-stack-md z-10 transition-all duration-300" id="selected-goal-container">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary mb-1">Meta seleccionada</span>
+<h3 class="font-headline-md text-headline-md text-on-surface" id="selected-career">Medicina</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px]">school</span>
+<span id="selected-university" class="">Universidad de Chile</span>
+</p>
+</div>
+<button aria-label="Remover meta" class="text-outline hover:text-error transition-colors" id="remove-goal" type="button">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<div class="mt-4 flex items-center gap-2">
+<div class="flex-1 h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container" style="width: 75%;"></div>
+</div>
+<span class="font-caption text-caption text-on-surface-variant whitespace-nowrap">Puntaje ref: 920 ptos</span>
+</div>
+</section>
+<!-- Actions -->
+<footer class="mt-auto pt-stack-lg flex flex-col-reverse md:flex-row justify-between items-center gap-stack-md z-10 border-t border-outline-variant">
+<button class="w-full md:w-auto px-6 py-3 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors">
+                Omitir por ahora
+            </button>
+<a href="{{DATA:SCREEN:SCREEN_7}}" class="w-full md:w-auto bg-primary hover:bg-on-primary-fixed-variant text-on-primary rounded-lg px-8 py-3 font-label-md text-label-md flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all" id="continue-btn">
+                Continuar
+                <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</a>
+</footer>
+</main>
+<script>
+        // Simple interactions for demonstration
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('career-search');
+            const clearBtn = document.getElementById('clear-search');
+            const tags = document.querySelectorAll('.flex-wrap button');
+            const selectedGoalContainer = document.getElementById('selected-goal-container');
+            const selectedCareer = document.getElementById('selected-career');
+            const selectedUniversity = document.getElementById('selected-university');
+            const removeGoalBtn = document.getElementById('remove-goal');
+            const continueBtn = document.getElementById('continue-btn');
+
+            function showGoal(career, uni) {
+                selectedCareer.textContent = career;
+                selectedUniversity.textContent = uni;
+                selectedGoalContainer.classList.remove('hidden');
+                searchInput.parentElement.parentElement.classList.add('hidden');
+                continueBtn.removeAttribute('disabled');
+                continueBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+
+            function hideGoal() {
+                selectedGoalContainer.classList.add('hidden');
+                searchInput.parentElement.parentElement.classList.remove('hidden');
+                searchInput.value = '';
+                continueBtn.setAttribute('disabled', 'true');
+                continueBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                clearBtn.classList.add('hidden');
+            }
+
+            // Initial state for button
+            continueBtn.classList.add('opacity-50', 'cursor-not-allowed');
+
+            searchInput.addEventListener('input', (e) => {
+                if (e.target.value.length > 0) {
+                    clearBtn.classList.remove('hidden');
+                } else {
+                    clearBtn.classList.add('hidden');
+                }
+            });
+
+            clearBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                clearBtn.classList.add('hidden');
+            });
+
+            tags.forEach(tag => {
+                tag.addEventListener('click', () => {
+                    const text = tag.textContent.trim();
+                    const [career, uni] = text.split(' - ').map(s => s.trim());
+                    // In a real app, this would strip the icon text first, simplified here
+                    const actualCareer = career.replace(/^[a-z_]+\s*/i, '').trim(); 
+                    showGoal(actualCareer || career, uni);
+                });
+            });
+
+            removeGoalBtn.addEventListener('click', hideGoal);
+        });
+    </script>
+
+
+</body></html>

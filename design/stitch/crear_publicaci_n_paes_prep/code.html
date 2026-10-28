@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Crear Nuevo Post - PAES Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#003fb1",
+                        "tertiary-fixed": "#ffe083",
+                        "surface-tint": "#1353d8",
+                        "on-primary-fixed-variant": "#003dab",
+                        "tertiary-fixed-dim": "#eec200",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "on-secondary-fixed-variant": "#783200",
+                        "outline": "#737686",
+                        "surface-container-low": "#f1f3ff",
+                        "primary-container": "#1a56db",
+                        "surface-container-highest": "#dce2f7",
+                        "surface-container-high": "#e1e8fd",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#d3daef",
+                        "on-surface-variant": "#434654",
+                        "on-secondary-fixed": "#341100",
+                        "tertiary": "#735c00",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#ffdbca",
+                        "primary-fixed-dim": "#b5c4ff",
+                        "on-background": "#141b2b",
+                        "tertiary-container": "#cea700",
+                        "on-primary-container": "#d4dcff",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#e9edff",
+                        "inverse-surface": "#293040",
+                        "surface": "#f9f9ff",
+                        "primary-fixed": "#dbe1ff",
+                        "outline-variant": "#c3c5d7",
+                        "on-secondary-container": "#5c2400",
+                        "secondary-fixed-dim": "#ffb690",
+                        "inverse-on-surface": "#edf0ff",
+                        "on-surface": "#141b2b",
+                        "on-tertiary-fixed": "#231b00",
+                        "inverse-primary": "#b5c4ff",
+                        "on-primary-fixed": "#00174d",
+                        "secondary-container": "#fd761a",
+                        "on-tertiary-container": "#4e3e00",
+                        "secondary": "#9d4300",
+                        "background": "#f9f9ff",
+                        "surface-variant": "#dce2f7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "stack-lg": "32px",
+                        "stack-sm": "8px",
+                        "margin-desktop": "48px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "caption": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-sans">
+<!-- TopNavBar for Desktop -->
+<header class="hidden md:flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20 bg-surface dark:bg-inverse-surface shadow-sm docked full-width top-0 z-40">
+<div class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed">
+            PAES Pro
+        </div>
+<nav class="flex gap-gutter">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200 font-body-md text-body-md" href="#">Dashboard</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200 font-body-md text-body-md" href="#">Ensayos</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200 font-body-md text-body-md" href="#">Contenidos</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200 font-body-md text-body-md" href="#">Plan</a>
+<a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary dark:border-primary-fixed pb-1 hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200 font-body-md text-body-md" href="#">Comunidad</a>
+</nav>
+<div class="flex items-center gap-stack-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden border border-outline-variant">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="A close up, professional portrait photo of a young high school student, lit with bright, soft studio lighting to reflect a clean, modern aesthetic. The student is smiling gently, conveying a sense of academic confidence and approachability against a minimalist white background. The image is high resolution with clear focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLdnkKrJ_vuoiiiI5LpoM60_r-hyiUXMHbgdPhUZX2xhf46w8MymtuuwImGvZrCFztTNJKyDInxT38CsWk-aLprhoJmeWdxJWRCiKUF09oy-sQBmsHdyIsuuk1uDVSQDXIvC9hNpA2GlwD1_sCyZp6Bj8oVqxObFYdQdZEE6Wn6GgGB7Y7aqVYaM7hPrpQ1UMTdTrP5_dZIdAmF1mhqeg4sDusaTnHmoVe4BHjBRjLZHCJ2yw__q9g"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar for Desktop (Alternative layout if needed, but keeping TopNav as primary for this screen type) -->
+<!-- Content Canvas -->
+<main class="flex-grow flex justify-center items-start pt-stack-lg pb-24 md:pb-stack-lg px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto">
+<div class="w-full max-w-3xl bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant p-stack-md md:p-stack-lg">
+<div class="flex items-center gap-stack-sm mb-stack-lg">
+<button class="md:hidden text-on-surface-variant hover:text-primary transition-colors p-2 -ml-2 rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Crear Nuevo Post</h1>
+</div>
+<form class="flex flex-col gap-stack-lg">
+<!-- Category Select -->
+<div class="flex flex-col gap-stack-sm">
+<label class="font-label-md text-label-md text-on-surface-variant" for="category">Categoría</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-lowest border border-outline rounded-lg py-3 px-4 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all cursor-pointer" id="category">
+<option disabled="" selected="" value="">Selecciona una categoría</option>
+<option value="math">Matemática</option>
+<option value="language">Competencia Lectora</option>
+<option value="science">Ciencias</option>
+<option value="history">Historia y Ciencias Sociales</option>
+<option value="general">Dudas Generales</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Title Input -->
+<div class="flex flex-col gap-stack-sm">
+<label class="font-label-md text-label-md text-on-surface-variant" for="title">Título</label>
+<input class="w-full bg-surface-container-lowest border border-outline rounded-lg py-3 px-4 text-body-md font-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" id="title" placeholder="Ej: Ayuda con ejercicio de funciones cuadráticas" type="text"/>
+</div>
+<!-- Rich Text Editor (Simulated) -->
+<div class="flex flex-col gap-stack-sm">
+<label class="font-label-md text-label-md text-on-surface-variant" for="content">Contenido</label>
+<div class="border border-outline rounded-lg overflow-hidden flex flex-col focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+<!-- Toolbar -->
+<div class="bg-surface-container-low border-b border-outline-variant p-2 flex flex-wrap gap-2 items-center">
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant transition-colors" title="Negrita" type="button">
+<span class="material-symbols-outlined" data-icon="format_bold">format_bold</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant transition-colors" title="Cursiva" type="button">
+<span class="material-symbols-outlined" data-icon="format_italic">format_italic</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant transition-colors" title="Subrayado" type="button">
+<span class="material-symbols-outlined" data-icon="format_underlined">format_underlined</span>
+</button>
+<div class="w-px h-6 bg-outline-variant mx-1"></div>
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant transition-colors" title="Lista" type="button">
+<span class="material-symbols-outlined" data-icon="format_list_bulleted">format_list_bulleted</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-variant text-on-surface-variant transition-colors" title="Lista numerada" type="button">
+<span class="material-symbols-outlined" data-icon="format_list_numbered">format_list_numbered</span>
+</button>
+<div class="w-px h-6 bg-outline-variant mx-1"></div>
+<button class="p-1.5 rounded hover:bg-surface-variant text-primary transition-colors flex items-center gap-1 bg-primary/5 px-2" title="Insertar Fórmula" type="button">
+<span class="material-symbols-outlined" data-icon="function">function</span>
+<span class="font-caption text-caption">Fórmula</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-variant text-primary transition-colors flex items-center gap-1 bg-primary/5 px-2" title="Adjuntar Imagen" type="button">
+<span class="material-symbols-outlined" data-icon="image">image</span>
+<span class="font-caption text-caption">Imagen</span>
+</button>
+</div>
+<!-- Text Area -->
+<textarea class="w-full bg-surface-container-lowest p-4 text-body-md font-body-md text-on-surface border-none focus:ring-0 resize-y min-h-[200px]" id="content" placeholder="Escribe tu duda, explicación o aporte aquí..." rows="8"></textarea>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col-reverse md:flex-row justify-end gap-stack-md mt-stack-md pt-stack-md border-t border-outline-variant">
+<button class="px-6 py-3 rounded-lg border border-primary text-primary font-label-md text-label-md hover:bg-primary/5 transition-colors text-center" type="button">
+                        Cancelar
+                    </button>
+<button class="px-6 py-3 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-on-primary-fixed-variant transition-colors shadow-sm flex items-center justify-center gap-2" type="submit">
+<span>Publicar</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="send">send</span>
+</button>
+</div>
+</form>
+</div>
+</main>
+<!-- BottomNavBar for Mobile -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface dark:bg-inverse-surface border-t border-outline-variant rounded-t-xl shadow-[0_-4px_20px_rgba(0,0,0,0.05)] transition-all duration-300 ease-in-out">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest rounded-xl p-2 transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-caption text-caption">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest rounded-xl p-2 transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="edit_document">edit_document</span>
+<span class="font-caption text-caption">Exams</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest rounded-xl p-2 transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="auto_stories">auto_stories</span>
+<span class="font-caption text-caption">Study</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="group" data-weight="fill">group</span>
+<span class="font-caption text-caption font-bold">Social</span>
+</a>
+</nav>
+</body></html>

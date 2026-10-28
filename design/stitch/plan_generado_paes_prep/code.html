@@ -1,0 +1,221 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>PAES Pro - Study Plan Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary": "#003fb1",
+                      "tertiary-fixed": "#ffe083",
+                      "surface-tint": "#1353d8",
+                      "on-primary-fixed-variant": "#003dab",
+                      "tertiary-fixed-dim": "#eec200",
+                      "on-primary": "#ffffff",
+                      "surface-bright": "#f9f9ff",
+                      "on-secondary-fixed-variant": "#783200",
+                      "outline": "#737686",
+                      "surface-container-low": "#f1f3ff",
+                      "primary-container": "#1a56db",
+                      "surface-container-highest": "#dce2f7",
+                      "surface-container-high": "#e1e8fd",
+                      "on-tertiary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "surface-dim": "#d3daef",
+                      "on-surface-variant": "#434654",
+                      "on-secondary-fixed": "#341100",
+                      "tertiary": "#735c00",
+                      "on-tertiary-fixed-variant": "#574500",
+                      "error": "#ba1a1a",
+                      "on-error-container": "#93000a",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed": "#ffdbca",
+                      "primary-fixed-dim": "#b5c4ff",
+                      "on-background": "#141b2b",
+                      "tertiary-container": "#cea700",
+                      "on-primary-container": "#d4dcff",
+                      "on-secondary": "#ffffff",
+                      "surface-container": "#e9edff",
+                      "inverse-surface": "#293040",
+                      "surface": "#f9f9ff",
+                      "primary-fixed": "#dbe1ff",
+                      "outline-variant": "#c3c5d7",
+                      "on-secondary-container": "#5c2400",
+                      "secondary-fixed-dim": "#ffb690",
+                      "inverse-on-surface": "#edf0ff",
+                      "on-surface": "#141b2b",
+                      "on-tertiary-fixed": "#231b00",
+                      "inverse-primary": "#b5c4ff",
+                      "on-primary-fixed": "#00174d",
+                      "secondary-container": "#fd761a",
+                      "on-tertiary-container": "#4e3e00",
+                      "secondary": "#9d4300",
+                      "background": "#f9f9ff",
+                      "surface-variant": "#dce2f7"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-md": "16px",
+                      "gutter": "24px",
+                      "margin-mobile": "16px",
+                      "container-max": "1280px",
+                      "stack-lg": "32px",
+                      "stack-sm": "8px",
+                      "margin-desktop": "48px"
+              },
+              "fontFamily": {
+                      "label-md": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "display": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "caption": ["Inter"]
+              },
+              "fontSize": {
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                      "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col items-center justify-center p-margin-mobile md:p-margin-desktop">
+<!-- Confetti Animation Placeholder -->
+<div class="fixed inset-0 pointer-events-none z-0">
+<!-- Assuming a lightweight CSS animation or subtle JS particle effect would usually go here, but keeping it minimal for the mockup. -->
+<div class="absolute top-10 left-1/4 w-4 h-4 bg-primary-fixed rounded-full opacity-20 animate-ping"></div>
+<div class="absolute top-20 right-1/4 w-3 h-3 bg-tertiary-fixed rounded-full opacity-30 animate-bounce"></div>
+</div>
+<main class="max-w-[800px] w-full bg-surface-container-lowest rounded-xl shadow-lg border border-outline-variant/30 p-stack-lg md:p-margin-desktop relative z-10 flex flex-col gap-stack-lg animate-fade-in-up">
+<!-- Header -->
+<header class="text-center space-y-stack-sm">
+<div class="inline-flex items-center justify-center w-16 h-16 bg-primary-container text-on-primary-container rounded-full mb-stack-md mx-auto shadow-sm">
+<span class="material-symbols-outlined" style="font-size: 32px; font-variation-settings: 'FILL' 1;">task_alt</span>
+</div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">¡Tu plan está listo!</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                Hemos diseñado un calendario personalizado para ayudarte a alcanzar tu meta en Medicina en la Universidad de Chile.
+            </p>
+</header>
+<!-- Goal Summary Card -->
+<section class="bg-surface-container-low rounded-lg p-stack-md flex flex-col sm:flex-row items-center sm:items-start gap-stack-md border border-outline-variant/50 shadow-sm">
+<div class="flex-shrink-0">
+<img class="w-20 h-20 rounded-md object-cover shadow-sm" data-alt="A clean, modern 3D icon illustration of a stethoscope or medical cross on a subtle blue gradient background. The style is minimalist, professional, and optimistic, matching a high-end educational app's aesthetic. High resolution, crisp lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9wQCobZKbIuVx3MxsmB9IYcPk-L-KPz12BLdfiom02TZHwo0Gnnx8x9gLyubYLZRTmetjhFag1BWkB4a3G_qdpukV3mLxJl96UQshWdZjWvTbUkDlTMOpgM5f2TqQJVJc78XKU0Cjw2MMTesOMe9no-HJAvpiJUeMZjJIN01_3-dBU0CM-FWb9WgJBVXLyXPs1_Ffr15SGdfTiqPgGKJOHcko8AFQdlRGvW6eTp3oGn5wM7Nv8_RN">
+</div>
+<div class="flex-1 text-center sm:text-left space-y-1">
+<span class="font-caption text-caption text-primary uppercase tracking-wider font-bold">Objetivo Principal</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Medicina</h2>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center justify-center sm:justify-start gap-1">
+<span class="material-symbols-outlined text-[18px]">account_balance</span>
+                    Universidad de Chile
+                </p>
+<div class="mt-2 inline-flex items-center gap-2 bg-surface-container-highest px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-[16px] text-tertiary">track_changes</span>
+<span class="font-label-md text-label-md text-on-surface">Puntaje Meta: <strong class="text-on-surface">920+</strong></span>
+</div>
+</div>
+</section>
+<!-- Plan Breakdown -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<!-- Weekly Commitment -->
+<div class="bg-surface-container-lowest rounded-lg p-stack-md border border-outline-variant/30 flex flex-col gap-3 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined">schedule</span>
+<h3 class="font-label-md text-label-md font-bold">Compromiso Semanal</h3>
+</div>
+<div class="flex items-end gap-2">
+<span class="font-display text-display text-on-surface">15</span>
+<span class="font-body-md text-body-md text-on-surface-variant mb-2">horas / sem</span>
+</div>
+<p class="font-caption text-caption text-on-surface-variant">Distribuidas según tu disponibilidad de Lunes a Sábado.</p>
+</div>
+<!-- Subject Breakdown -->
+<div class="bg-surface-container-lowest rounded-lg p-stack-md border border-outline-variant/30 flex flex-col gap-3 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-2 text-secondary">
+<span class="material-symbols-outlined">pie_chart</span>
+<h3 class="font-label-md text-label-md font-bold">Distribución</h3>
+</div>
+<div class="flex flex-col gap-2 mt-2">
+<!-- Competencia Matemática 1 -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-caption text-caption">
+<span class="text-on-surface">Matemática 1</span>
+<span class="text-on-surface-variant">40%</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 40%"></div>
+</div>
+</div>
+<!-- Ciencias -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-caption text-caption">
+<span class="text-on-surface">Ciencias (Biología)</span>
+<span class="text-on-surface-variant">35%</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2">
+<div class="bg-tertiary h-2 rounded-full" style="width: 35%"></div>
+</div>
+</div>
+<!-- Comp. Lectora -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-caption text-caption">
+<span class="text-on-surface">Comp. Lectora</span>
+<span class="text-on-surface-variant">25%</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2">
+<div class="bg-secondary h-2 rounded-full" style="width: 25%"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA -->
+<footer class="pt-stack-sm flex justify-center">
+<a href="{{DATA:SCREEN:SCREEN_23}}" class="bg-primary hover:bg-on-primary-fixed-variant text-on-primary font-label-md text-label-md px-8 py-4 rounded-lg shadow-md hover:shadow-lg transition-all active:scale-95 flex items-center gap-2">
+                Ver mi dashboard
+                <span class="material-symbols-outlined" style="font-size: 20px;">arrow_forward</span>
+</a>
+</footer>
+</main>
+<style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+    </style>
+
+
+</body></html>

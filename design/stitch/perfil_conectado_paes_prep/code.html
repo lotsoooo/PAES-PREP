@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mi Perfil - PAES Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-container": "#cea700",
+                      "background": "#f9f9ff",
+                      "tertiary": "#735c00",
+                      "surface-tint": "#1353d8",
+                      "on-secondary-fixed": "#341100",
+                      "inverse-on-surface": "#edf0ff",
+                      "surface-container": "#e9edff",
+                      "error-container": "#ffdad6",
+                      "secondary-container": "#fd761a",
+                      "primary-container": "#1a56db",
+                      "on-tertiary-container": "#4e3e00",
+                      "secondary-fixed-dim": "#ffb690",
+                      "on-tertiary-fixed": "#231b00",
+                      "surface": "#f9f9ff",
+                      "on-primary-fixed-variant": "#003dab",
+                      "surface-container-highest": "#dce2f7",
+                      "on-tertiary-fixed-variant": "#574500",
+                      "on-primary-fixed": "#00174d",
+                      "inverse-surface": "#293040",
+                      "inverse-primary": "#b5c4ff",
+                      "secondary-fixed": "#ffdbca",
+                      "primary-fixed-dim": "#b5c4ff",
+                      "tertiary-fixed": "#ffe083",
+                      "surface-container-high": "#e1e8fd",
+                      "on-error": "#ffffff",
+                      "on-primary-container": "#d4dcff",
+                      "primary-fixed": "#dbe1ff",
+                      "outline-variant": "#c3c5d7",
+                      "surface-bright": "#f9f9ff",
+                      "secondary": "#9d4300",
+                      "tertiary-fixed-dim": "#eec200",
+                      "on-secondary-fixed-variant": "#783200",
+                      "error": "#ba1a1a",
+                      "on-surface-variant": "#434654",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "on-background": "#141b2b",
+                      "on-primary": "#ffffff",
+                      "surface-dim": "#d3daef",
+                      "on-secondary-container": "#5c2400",
+                      "surface-container-low": "#f1f3ff",
+                      "on-surface": "#141b2b",
+                      "outline": "#737686",
+                      "primary": "#003fb1",
+                      "on-tertiary": "#ffffff",
+                      "surface-variant": "#dce2f7",
+                      "on-error-container": "#93000a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "container-max": "1280px",
+                      "stack-lg": "32px",
+                      "stack-sm": "8px",
+                      "margin-mobile": "16px",
+                      "stack-md": "16px",
+                      "margin-desktop": "48px"
+              },
+              "fontFamily": {
+                      "display": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "label-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "caption": ["Inter"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen pb-[80px] md:pb-0 md:pl-64">
+<!-- TopNavBar (Hidden on Mobile, Visible on Desktop relative to main content) -->
+<header class="hidden md:flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20 bg-surface shadow-sm sticky top-0 z-40">
+<div class="text-headline-md font-headline-md font-bold text-primary">PAES Pro</div>
+<nav class="flex gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="{{DATA:SCREEN:SCREEN_23}}">Dashboard</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="{{DATA:SCREEN:SCREEN_21}}">Ensayos</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="{{DATA:SCREEN:SCREEN_17}}">Contenidos</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="{{DATA:SCREEN:SCREEN_18}}">Plan</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="{{DATA:SCREEN:SCREEN_8}}">Comunidad</a>
+</nav>
+<a class="text-primary hover:bg-surface-container-high p-2 rounded-full transition-colors flex items-center justify-center" href="{{DATA:SCREEN:SCREEN_16}}">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</a>
+</header>
+<!-- SideNavBar (Desktop Only) -->
+<aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-surface-container-low border-r border-outline-variant py-stack-lg px-stack-md z-50">
+<div class="flex items-center gap-4 mb-stack-lg px-2">
+<a class="shrink-0" href="{{DATA:SCREEN:SCREEN_9}}">
+<img alt="Student avatar" class="w-12 h-12 rounded-full object-cover border-2 border-primary" data-alt="A detailed, modern avatar illustration of a student for PAES Prep. The style should be clean, flat vector art, utilizing a color palette primarily composed of deep blue, bright orange accents, and crisp white. The avatar should look friendly and focused." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxpzytb0hfWAeVO_0EAtq4A0ReC-PSU89qi6WTHV4kyBbrKUNxt8YcxwkWqCVaXgPRjTihRfpkhMiC-6ETjczBkZhii40oDzRAPbQrIRER9wNhJMGdWx0sOZVqAPk9gy5xNJOncgnwdG7ag3Z-81C5xPNnCNIr8zXMNEb2dSll5DHNXwr2H9XB42QDTeCUQBsHx6Qj9m_ZnqorVnb5sUtst0t_q3_fEDH86HTk_kFkmk4tiPyB6BWp"/>
+</a>
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-primary text-sm">PAES Prep</h2>
+<p class="font-caption text-caption text-on-surface-variant">Admisión 2024</p>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg font-label-md text-label-md scale-98 active:scale-95 transition-transform" href="{{DATA:SCREEN:SCREEN_23}}">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg font-label-md text-label-md scale-98 active:scale-95 transition-transform" href="{{DATA:SCREEN:SCREEN_21}}">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+                My Exams
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg font-label-md text-label-md scale-98 active:scale-95 transition-transform" href="{{DATA:SCREEN:SCREEN_17}}">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+                Content
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg font-label-md text-label-md scale-98 active:scale-95 transition-transform" href="{{DATA:SCREEN:SCREEN_18}}">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+                Study Plan
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg font-label-md text-label-md scale-98 active:scale-95 transition-transform" href="{{DATA:SCREEN:SCREEN_19}}">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+                Statistics
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg font-label-md text-label-md scale-98 active:scale-95 transition-transform" href="{{DATA:SCREEN:SCREEN_8}}">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+                Community
+            </a>
+</nav>
+<div class="mt-auto flex flex-col gap-2 border-t border-outline-variant pt-4">
+<button class="w-full bg-secondary-container text-on-secondary-container py-2 rounded-lg font-label-md text-label-md font-bold mb-4 hover:opacity-90 transition-opacity">Upgrade to Premium</button>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg font-label-md text-label-md scale-98 active:scale-95 transition-transform" href="{{DATA:SCREEN:SCREEN_4}}">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg font-label-md text-label-md scale-98 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+                Help
+            </a>
+</div>
+</aside>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-xl bg-surface shadow-[0_-4px_20px_rgba(0,0,0,0.05)] border-t border-outline-variant transition-all duration-300 ease-in-out">
+<div class="flex justify-around items-center px-4 py-2 w-full h-[80px]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-highest p-2 rounded-lg" href="{{DATA:SCREEN:SCREEN_23}}">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-caption text-caption mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-highest p-2 rounded-lg" href="{{DATA:SCREEN:SCREEN_21}}">
+<span class="material-symbols-outlined" data-icon="edit_document">edit_document</span>
+<span class="font-caption text-caption mt-1">Exams</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-highest p-2 rounded-lg" href="{{DATA:SCREEN:SCREEN_17}}">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="font-caption text-caption mt-1">Study</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-container-highest p-2 rounded-lg" href="{{DATA:SCREEN:SCREEN_8}}">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-caption text-caption mt-1">Social</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
+<!-- Profile Header -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-stack-lg mb-stack-lg relative overflow-hidden">
+<!-- Decorative Background Element -->
+<div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-r from-primary-container to-surface-variant opacity-30 z-0"></div>
+<div class="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-stack-lg">
+<div class="relative group">
+<img alt="Avatar del estudiante" class="w-32 h-32 rounded-full object-cover border-4 border-surface shadow-md" data-alt="A high-quality, professional photograph of a young student's face used as a profile picture. The student is smiling, well-lit with soft natural lighting, against a clean, out-of-focus background. The image feels authentic, encouraging, and fits perfectly within a modern educational platform's clean aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9EYjedBTzROeR1iJYlYKupfCUgT2AGR6AgRqLcwe6gtGE1CrJrwmA5DE9wzCPOPtcOTmFPk2yQsTZ8hGG6EP67x_PyvLn590oOo1h2g0oTEhZusCD5G1CaiBmStaHWizerw7okyZSynnw-72q_ZumkqreI-WqDWp2ZVxcXAWQie5QBekFE0JE_SpcnNzpKqx2PJODhDELmqdUSk8h6yElIT4I-hIyPVD7T66hRi_pZxZhm9Uu2RnY"/>
+<button aria-label="Cambiar foto" class="absolute bottom-0 right-0 bg-primary text-on-primary p-2 rounded-full shadow-lg hover:bg-on-primary-fixed-variant transition-colors">
+<span class="material-symbols-outlined" data-icon="photo_camera" style="font-size: 18px;">photo_camera</span>
+</button>
+</div>
+<div class="flex-1 text-center md:text-left">
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background mb-1">Martina Soto</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-4">4º Medio B - Liceo Bicentenario</p>
+<div class="flex flex-wrap justify-center md:justify-start gap-4 mb-4">
+<div class="bg-surface-container flex items-center gap-2 px-3 py-1.5 rounded-full">
+<span class="material-symbols-outlined text-primary" data-icon="school" style="font-size: 16px;">school</span>
+<span class="font-label-md text-label-md text-on-surface">Puntaje Meta: 850</span>
+</div>
+<div class="bg-secondary-container/20 flex items-center gap-2 px-3 py-1.5 rounded-full text-secondary">
+<span class="material-symbols-outlined" data-icon="local_fire_department" style="font-size: 16px;">local_fire_department</span>
+<span class="font-label-md text-label-md font-bold">Racha: 14 días</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-3 w-full md:w-auto">
+<a class="w-full md:w-auto bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md text-label-md font-bold hover:bg-on-primary-fixed-variant transition-colors shadow-sm flex items-center justify-center gap-2" href="{{DATA:SCREEN:SCREEN_9}}">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+                        Editar Perfil
+                    </a>
+<button class="w-full md:w-auto bg-transparent border border-error text-error px-6 py-2.5 rounded-lg font-label-md text-label-md hover:bg-error-container transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                        Cerrar Sesión
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant w-full py-stack-lg mt-stack-lg md:ml-64 w-[calc(100%-16rem)] hidden md:block">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto">
+<div class="text-body-lg font-bold text-primary mb-4 md:mb-0">PAES Pro</div>
+<div class="flex gap-6 mb-4 md:mb-0">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-caption text-caption" href="#">Landing</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-caption text-caption" href="#">Terms</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-caption text-caption" href="#">Privacy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-caption text-caption" href="#">Sitemap</a>
+</div>
+<p class="font-caption text-caption text-on-surface-variant">© 2024 PAES Prep. Todos los derechos reservados.</p>
+</div>
+</footer>
+</body></html>

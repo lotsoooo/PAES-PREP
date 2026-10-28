@@ -1,0 +1,457 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Resultados de Búsqueda - Comunidad</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config injected from Style Guidance -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#dce2f7",
+                        "surface": "#f9f9ff",
+                        "outline": "#737686",
+                        "tertiary": "#735c00",
+                        "background": "#f9f9ff",
+                        "inverse-on-surface": "#edf0ff",
+                        "on-secondary-container": "#5c2400",
+                        "on-secondary-fixed": "#341100",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#4e3e00",
+                        "on-secondary-fixed-variant": "#783200",
+                        "secondary-fixed": "#ffdbca",
+                        "on-primary-fixed-variant": "#003dab",
+                        "on-primary-fixed": "#00174d",
+                        "inverse-surface": "#293040",
+                        "on-primary-container": "#d4dcff",
+                        "outline-variant": "#c3c5d7",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "secondary": "#9d4300",
+                        "primary-fixed-dim": "#b5c4ff",
+                        "on-surface": "#141b2b",
+                        "surface-bright": "#f9f9ff",
+                        "surface-tint": "#1353d8",
+                        "tertiary-container": "#cea700",
+                        "surface-dim": "#d3daef",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#dce2f7",
+                        "surface-container": "#e9edff",
+                        "surface-container-high": "#e1e8fd",
+                        "surface-container-low": "#f1f3ff",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#1a56db",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#ffb690",
+                        "on-tertiary-fixed": "#231b00",
+                        "primary-fixed": "#dbe1ff",
+                        "tertiary-fixed-dim": "#eec200",
+                        "on-surface-variant": "#434654",
+                        "on-error-container": "#93000a",
+                        "on-background": "#141b2b",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffe083",
+                        "inverse-primary": "#b5c4ff",
+                        "secondary-container": "#fd761a",
+                        "primary": "#003fb1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "stack-lg": "32px",
+                        "margin-desktop": "48px",
+                        "container-max": "1280px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "caption": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #c3c5d7;
+            border-radius: 20px;
+        }
+        /* Hide scrollbar for nav */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md text-body-md antialiased overflow-hidden flex h-screen">
+<!-- DESKTOP SIDENAV BAR -->
+<nav class="hidden md:flex h-screen w-64 fixed left-0 top-0 bg-surface-container-low dark:bg-inverse-surface border-r border-outline-variant flex-col py-stack-lg px-stack-md z-40">
+<!-- Brand/Header -->
+<div class="flex items-center gap-3 px-4 mb-8">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-primary-container shrink-0">
+<img alt="Student avatar" class="w-full h-full object-cover" data-alt="A clean, minimalist 3D rendering of a graduation cap resting on a stack of books, set against a bright, modern studio lighting background with soft shadows. The color palette features deep authoritative blues and pristine whites, conveying academic excellence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA4k6Quqh2OMyNzoVbdzsZ8J090Lb9nnC1-Xizjwc0Axyum7a8QhGsIc2KsDcnPWlwAUFVhTGPRMJ2arM8U9UwD9_J2ZcWTAGubchXH5a-8G54v6kBRNvXscYoGdghPBeBgUJPmUiqEpjNruUrzggsFiX2e1eAGudPqGSXDQrIe3E4QC9946OAOXa1CfZF5yFzl2NnxQt0F7Zwlaa-XBlBhOsgAXK-cTKTcp-cgNiUa2LRmECE1TUg">
+</div>
+<div class="flex flex-col">
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed leading-none">PAES Prep</span>
+<span class="font-caption text-caption text-on-surface-variant dark:text-surface-variant">Admisión 2024</span>
+</div>
+</div>
+<!-- Main Navigation Links -->
+<div class="flex flex-col gap-2 flex-1">
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors duration-200 scale-98 active:scale-95 transition-transform" href="dashboard.html">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors duration-200 scale-98 active:scale-95 transition-transform" href="my-exams.html">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span class="font-label-md text-label-md">My Exams</span>
+</a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors duration-200 scale-98 active:scale-95 transition-transform" href="content.html">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-label-md text-label-md">Content</span>
+</a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors duration-200 scale-98 active:scale-95 transition-transform" href="study-plan.html">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-label-md text-label-md">Study Plan</span>
+</a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors duration-200 scale-98 active:scale-95 transition-transform" href="statistics.html">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-md text-label-md">Statistics</span>
+</a>
+<!-- ACTIVE (Community Search page) -->
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-lg font-bold transition-colors duration-200 scale-98 active:scale-95 transition-transform" href="community.html">
+<span class="material-symbols-outlined" data-icon="groups" data-weight="fill">groups</span>
+<span class="font-label-md text-label-md">Community</span>
+</a>
+</div>
+<!-- CTA & Footer Tabs -->
+<div class="flex flex-col gap-4 mt-auto">
+<button class="w-full bg-surface-container-highest text-on-surface rounded-lg py-3 font-label-md text-label-md hover:bg-outline-variant transition-colors border border-outline-variant">
+                Upgrade to Premium
+            </button>
+<div class="h-px bg-outline-variant w-full"></div>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-label-md text-label-md">Help</span>
+</a>
+</div>
+</nav>
+<!-- MOBILE BOTTOM NAV BAR -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface dark:bg-inverse-surface rounded-t-xl shadow-[0_-4px_20px_rgba(0,0,0,0.05)] pb-safe">
+<!-- Inactive -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant w-16 h-14 active:bg-surface-container-highest transition-all duration-300 ease-in-out rounded-lg" href="dashboard.html">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-caption text-caption">Home</span>
+</a>
+<!-- Inactive -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant w-16 h-14 active:bg-surface-container-highest transition-all duration-300 ease-in-out rounded-lg" href="my-exams.html">
+<span class="material-symbols-outlined mb-1" data-icon="edit_document">edit_document</span>
+<span class="font-caption text-caption">Exams</span>
+</a>
+<!-- Inactive -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant w-16 h-14 active:bg-surface-container-highest transition-all duration-300 ease-in-out rounded-lg" href="study-plan.html">
+<span class="material-symbols-outlined mb-1" data-icon="auto_stories">auto_stories</span>
+<span class="font-caption text-caption">Study</span>
+</a>
+<!-- ACTIVE -->
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-full px-4 py-1 transition-all duration-300 ease-in-out min-w-[64px]" href="community.html">
+<span class="material-symbols-outlined mb-1" data-icon="group" data-weight="fill">group</span>
+<span class="font-caption text-caption font-bold">Social</span>
+</a>
+</nav>
+<!-- MAIN CONTENT CANVAS -->
+<main class="flex-1 flex flex-col h-full w-full md:ml-64 bg-surface pb-20 md:pb-0 overflow-y-auto overflow-x-hidden">
+<!-- Mobile Header (Minimalist for context) -->
+<header class="md:hidden flex items-center justify-between px-margin-mobile py-4 bg-surface z-30 sticky top-0">
+<h1 class="text-headline-lg-mobile font-headline-lg-mobile text-on-surface">Comunidad</h1>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container border border-outline-variant text-on-surface">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<div class="w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-md md:py-stack-lg flex-1 flex flex-col">
+<!-- Desktop Header / Prominent Search -->
+<div class="w-full mb-stack-lg flex flex-col gap-stack-sm">
+<h1 class="hidden md:block text-headline-lg font-headline-lg text-on-surface mb-2">Búsqueda en la Comunidad</h1>
+<div class="relative w-full max-w-3xl flex items-center group">
+<span class="material-symbols-outlined absolute left-4 text-on-surface-variant text-[28px]">search</span>
+<input class="w-full h-14 pl-14 pr-16 bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm focus:border-primary focus:ring-2 focus:ring-primary-container transition-all text-body-lg font-body-lg text-on-surface placeholder:text-outline" placeholder="Buscar dudas, tips, materiales..." type="text" value="Logaritmos">
+<button class="absolute right-3 p-2 bg-surface-container text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors md:hidden">
+<span class="material-symbols-outlined" data-icon="tune">tune</span>
+</button>
+<button class="hidden md:flex absolute right-2 bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-label-md hover:bg-primary/90 transition-colors">
+                        Buscar
+                    </button>
+</div>
+</div>
+<!-- Main Layout Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter flex-1 items-start">
+<!-- SIDEBAR FILTERS (Desktop only, hidden on mobile for simplicity in this output) -->
+<aside class="hidden lg:block col-span-3 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.02)] sticky top-stack-lg">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-headline-md font-headline-md text-on-surface">Filtros</h2>
+<button class="text-primary font-label-md text-label-md hover:underline">Limpiar</button>
+</div>
+<!-- Filter Section: Materia -->
+<div class="mb-8">
+<h3 class="text-label-md font-label-md text-on-surface-variant mb-4 uppercase tracking-wider">Materia</h3>
+<div class="flex flex-col gap-3">
+<label class="flex items-center gap-3 cursor-pointer group min-h-[44px]">
+<div class="relative flex items-center justify-center w-6 h-6 border-2 border-primary bg-primary rounded">
+<span class="material-symbols-outlined text-on-primary text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">Matemáticas</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group min-h-[44px]">
+<div class="relative flex items-center justify-center w-6 h-6 border-2 border-outline-variant bg-surface-container-lowest rounded group-hover:border-primary transition-colors"></div>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-primary transition-colors">Lenguaje</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group min-h-[44px]">
+<div class="relative flex items-center justify-center w-6 h-6 border-2 border-outline-variant bg-surface-container-lowest rounded group-hover:border-primary transition-colors"></div>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-primary transition-colors">Ciencias</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group min-h-[44px]">
+<div class="relative flex items-center justify-center w-6 h-6 border-2 border-outline-variant bg-surface-container-lowest rounded group-hover:border-primary transition-colors"></div>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-primary transition-colors">Historia</span>
+</label>
+</div>
+</div>
+<!-- Filter Section: Tipo de Contenido -->
+<div class="mb-8">
+<h3 class="text-label-md font-label-md text-on-surface-variant mb-4 uppercase tracking-wider">Tipo de Contenido</h3>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 rounded-full border border-primary bg-primary-container text-on-primary-fixed font-label-md text-label-md transition-colors">
+                                Duda
+                            </button>
+<button class="px-4 py-2 rounded-full border border-outline-variant bg-surface-container-lowest text-on-surface-variant hover:border-primary hover:text-primary font-label-md text-label-md transition-colors">
+                                Tip
+                            </button>
+<button class="px-4 py-2 rounded-full border border-primary bg-primary-container text-on-primary-fixed font-label-md text-label-md transition-colors">
+                                Material
+                            </button>
+<button class="px-4 py-2 rounded-full border border-outline-variant bg-surface-container-lowest text-on-surface-variant hover:border-primary hover:text-primary font-label-md text-label-md transition-colors">
+                                Debate
+                            </button>
+</div>
+</div>
+<!-- Filter Section: Fecha -->
+<div>
+<h3 class="text-label-md font-label-md text-on-surface-variant mb-4 uppercase tracking-wider">Fecha</h3>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg p-3 text-body-md font-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none cursor-pointer">
+<option value="any">Cualquier fecha</option>
+<option value="week">Última semana</option>
+<option value="month">Último mes</option>
+<option value="year">Último año</option>
+</select>
+<!-- Custom arrow since appearance is none -->
+<div class="pointer-events-none absolute right-10 mt-[-32px] text-on-surface-variant">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</aside>
+<!-- RESULTS FEED -->
+<div class="col-span-1 lg:col-span-9 flex flex-col gap-stack-md w-full max-w-3xl mx-auto lg:mx-0">
+<div class="flex items-center justify-between pb-2 border-b border-outline-variant/50">
+<p class="text-body-md font-body-md text-on-surface-variant">
+                            Mostrando <span class="font-bold text-on-surface">124</span> resultados para <span class="font-bold text-primary">"Logaritmos"</span>
+</p>
+<!-- Mobile Filter trigger -->
+<button class="lg:hidden flex items-center gap-2 text-primary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+                            Filtros
+                        </button>
+</div>
+<!-- FEED CARDS -->
+<!-- Card 1: Duda -->
+<article class="bg-surface-container-lowest border border-outline-variant shadow-[0_4px_20px_rgba(0,0,0,0.03)] rounded-xl p-5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden">
+<img alt="User avatar" class="w-full h-full object-cover" data-alt="A close-up portrait of a young male student in a bright, modern library setting. The lighting is soft and natural, creating a serene and focused academic mood. The color palette emphasizes clean whites and warm skin tones against out-of-focus bookshelves." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmiw96Va54IvfJzX8dkAlKLW_hXwryxnCEku-VFZe3SaBmLWQlY8cqMy7y2onA7KjD0pglX-T4dZ-7_th6-lnnmHWto6dqDJ7a7Pa2ZkDNzGxvOpatF-N9UMGazM3P59O9e1tOYlr8xk4gsIGJFYwlm1-WKgnjdDj_75vmQwcZZBD8JfoVTG3cmhK55B9KYC7UmrTQNFcUaC1Oh4waPpzuGGYvJQcs4TtVdsu52Ew0P9JTr7-NQTxG">
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface leading-tight">Martín Silva</h4>
+<p class="font-caption text-caption text-on-surface-variant">Hace 2 horas</p>
+</div>
+</div>
+<span class="bg-error-container text-on-error-container px-3 py-1 rounded-full font-caption text-caption font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">help</span> Duda
+                            </span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">¿Cómo aplico la propiedad de cambio de base aquí?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-3">
+                            Estoy resolviendo un ensayo del DEMRE y me topé con el ejercicio: log_2(3) * log_3(4) * ... * log_31(32). Sé que tengo que usar cambio de base, pero me enredo al simplificar. ¿Alguien tiene un método rápido para la PAES?
+                        </p>
+<div class="flex items-center gap-2 mb-4">
+<span class="px-2 py-1 bg-surface-container-low text-on-surface-variant rounded text-xs font-medium">Matemáticas M1</span>
+<span class="px-2 py-1 bg-surface-container-low text-on-surface-variant rounded text-xs font-medium">Álgebra</span>
+</div>
+<div class="flex items-center gap-6 border-t border-outline-variant/30 pt-3">
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors group">
+<span class="material-symbols-outlined text-[20px] group-hover:fill-current">thumb_up</span>
+<span class="font-label-md text-label-md">24</span>
+</button>
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+<span class="font-label-md text-label-md">5 Respuestas</span>
+</button>
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors ml-auto">
+<span class="material-symbols-outlined text-[20px]">bookmark</span>
+</button>
+</div>
+</article>
+<!-- Card 2: Material -->
+<article class="bg-surface-container-lowest border border-outline-variant shadow-[0_4px_20px_rgba(0,0,0,0.03)] rounded-xl p-5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300 relative overflow-hidden">
+<!-- Subtle background accent for material -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -z-0"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant">
+<div class="w-full h-full flex items-center justify-center bg-primary text-on-primary font-bold">PAES</div>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface leading-tight flex items-center gap-1">
+                                            Equipo Académico <span class="material-symbols-outlined text-primary text-[14px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</h4>
+<p class="font-caption text-caption text-on-surface-variant">Ayer</p>
+</div>
+</div>
+<span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-caption text-caption font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">description</span> Material
+                                </span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Resumen Completo: Logaritmos desde Cero a Nivel PAES</h3>
+<!-- Attached Resource Preview -->
+<div class="flex items-center gap-4 bg-surface-container-low border border-outline-variant rounded-lg p-3 mb-4 mt-3 hover:bg-surface-container-high transition-colors cursor-pointer">
+<div class="w-12 h-12 bg-error text-on-error rounded flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[28px]">picture_as_pdf</span>
+</div>
+<div class="flex-1">
+<h5 class="font-label-md text-label-md text-on-surface line-clamp-1">Guia_Logaritmos_Definitiva_2024.pdf</h5>
+<p class="font-caption text-caption text-on-surface-variant">Documento PDF • 2.4 MB</p>
+</div>
+<span class="material-symbols-outlined text-primary">download</span>
+</div>
+<div class="flex items-center gap-2 mb-4">
+<span class="px-2 py-1 bg-surface-container-low text-on-surface-variant rounded text-xs font-medium">Matemáticas M1</span>
+</div>
+<div class="flex items-center gap-6 border-t border-outline-variant/30 pt-3">
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors group">
+<span class="material-symbols-outlined text-[20px] group-hover:fill-current">thumb_up</span>
+<span class="font-label-md text-label-md">156</span>
+</button>
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+<span class="font-label-md text-label-md">12</span>
+</button>
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors ml-auto">
+<span class="material-symbols-outlined text-[20px]">bookmark</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 3: Tip -->
+<article class="bg-surface-container-lowest border border-outline-variant shadow-[0_4px_20px_rgba(0,0,0,0.03)] rounded-xl p-5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden">
+<img alt="User avatar" class="w-full h-full object-cover" data-alt="A profile picture of a young female student smiling warmly, illuminated by high-key, modern white lighting. The background is a minimalist, slightly blurred coffee shop setting. The aesthetic is friendly, encouraging, and clean." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn15ZebBYyHigO2RjctHzFda_Z7D-qHtIjLRAn0yzi1rA8GxgnvntnoTIPjzRt35t-aIYxIxhoRlmQqpha9tmUcbJjDMC9EiCmEtOE5Q2wVBksyCKMhfl9d9A_k4C8JMPtvUbsbpeOBBLz1VIXERWChtwSXC9gvaMc1y_V34rJRVv3rS0byFkcVTA8zhUw4HqQvut2n4JhJrEdwQ-zWsx5AbiXB8ftf-yr-wubbD7yb0Dph4ik6arr">
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface leading-tight">Vale Contreras</h4>
+<p class="font-caption text-caption text-on-surface-variant">Hace 3 días</p>
+</div>
+</div>
+<span class="bg-tertiary-container text-on-tertiary-container px-3 py-1 rounded-full font-caption text-caption font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lightbulb</span> Tip
+                            </span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Mnemotecnia para las restricciones del Logaritmo</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">
+                            Chicos, si siempre se olvidan de las condiciones de log_b(a) = c, acuérdense de "La Base no es un Bebé negativo".<br>
+                            La base (b) no puede ser 1 (Bebé) y tiene que ser positiva (&gt;0). Y el argumento (a) también siempre positivo. A mi me salvó en varios ensayos trampas!
+                        </p>
+<div class="flex items-center gap-2 mb-4">
+<span class="px-2 py-1 bg-surface-container-low text-on-surface-variant rounded text-xs font-medium">Matemáticas M1</span>
+<span class="px-2 py-1 bg-surface-container-low text-on-surface-variant rounded text-xs font-medium">Técnicas de Estudio</span>
+</div>
+<div class="flex items-center gap-6 border-t border-outline-variant/30 pt-3">
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors group">
+<span class="material-symbols-outlined text-[20px] group-hover:fill-current">thumb_up</span>
+<span class="font-label-md text-label-md">89</span>
+</button>
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+<span class="font-label-md text-label-md">4</span>
+</button>
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors ml-auto">
+<span class="material-symbols-outlined text-[20px]">bookmark</span>
+</button>
+</div>
+</article>
+<!-- Load More Action -->
+<div class="w-full flex justify-center mt-4 mb-8">
+<button class="px-6 py-3 bg-surface-container hover:bg-surface-container-high border border-outline-variant text-on-surface font-label-md text-label-md rounded-lg transition-colors">
+                            Cargar más resultados
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+
+</body></html>

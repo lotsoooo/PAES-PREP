@@ -1,0 +1,285 @@
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>PAES Prep - A01 Landing Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-container": "#4e3e00",
+                      "secondary": "#9d4300",
+                      "tertiary-fixed-dim": "#eec200",
+                      "error-container": "#ffdad6",
+                      "secondary-fixed": "#ffdbca",
+                      "inverse-on-surface": "#edf0ff",
+                      "surface-container-low": "#f1f3ff",
+                      "surface-container-highest": "#dce2f7",
+                      "on-primary-container": "#d4dcff",
+                      "outline": "#737686",
+                      "secondary-fixed-dim": "#ffb690",
+                      "secondary-container": "#fd761a",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-container": "#5c2400",
+                      "surface-container-high": "#e1e8fd",
+                      "on-tertiary-fixed-variant": "#574500",
+                      "on-primary-fixed": "#00174d",
+                      "on-secondary-fixed-variant": "#783200",
+                      "on-error": "#ffffff",
+                      "tertiary": "#735c00",
+                      "tertiary-container": "#cea700",
+                      "surface-bright": "#f9f9ff",
+                      "tertiary-fixed": "#ffe083",
+                      "on-background": "#141b2b",
+                      "on-surface-variant": "#434654",
+                      "background": "#f9f9ff",
+                      "on-tertiary-fixed": "#231b00",
+                      "primary-fixed": "#dbe1ff",
+                      "surface-tint": "#1353d8",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface": "#141b2b",
+                      "on-primary": "#ffffff",
+                      "surface-dim": "#d3daef",
+                      "error": "#ba1a1a",
+                      "inverse-primary": "#b5c4ff",
+                      "on-primary-fixed-variant": "#003dab",
+                      "surface-container": "#e9edff",
+                      "on-error-container": "#93000a",
+                      "primary": "#003fb1",
+                      "primary-container": "#1a56db",
+                      "inverse-surface": "#293040",
+                      "surface": "#f9f9ff",
+                      "outline-variant": "#c3c5d7",
+                      "surface-variant": "#dce2f7",
+                      "on-secondary-fixed": "#341100",
+                      "primary-fixed-dim": "#b5c4ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-sm": "8px",
+                      "gutter": "24px",
+                      "margin-mobile": "16px",
+                      "stack-lg": "32px",
+                      "container-max": "1280px",
+                      "margin-desktop": "48px",
+                      "stack-md": "16px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "caption": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "display": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "caption": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- Header (No TopAppBar/SideNav as this is a Landing Page, but we need a simple header for branding) -->
+<header class="bg-surface shadow-sm sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
+<div class="text-headline-md font-headline-md font-bold text-primary cursor-pointer" onclick="window.location.href='{{DATA:SCREEN:SCREEN_26}}'">PAES Prep</div>
+<nav class="hidden md:flex gap-gutter">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Features</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Testimonials</a>
+</nav>
+<div class="flex gap-4">
+<button class="hidden md:block px-4 py-2 border border-primary text-primary rounded-lg font-label-md text-label-md hover:bg-surface-container-low transition-colors" onclick="window.location.href='{{DATA:SCREEN:SCREEN_24}}'">INICIAR SESIÓN</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="relative bg-surface-container-lowest overflow-hidden py-24 md:py-32">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container/10 to-transparent z-0"></div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10 flex flex-col items-center text-center">
+<h1 class="font-display text-display text-on-surface mb-stack-md max-w-3xl leading-tight">Prepara la PAES con tecnología y eficacia.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-stack-lg max-w-2xl">Alcanza tu puntaje ideal con una plataforma moderna, ensayos personalizados y seguimiento inteligente de tu progreso.</p>
+<div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+<button class="bg-primary text-on-primary px-8 py-4 rounded-full font-label-md text-label-md shadow-lg hover:bg-primary-container transition-colors w-full sm:w-auto" onclick="window.location.href='{{DATA:SCREEN:SCREEN_25}}'">COMENZAR AHORA</button>
+<button class="md:hidden border border-primary text-primary px-8 py-4 rounded-full font-label-md text-label-md hover:bg-surface-container-low transition-colors w-full sm:w-auto" onclick="window.location.href='{{DATA:SCREEN:SCREEN_24}}'">INICIAR SESIÓN</button>
+</div>
+</div>
+<!-- Decorative Elements for Hero -->
+<div class="hidden md:block absolute top-1/4 left-10 w-32 h-32 bg-primary-fixed rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-pulse"></div>
+<div class="hidden md:block absolute bottom-1/4 right-10 w-48 h-48 bg-secondary-fixed rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-pulse" style="animation-delay: 2s;"></div>
+</section>
+<!-- Features Bento Grid -->
+<section class="py-24 bg-background">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Todo lo que necesitas para el éxito</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Herramientas diseñadas para maximizar tu aprendizaje y minimizar el estrés.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Feature 1: Large Card -->
+<div class="md:col-span-2 bg-surface rounded-2xl p-8 border border-outline-variant shadow-sm hover:shadow-lg transition-shadow">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary-container text-primary mb-6">
+<span class="material-symbols-outlined" data-icon="analytics" data-weight="fill">analytics</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Análisis de Progreso Avanzado</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Visualiza tu crecimiento con gráficos interactivos. Identifica tus áreas fuertes y las que necesitan más atención con precisión quirúrgica.</p>
+<div class="w-full h-48 bg-surface-container-low rounded-lg relative overflow-hidden" data-alt="A clean, modern data visualization dashboard showing a line chart trending upwards. The chart lines are in primary blue against a pristine white background. Subtle grid lines and axis labels are visible. The overall aesthetic is minimalist, professional, and corporate, emphasizing clarity and progress tracking." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAFf5GHdQT13CaPFLfPUeoo6BgQqOAfxs2c2tMaUgy0Q2930fmDZks2C0qoCBkJ8psGbZoW5J-siCSN3NhLa2DLNevoU2BWX4UdONUzx_DwEnTgaKsOhCKoM03TYaOp8gk2BQofGJOTKgvikiDdhBk12Y7ruLjCWw1uAw8ZNUgFWrcp_d2NQqIvBNCM7_8ACvoWkRNFG3i4nWaP4OkYLL7nr5QQjWoYAIrf3yPVC_eo37fmOSTsUgc-')"></div>
+</div>
+<!-- Feature 2: Small Card -->
+<div class="bg-surface rounded-2xl p-8 border border-outline-variant shadow-sm hover:shadow-lg transition-shadow">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-secondary-container text-secondary mb-6">
+<span class="material-symbols-outlined" data-icon="edit_document">edit_document</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Ensayos Realistas</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Practica con material actualizado que simula la experiencia real de la PAES.</p>
+</div>
+<!-- Feature 3: Small Card -->
+<div class="bg-surface rounded-2xl p-8 border border-outline-variant shadow-sm hover:shadow-lg transition-shadow">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-tertiary-container text-tertiary mb-6">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Contenido Estructurado</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Módulos de estudio organizados por ejes temáticos para una asimilación eficiente.</p>
+</div>
+<!-- Feature 4: Large Card -->
+<div class="md:col-span-2 bg-surface rounded-2xl p-8 border border-outline-variant shadow-sm hover:shadow-lg transition-shadow">
+<div class="flex flex-col md:flex-row gap-8 items-center">
+<div class="flex-1">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary-container text-primary mb-6">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Plan de Estudio Dinámico</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Se adapta a tu ritmo y disponibilidad, asegurando que cubras todo el temario antes del día D.</p>
+</div>
+<div class="flex-1 w-full h-48 rounded-lg overflow-hidden bg-surface-container-low" data-alt="A close-up of a modern digital calendar interface on a clean white background. Appointments and study blocks are neatly arranged using soft blue and neutral grey tones. The design is highly minimalist and functional, reflecting an organized and stress-free study planning tool." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA0KF8VhbOV62h97IYBlVgAew1mUoUCS0HyffEgP2c7rtJUcTRYz8NjXHCxa3cr10tvnehJH4aqNmR8KJyEMVKNeNrlr6OyXJI_YHmnVNb2dIWSpry2mO3uvxB2nKZP0uW-OemAIapzDY3sJMqHmlfd1q4QFan4eoXXnJddH2XQt-RIWCfF9fpje6BWVRXH1EB9FP32l646pKNgZZnCGeSH_c3wO9uzmZv4Pi6_JG8CEjanb5QVliK6')"></div>
+</div>
+</div>
+</div>
+</div>
+</section><section class="py-24 bg-surface-container-low"><div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop"><h2 class="font-headline-lg text-headline-lg text-on-surface mb-12 text-center">Preguntas Frecuentes</h2><div class="max-w-3xl mx-auto space-y-4"><div class="bg-surface rounded-lg border border-outline-variant overflow-hidden"><button class="w-full p-6 flex justify-between items-center text-left" onclick="this.nextElementSibling.classList.toggle('hidden')"><span class="font-headline-md text-body-lg font-bold">¿Cómo funcionan los ensayos?</span><span class="material-symbols-outlined">expand_more</span></button><div class="hidden p-6 pt-0 text-on-surface-variant border-t border-outline-variant/30">Nuestros ensayos simulan las condiciones reales de la PAES, con tiempos controlados y preguntas actualizadas según el último temario del DEMRE.</div></div><div class="bg-surface rounded-lg border border-outline-variant overflow-hidden"><button class="w-full p-6 flex justify-between items-center text-left" onclick="this.nextElementSibling.classList.toggle('hidden')"><span class="font-headline-md text-body-lg font-bold">¿Puedo estudiar desde mi celular?</span><span class="material-symbols-outlined">expand_more</span></button><div class="hidden p-6 pt-0 text-on-surface-variant border-t border-outline-variant/30">Sí, nuestra plataforma es 100% responsiva y está optimizada para funcionar perfectamente en smartphones y tablets.</div></div></div></div></section>
+<!-- Statistics Section -->
+<section class="py-24 bg-primary text-on-primary">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+<div>
+<div class="font-display text-display font-bold mb-2">+10k</div>
+<div class="font-label-md text-label-md text-primary-fixed-dim uppercase tracking-wider">Estudiantes Activos</div>
+</div>
+<div>
+<div class="font-display text-display font-bold mb-2">850</div>
+<div class="font-label-md text-label-md text-primary-fixed-dim uppercase tracking-wider">Puntaje Promedio Meta</div>
+</div>
+<div>
+<div class="font-display text-display font-bold mb-2">98%</div>
+<div class="font-label-md text-label-md text-primary-fixed-dim uppercase tracking-wider">Tasa de Aprobación</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Component from JSON -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant w-full py-stack-lg">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="mb-4 md:mb-0">
+<span class="text-body-lg font-bold text-primary">PAES Prep</span>
+<p class="font-caption text-caption text-on-surface-variant mt-1">© 2024 PAES Prep. Todos los derechos reservados.</p>
+</div>
+<nav class="flex gap-6">
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Landing</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Terms</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Privacy</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Sitemap</a>
+</nav>
+</div>
+</footer>
+
+
+</body></html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es-CL" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#003fb1" />
+
+    <title>PAES Pro — Prepárate para la PAES</title>
+    <meta
+      name="description"
+      content="Ensayos PAES, contenidos, planes de estudio y estadísticas para preparar la Prueba de Acceso a la Educación Superior. Ensaya cronometrado y mide tu progreso."
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PAES Pro" />
+    <meta property="og:locale" content="es_CL" />
+    <meta property="og:title" content="PAES Pro — Prepárate para la PAES" />
+    <meta
+      property="og:description"
+      content="Ensayos PAES, contenidos, planes de estudio y estadísticas para preparar la Prueba de Acceso a la Educación Superior."
+    />
+    <!-- Configurar og:url con el dominio verificado al preparar el despliegue. -->
+    <meta property="og:image" content="/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+    <!-- El plugin PWA inyecta el manifest al compilar. -->
+
+    <!-- Fuentes con display=swap -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    />
+
+    <script>
+      // Aplica el tema antes del primer pintado para evitar el parpadeo.
+      (function () {
+        try {
+          var t = localStorage.getItem('paes-pro-tema');
+          var oscuro =
+            t === 'oscuro' ||
+            ((t === null || t === 'sistema') &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches);
+          document.documentElement.classList.toggle('dark', oscuro);
+          document.documentElement.classList.toggle('light', !oscuro);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

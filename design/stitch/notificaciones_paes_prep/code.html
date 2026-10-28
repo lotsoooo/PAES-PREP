@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PAES Prep - Centro de Notificaciones</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "outline": "#737686",
+                        "surface-container": "#e9edff",
+                        "on-surface-variant": "#434654",
+                        "tertiary-container": "#cea700",
+                        "surface-variant": "#dce2f7",
+                        "inverse-primary": "#b5c4ff",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#ffb690",
+                        "on-primary": "#ffffff",
+                        "on-background": "#141b2b",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#231b00",
+                        "primary": "#003fb1",
+                        "on-secondary-fixed": "#341100",
+                        "secondary-fixed": "#ffdbca",
+                        "on-primary-fixed": "#00174d",
+                        "inverse-surface": "#293040",
+                        "on-primary-fixed-variant": "#003dab",
+                        "inverse-on-surface": "#edf0ff",
+                        "tertiary": "#735c00",
+                        "primary-fixed-dim": "#b5c4ff",
+                        "surface-tint": "#1353d8",
+                        "on-secondary-container": "#5c2400",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "tertiary-fixed": "#ffe083",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#1a56db",
+                        "surface-container-low": "#f1f3ff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#783200",
+                        "tertiary-fixed-dim": "#eec200",
+                        "outline-variant": "#c3c5d7",
+                        "on-primary-container": "#d4dcff",
+                        "surface-dim": "#d3daef",
+                        "on-surface": "#141b2b",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e1e8fd",
+                        "secondary-container": "#fd761a",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#4e3e00",
+                        "secondary": "#9d4300",
+                        "surface": "#f9f9ff",
+                        "surface-container-highest": "#dce2f7",
+                        "primary-fixed": "#dbe1ff",
+                        "background": "#f9f9ff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "margin-mobile": "16px",
+                        "stack-lg": "32px",
+                        "margin-desktop": "48px",
+                        "stack-md": "16px",
+                        "container-max": "1280px",
+                        "stack-sm": "8px",
+                        "gutter": "24px"
+                    },
+                    fontFamily: {
+                        "headline-lg-mobile": ["Inter"],
+                        "display": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    fontSize: {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex antialiased">
+<!-- SideNavBar (from JSON) -->
+<!-- Suppressed on mobile, visible on md+ -->
+<nav class="hidden md:flex flex-col fixed left-0 top-0 h-screen w-64 p-stack-md z-40 bg-surface-container-low dark:bg-inverse-surface border-r border-outline-variant dark:border-outline">
+<div class="flex items-center gap-stack-sm mb-stack-lg px-stack-sm">
+<div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary font-headline-md">
+                P
+            </div>
+<div>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-inverse-primary tracking-tight">PAES Prep</h1>
+<p class="font-caption text-caption text-on-surface-variant">Academic Excellence</p>
+</div>
+</div>
+<div class="flex flex-col gap-stack-sm flex-1">
+<!-- None are active as we are in Notifications -->
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-on-surface-variant hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-all active:scale-95 transition-transform font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-on-surface-variant hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-all active:scale-95 transition-transform font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="quiz">quiz</span>
+                My Exams
+            </a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-on-surface-variant hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-all active:scale-95 transition-transform font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+                Content
+            </a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-on-surface-variant hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-all active:scale-95 transition-transform font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+                Study Plan
+            </a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-on-surface-variant hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-all active:scale-95 transition-transform font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+                Statistics
+            </a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-on-surface-variant hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-all active:scale-95 transition-transform font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+                Community
+            </a>
+</div>
+<button class="mt-auto w-full py-stack-sm px-stack-md bg-primary text-on-primary font-label-md text-label-md rounded-full hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm">
+            Start Study Session
+        </button>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col md:ml-64 min-h-screen">
+<!-- TopNavBar (from JSON) -->
+<header class="flex justify-between items-center w-full px-margin-desktop h-16 sticky top-0 z-50 bg-surface dark:bg-surface-dim shadow-sm">
+<div class="flex items-center gap-stack-md w-1/3">
+<!-- Search Bar Placeholder -->
+<div class="hidden md:flex items-center bg-surface-container-low rounded-full px-stack-md py-2 w-full max-w-xs border border-outline-variant focus-within:border-primary focus-within:ring-2 focus-within:ring-primary-container transition-all">
+<span class="material-symbols-outlined text-outline mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md font-body-md text-on-surface w-full p-0" placeholder="Buscar..." type="text"/>
+</div>
+</div>
+<div class="md:hidden font-headline-md text-headline-md text-primary dark:text-inverse-primary">
+                PAES Prep
+            </div>
+<div class="flex items-center gap-stack-md w-1/3 justify-end">
+<button aria-label="Notifications" class="relative p-2 rounded-full text-primary dark:text-inverse-primary font-bold border-b-2 border-primary active:opacity-80 transition-opacity">
+<span class="material-symbols-outlined icon-fill" data-icon="notifications">notifications</span>
+</button>
+<button aria-label="Settings" class="p-2 rounded-full text-on-surface-variant dark:text-outline-variant hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors active:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<img alt="User profile photo" class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of a young Chilean high school student, bright lighting, clean background, modern aesthetic, highly detailed." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANNB3YSQnC74NDFOrwZZmqXFrpxjm5ZwSlL7GDU3l-qvRtApoIVeJc8ZyjusP_adYfrdMDSppH52gJkzs7fMxBMkYixh6Ut2Y3FghYfl93ZUC4t4izRXKF4q_FQjxwq_1Lzj7Fj4JEK4cb3hyNrIhAeZmhIRK8CKL5k7iqloZE3A1MxH78YCdLjujoqYWviddusdG7WR6Ry0aJK4iGMe2xOqGviVV7sZDYlSkWoHvzkjeBX4OdgoKj"/>
+</div>
+</header>
+<!-- Page Content -->
+<div class="flex-1 p-margin-mobile md:p-margin-desktop bg-background flex justify-center items-start">
+<!-- Notifications Panel -->
+<div class="w-full max-w-3xl bg-surface rounded-xl border border-outline-variant shadow-[0_4px_20px_rgba(0,0,0,0.05)] overflow-hidden flex flex-col">
+<!-- Panel Header -->
+<div class="flex justify-between items-center p-stack-lg border-b border-outline-variant bg-surface-bright">
+<div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface tracking-tight">Notificaciones</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Mantente al día con tu progreso y comunidad.</p>
+</div>
+<button class="text-primary font-label-md text-label-md hover:text-primary-fixed-variant transition-colors flex items-center gap-1 group">
+<span class="material-symbols-outlined text-[18px] group-hover:icon-fill transition-all" data-icon="done_all">done_all</span>
+<span class="hidden sm:inline">Marcar todas como leídas</span>
+</button>
+</div>
+<!-- Notifications List -->
+<div class="flex flex-col divide-y divide-outline-variant">
+<!-- Unread Item: Exam Result -->
+<div class="flex items-start gap-stack-md p-stack-md bg-surface-container-low hover:bg-surface-variant transition-colors group cursor-pointer relative">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-r-full"></div>
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined" data-icon="quiz">quiz</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start gap-2 mb-1">
+<h3 class="font-body-md text-body-md font-bold text-on-surface truncate">Resultados: Ensayo Matemáticas M1</h3>
+<span class="font-caption text-caption text-on-surface-variant whitespace-nowrap shrink-0">Hace 10 min</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Tus resultados para el último ensayo ya están disponibles. ¡Has mejorado un 15% en la sección de Álgebra!</p>
+<button class="mt-2 text-primary font-label-md text-label-md border border-primary rounded-full px-4 py-1 hover:bg-primary hover:text-on-primary transition-colors text-sm">
+                                Ver resultados
+                            </button>
+</div>
+<div aria-label="Unread" class="w-3 h-3 rounded-full bg-primary shrink-0 mt-2"></div>
+</div>
+<!-- Unread Item: Study Reminder -->
+<div class="flex items-start gap-stack-md p-stack-md bg-surface-container-low hover:bg-surface-variant transition-colors group cursor-pointer relative">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-tertiary rounded-r-full"></div>
+<div class="w-12 h-12 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start gap-2 mb-1">
+<h3 class="font-body-md text-body-md font-bold text-on-surface truncate">Recordatorio de Estudio</h3>
+<span class="font-caption text-caption text-on-surface-variant whitespace-nowrap shrink-0">Hace 2 horas</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Tienes programada una sesión de repaso de Comprensión Lectora para hoy a las 18:00 hrs.</p>
+</div>
+<div aria-label="Unread" class="w-3 h-3 rounded-full bg-primary shrink-0 mt-2"></div>
+</div>
+<!-- Read Item: Community Update -->
+<div class="flex items-start gap-stack-md p-stack-md bg-surface hover:bg-surface-container-low transition-colors group cursor-pointer opacity-80 hover:opacity-100">
+<img alt="Prof. Martinez" class="w-12 h-12 rounded-full object-cover border border-outline-variant shrink-0" data-alt="A profile picture of a friendly male high school teacher wearing glasses, well-lit classroom background, high resolution, modern look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDqV01FeqUoseodn0T_COVkERgTLd0xmS3xzoGfCkxfMuJsW-xCzskIqfqwef34ud4hHzCP_OAVP2tHHEI7rlsJDe9jgh4_DgH-k9B5RCBo83N_GHiebI77ltDl5r9cMkFxo-mJ_H2VN2iVP79d6pUF_xnrdgLEOuOnQc7z9Ee1FNM98DHNxGZk4mnOV8SDfd1soKCiKWjNocBQt_AImWdwzIp9RCJgFd1E4ieLFfPrvV5g8DC9k_B"/>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start gap-2 mb-1">
+<h3 class="font-body-md text-body-md font-medium text-on-surface truncate">Nuevo material compartido</h3>
+<span class="font-caption text-caption text-outline whitespace-nowrap shrink-0">Ayer</span>
+</div>
+<p class="font-body-md text-body-md text-outline line-clamp-2"><span class="font-medium text-on-surface-variant">Prof. Martínez</span> ha subido un nuevo resumen de Historia de Chile colonial al grupo de estudio.</p>
+</div>
+<div class="w-3 h-3 rounded-full bg-transparent shrink-0 mt-2"></div>
+</div>
+<!-- Read Item: System Update -->
+<div class="flex items-start gap-stack-md p-stack-md bg-surface hover:bg-surface-container-low transition-colors group cursor-pointer opacity-80 hover:opacity-100">
+<div class="w-12 h-12 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined" data-icon="campaign">campaign</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start gap-2 mb-1">
+<h3 class="font-body-md text-body-md font-medium text-on-surface truncate">Actualización de plataforma</h3>
+<span class="font-caption text-caption text-outline whitespace-nowrap shrink-0">12 Mayo</span>
+</div>
+<p class="font-body-md text-body-md text-outline line-clamp-2">Hemos añadido nuevas funcionalidades a la sección de Estadísticas para que puedas rastrear mejor tus tiempos de respuesta.</p>
+</div>
+<div class="w-3 h-3 rounded-full bg-transparent shrink-0 mt-2"></div>
+</div>
+</div>
+<!-- Footer / Pagination (Optional) -->
+<div class="p-stack-md bg-surface border-t border-outline-variant flex justify-center">
+<button class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">
+                        Cargar notificaciones anteriores
+                    </button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

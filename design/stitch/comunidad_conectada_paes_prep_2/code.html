@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Comunidad - PAES Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#cea700",
+                    "background": "#f9f9ff",
+                    "tertiary": "#735c00",
+                    "surface-tint": "#1353d8",
+                    "on-secondary-fixed": "#341100",
+                    "inverse-on-surface": "#edf0ff",
+                    "surface-container": "#e9edff",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#fd761a",
+                    "primary-container": "#1a56db",
+                    "on-tertiary-container": "#4e3e00",
+                    "secondary-fixed-dim": "#ffb690",
+                    "on-tertiary-fixed": "#231b00",
+                    "surface": "#f9f9ff",
+                    "on-primary-fixed-variant": "#003dab",
+                    "surface-container-highest": "#dce2f7",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "on-primary-fixed": "#00174d",
+                    "inverse-surface": "#293040",
+                    "inverse-primary": "#b5c4ff",
+                    "secondary-fixed": "#ffdbca",
+                    "primary-fixed-dim": "#b5c4ff",
+                    "tertiary-fixed": "#ffe083",
+                    "surface-container-high": "#e1e8fd",
+                    "on-error": "#ffffff",
+                    "on-primary-container": "#d4dcff",
+                    "primary-fixed": "#dbe1ff",
+                    "outline-variant": "#c3c5d7",
+                    "surface-bright": "#f9f9ff",
+                    "secondary": "#9d4300",
+                    "tertiary-fixed-dim": "#eec200",
+                    "on-secondary-fixed-variant": "#783200",
+                    "error": "#ba1a1a",
+                    "on-surface-variant": "#434654",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-background": "#141b2b",
+                    "on-primary": "#ffffff",
+                    "surface-dim": "#d3daef",
+                    "on-secondary-container": "#5c2400",
+                    "surface-container-low": "#f1f3ff",
+                    "on-surface": "#141b2b",
+                    "outline": "#737686",
+                    "primary": "#003fb1",
+                    "on-tertiary": "#ffffff",
+                    "surface-variant": "#dce2f7",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "stack-lg": "32px",
+                    "stack-sm": "8px",
+                    "margin-mobile": "16px",
+                    "stack-md": "16px",
+                    "margin-desktop": "48px"
+            },
+            "fontFamily": {
+                    "display": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "caption": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar (Web) -->
+<nav class="hidden md:flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20 bg-surface shadow-sm sticky top-0 z-50">
+<div class="text-headline-md font-headline-md font-bold text-primary">PAES Pro</div>
+<div class="flex items-center gap-stack-lg h-full pt-2">
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors transition-all duration-200" href="#">Dashboard</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors transition-all duration-200" href="#">Ensayos</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors transition-all duration-200" href="#">Contenidos</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors transition-all duration-200" href="#">Plan</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 transition-all duration-200 font-body-md text-body-md" href="{{DATA:SCREEN:SCREEN_8}}">Comunidad</a>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full border-2 border-outline-variant overflow-hidden cursor-pointer hover:border-primary transition-colors">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="A professional headshot of a Chilean high school student in a brightly lit modern library, wearing casual study clothes, looking confidently off-camera with a subtle smile. Soft natural lighting from a nearby window, high quality corporate modern photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfy0VooGkadELfd-ruxy3zbNHrdVt5Z7QFLUx9e_G1PPB-qOQwODdgbovhYH1L5naBh6SrgOiP6_V86FiXuqyOtUC03_iNVVUsvljH7wwP1N4yeAt_S7Qi5K5L8Jyds22wIVRKKKkc_IKfoa-e1yQG6MGHHdaemzZJyJBHKCnFHOrZEhx_9j4je5hstvU0q2DuBg_lelNXj0apndC4ubsMtqLGOxoOmgiEXWSkcY1fkh0SLNdGeX-2"/>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg pb-32 md:pb-stack-lg flex flex-col gap-stack-lg relative">
+<!-- Header & Filters -->
+<header class="flex flex-col md:flex-row justify-between items-start md:items-end gap-stack-md border-b border-outline-variant pb-stack-md">
+<div>
+<h1 class="font-display text-display text-on-background mb-2">Comunidad</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Resuelve dudas, comparte estrategias y conéctate con otros estudiantes y profesores.</p>
+</div>
+<div class="flex flex-wrap items-center gap-stack-sm mt-4 md:mt-0">
+<div class="relative">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-full hover:bg-surface-container-low transition-colors font-label-md text-label-md text-on-surface">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                        Materia
+                        <span class="material-symbols-outlined text-[18px]">arrow_drop_down</span>
+</button>
+</div>
+<div class="relative">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-full hover:bg-surface-container-low transition-colors font-label-md text-label-md text-on-surface">
+<span class="material-symbols-outlined text-[18px]">sort</span>
+                        Más recientes
+                        <span class="material-symbols-outlined text-[18px]">arrow_drop_down</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Bento Grid Layout for Feed and Sidebar -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Feed Column -->
+<div class="lg:col-span-8 flex flex-col gap-stack-md">
+<!-- Post Card 1 (Doubt) -->
+<article class="bg-surface-container-lowest rounded-xl p-stack-md border border-outline-variant shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300 cursor-pointer" onclick="window.location.href='{{DATA:SCREEN:SCREEN_2}}'">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="Close up portrait of a young male teacher with glasses in a modern classroom setting. He has a friendly, encouraging expression. High key lighting, soft focus background with whiteboards, corporate educational aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbmp3yW0yYAhx32MC3GwWIBFNEehJg1xibhh5-MdT0inPsFCxHZzpR3IyY3I3ySDyNoTBkM8dceb8PgTzoVuAebwmmMkazwngTRgXNeRPZSTVJ0P9aExroacXk0SmaKoeUkFu39BFqDa3CrrPHi1qNUJXiXsftYDrhdBzU-aT_xpfVxGirjG83UAduSzhYfpUnU4NpPrcHe7bD0o4AoQrX7PgPx-5Bm3oDl8rSxjIl60tbDDyA2CvF"/>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface font-bold">Prof. Carlos Mendoza</h3>
+<p class="font-caption text-caption text-on-surface-variant">Hace 2 horas • Profesor de Matemáticas</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-surface-container-high text-on-surface rounded-full font-caption text-caption font-medium border border-outline-variant">Matemática M1</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Tip rápido: Factorización por agrupación</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 leading-relaxed">
+                        Muchos estudiantes se complican con la factorización cuando hay más de 3 términos. Recuerden siempre buscar un factor común primero. Si no hay, agrupen de a dos términos y busquen un factor común en cada par. ¡Esto les ahorrará valiosos minutos en la prueba!
+                    </p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="text-primary font-caption text-caption bg-primary-container bg-opacity-20 px-2 py-1 rounded-md">#ConsejoPAES</span>
+<span class="text-primary font-caption text-caption bg-primary-container bg-opacity-20 px-2 py-1 rounded-md">#Algebra</span>
+</div>
+<hr class="border-outline-variant mb-4"/>
+<div class="flex justify-between items-center text-on-surface-variant">
+<div class="flex gap-4">
+<button class="flex items-center gap-1 hover:text-primary transition-colors font-label-md text-label-md group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">thumb_up</span>
+                                142
+                            </button>
+<button class="flex items-center gap-1 hover:text-primary transition-colors font-label-md text-label-md group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">chat_bubble_outline</span>
+                                24 Comentarios
+                            </button>
+</div>
+<button class="hover:text-primary transition-colors">
+<span class="material-symbols-outlined">bookmark_border</span>
+</button>
+</div>
+</article>
+<!-- Post Card 2 (Study Tip) -->
+<article class="bg-surface-container-lowest rounded-xl p-stack-md border border-outline-variant shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="A bright, optimistic portrait of a female student with a backpack, standing outside a university campus on a sunny day. She is smiling broadly. Crisp, clean modern photography style with cool blue and white tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn8M8BbtAkfpZ6qC4mHY_J1VteY1DLGDdE-wnFtBVYfrQc9ZpAx7NwZmbXcwTreWij2ZHEF6sTWUB82SEgZnunXGbR847duhLtV7NXrCs0r3JGOypnM2xqzj9MEvqAX50UPBq5t33zm9aTwBFg69gq6kMdKdjKRxwjopqARdNrbsMJSfsgw6Jh8SdDJHEfNMXntHkewquXZOmwfNuyKFisL65UEcoGd4RYP7xe8aIrbp0JJAU133e2"/>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface font-bold">Valentina S.</h3>
+<p class="font-caption text-caption text-on-surface-variant">Hace 5 horas • Estudiante</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-surface-container-high text-on-surface rounded-full font-caption text-caption font-medium border border-outline-variant">Técnicas de Estudio</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Mi método para Comprensión Lectora (Técnica Pomodoro)</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 leading-relaxed">
+                        He estado aplicando la técnica Pomodoro (25 min de lectura intensa x 5 min de descanso) para los textos largos y mi retención ha subido del 60% al 85% en los ensayos. ¿Alguien más usa esta técnica? ¿Qué les funciona mejor a ustedes para no desconcentrarse?
+                    </p>
+<hr class="border-outline-variant mb-4"/>
+<div class="flex justify-between items-center text-on-surface-variant">
+<div class="flex gap-4">
+<button class="flex items-center gap-1 hover:text-primary transition-colors font-label-md text-label-md group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">thumb_up</span>
+                                89
+                            </button>
+<button class="flex items-center gap-1 hover:text-primary transition-colors font-label-md text-label-md group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">chat_bubble_outline</span>
+                                15 Comentarios
+                            </button>
+</div>
+<button class="hover:text-primary transition-colors">
+<span class="material-symbols-outlined">bookmark_border</span>
+</button>
+</div>
+</article>
+</div>
+<!-- Sidebar / Widgets Column -->
+<aside class="hidden lg:flex lg:col-span-4 flex-col gap-stack-md">
+<!-- Announcments Widget -->
+<div class="bg-primary-container bg-opacity-10 rounded-xl p-stack-md border border-primary-container border-opacity-20 shadow-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">campaign</span>
+                        Anuncios Oficiales
+                    </h3>
+<ul class="flex flex-col gap-3">
+<li class="border-l-4 border-primary pl-3">
+<a class="font-label-md text-label-md text-on-surface hover:text-primary transition-colors block mb-1" href="#">Ensayo Nacional M1 - Inscripciones Abiertas</a>
+<p class="font-caption text-caption text-on-surface-variant">Este sábado a las 09:00 hrs.</p>
+</li>
+<li class="border-l-4 border-primary pl-3">
+<a class="font-label-md text-label-md text-on-surface hover:text-primary transition-colors block mb-1" href="#">Nuevo módulo de Ciencias publicado</a>
+<p class="font-caption text-caption text-on-surface-variant">Actualización de temario DEMRE 2024.</p>
+</li>
+</ul>
+</div>
+<!-- Top Contributors Widget -->
+<div class="bg-surface-container-lowest rounded-xl p-stack-md border border-outline-variant shadow-sm">
+<h3 class="font-label-md text-label-md text-on-surface font-bold mb-4 uppercase tracking-wider">Profesores Destacados</h3>
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a female educator sitting at a modern desk with a laptop, smiling warmly towards the viewer. Soft ambient daylight, minimalist corporate office setting. Professional and welcoming demeanor." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAusUezWYpZhmFKqp9ldSNJr_c9ggbHarIYU8y7OyY1NEmKNu4E30Wwdyus-u56M_Q3LuOIsqnYcskG6mwxpchm1PLPAO2uVR39AXk5q1LA_dkHtylnQfVoqaWOk44r0pHNyxob1VyfRw3UtlPY0MdJ6PKU4-BDD7SLb_IX4scuO7q_59FwV0KaDVjg_pMpnTiThdxCJVDpvwdEHTI7GMzs8phvvdPXWczksBlSVnCmMu8caRXkpLg5"/>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Profa. Laura M.</p>
+<p class="font-caption text-caption text-on-surface-variant">Lenguaje y Comunicación</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a young male science teacher holding a tablet, standing in a brightly lit modern laboratory or classroom. Clean aesthetic, blue and white tones predominating, confident and approachable expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRlkOpumxoRzF5iDFLx_o8wjDjIq-8amtPLkUVC6llS9fO5zfwlW-91hll-xZSdGfLM9fjUQEZUYRlYdcwh9kk6t2cM14Hkx2vE5aSeJCH3p7I_FuU3NgZR5dsOkukJ3Epedt_bOcWHqE1awWJ_An-eHrArAElejkmfJfKCSH3BPX_VlIzOwpsqPSjyyLjKAOVgvEfG8Udoa-FFJb-2mgl0pXp5N825DDdYqG07BsTChfLGa_z9733"/>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Prof. Andrés T.</p>
+<p class="font-caption text-caption text-on-surface-variant">Ciencias - Biología</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Floating Action Button -->
+<button aria-label="Crear Publicación" class="fixed bottom-24 md:bottom-12 right-4 md:right-12 w-14 h-14 bg-primary text-on-primary rounded-full shadow-[0_8px_30px_rgba(0,63,177,0.4)] flex items-center justify-center hover:bg-on-primary-fixed-variant transition-all duration-300 z-40 group hover:scale-105 active:scale-95" onclick="window.location.href='{{DATA:SCREEN:SCREEN_5}}'" title="Crear Publicación">
+<span class="material-symbols-outlined text-2xl group-hover:rotate-90 transition-transform duration-300" style="font-variation-settings: 'FILL' 1;">edit</span>
+</button>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface shadow-[0_-4px_20px_rgba(0,0,0,0.05)] border-t border-outline-variant rounded-t-xl transition-all duration-300 ease-in-out">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors w-16 group" href="#">
+<span class="material-symbols-outlined mb-1 group-active:scale-90 transition-transform" data-icon="home">home</span>
+<span class="font-caption text-caption">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors w-16 group" href="#">
+<span class="material-symbols-outlined mb-1 group-active:scale-90 transition-transform" data-icon="edit_document">edit_document</span>
+<span class="font-caption text-caption">Exams</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors w-16 group" href="#">
+<span class="material-symbols-outlined mb-1 group-active:scale-90 transition-transform" data-icon="auto_stories">auto_stories</span>
+<span class="font-caption text-caption">Study</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 group transition-colors" href="{{DATA:SCREEN:SCREEN_8}}">
+<span class="material-symbols-outlined mb-1 group-active:scale-90 transition-transform" data-icon="group" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-caption text-caption font-medium">Social</span>
+</a>
+</nav>
+<!-- Footer (Web Only, positioned at the bottom of the scroll) -->
+<footer class="hidden md:flex flex-col md:flex-row justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto py-stack-lg bg-surface-container-lowest border-t border-outline-variant mt-auto">
+<div class="text-body-lg font-bold text-primary mb-4 md:mb-0">PAES Pro</div>
+<div class="flex gap-stack-md font-caption text-caption text-on-surface-variant">
+<a class="hover:text-primary transition-colors duration-200" href="#">Landing</a>
+<a class="hover:text-primary transition-colors duration-200" href="#">Terms</a>
+<a class="hover:text-primary transition-colors duration-200" href="#">Privacy</a>
+<a class="hover:text-primary transition-colors duration-200" href="#">Sitemap</a>
+</div>
+<div class="font-caption text-caption text-on-surface-variant mt-4 md:mt-0">
+            © 2024 PAES Prep. Todos los derechos reservados.
+        </div>
+</footer>
+</body></html>

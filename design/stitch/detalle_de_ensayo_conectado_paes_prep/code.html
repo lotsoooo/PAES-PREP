@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PAES Pro - Ensayo de Diagnóstico: Matemáticas</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#737686",
+                        "surface-container": "#e9edff",
+                        "on-surface-variant": "#434654",
+                        "tertiary-container": "#cea700",
+                        "surface-variant": "#dce2f7",
+                        "inverse-primary": "#b5c4ff",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#ffb690",
+                        "on-primary": "#ffffff",
+                        "on-background": "#141b2b",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#231b00",
+                        "primary": "#003fb1",
+                        "on-secondary-fixed": "#341100",
+                        "secondary-fixed": "#ffdbca",
+                        "on-primary-fixed": "#00174d",
+                        "inverse-surface": "#293040",
+                        "on-primary-fixed-variant": "#003dab",
+                        "inverse-on-surface": "#edf0ff",
+                        "tertiary": "#735c00",
+                        "primary-fixed-dim": "#b5c4ff",
+                        "surface-tint": "#1353d8",
+                        "on-secondary-container": "#5c2400",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "tertiary-fixed": "#ffe083",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#1a56db",
+                        "surface-container-low": "#f1f3ff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#783200",
+                        "tertiary-fixed-dim": "#eec200",
+                        "outline-variant": "#c3c5d7",
+                        "on-primary-container": "#d4dcff",
+                        "surface-dim": "#d3daef",
+                        "on-surface": "#141b2b",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e1e8fd",
+                        "secondary-container": "#fd761a",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#4e3e00",
+                        "secondary": "#9d4300",
+                        "surface": "#f9f9ff",
+                        "surface-container-highest": "#dce2f7",
+                        "primary-fixed": "#dbe1ff",
+                        "background": "#f9f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "stack-lg": "32px",
+                        "margin-desktop": "48px",
+                        "stack-md": "16px",
+                        "container-max": "1280px",
+                        "stack-sm": "8px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "display": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col antialiased">
+<!-- TopNavBar (Web) -->
+<header class="hidden md:flex bg-surface dark:bg-inverse-surface shadow-sm docked full-width top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20 transition-all duration-200">
+<!-- Brand -->
+<div class="flex items-center gap-2">
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed">PAES Pro</span>
+</div>
+<!-- Navigation -->
+<nav class="flex gap-6 items-center">
+<a class="text-on-surface-variant dark:text-surface-variant font-body-md text-body-md hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Dashboard</a>
+<a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary dark:border-primary-fixed pb-1 font-body-md text-body-md transition-colors" href="{{DATA:SCREEN:SCREEN_22}}">Ensayos</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-body-md text-body-md hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Contenidos</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-body-md text-body-md hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Plan</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-body-md text-body-md hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Comunidad</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-4">
+<button aria-label="Notifications" class="p-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed">notifications</span>
+</button>
+<img alt="User profile photo" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="A small circular avatar of a young Chilean high school student, bright lighting, modern clean style, professional yet approachable." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsdNF291KHisSWQyEa2yKACMU16kqdRA5LAB37mdLJJQRQsa-bSD1Llb-FjgijRiAEELT4b8-s11VImi9abwqgKRpMnv9mbadNW6NmVbRC0Nm19hDw4zf7Vk_dmCwtigSDqF_GV-p0f0JvA3mWME_E2g9OTDGJWRSZU1iwHH1FKjU--9FUc3Lv0qzi1YJ7L9QwriyOiA7EV0jzz8SRieW8B27ndkHbk2liLIlBCX0A20j6RrsVI3Dd"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full px-margin-mobile md:px-margin-desktop py-stack-lg max-w-container-max mx-auto md:ml-0 flex justify-center mb-20 md:mb-0">
+<div class="w-full max-w-4xl flex flex-col gap-stack-lg">
+<!-- Back Button -->
+<div>
+<a class="inline-flex items-center gap-2 text-primary font-label-md text-label-md hover:underline group" href="#">
+<span class="material-symbols-outlined text-[18px] group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                    Volver a mis Ensayos
+                </a>
+</div>
+<!-- Exam Header Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant/30 p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative overflow-hidden">
+<!-- Decorative background accent -->
+<div class="absolute -right-16 -top-16 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="flex flex-col gap-4 z-10">
+<div class="flex items-center gap-3">
+<span class="inline-flex items-center justify-center bg-surface-container text-primary rounded-full px-3 py-1 font-label-md text-label-md">
+                            Matemáticas
+                        </span>
+<span class="inline-flex items-center gap-1 text-on-surface-variant font-caption text-caption">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                            140 min
+                        </span>
+</div>
+<div>
+<h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-on-surface">Ensayo de Diagnóstico: Matemáticas</h1>
+<p class="text-body-md font-body-md text-on-surface-variant mt-2 max-w-2xl">
+                            Evalúa tu nivel actual en los ejes temáticos principales de la prueba PAES. Este ensayo te ayudará a identificar tus fortalezas y debilidades para personalizar tu plan de estudio.
+                        </p>
+</div>
+</div>
+<div class="flex-shrink-0 w-full md:w-auto z-10">
+<a class="w-full md:w-auto bg-primary hover:bg-primary-fixed-variant text-on-primary font-label-md text-label-md px-8 py-4 rounded-lg shadow-md hover:shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2" href="{{DATA:SCREEN:SCREEN_20}}">
+<span>Comenzar Ensayo</span>
+<span class="material-symbols-outlined text-[20px]">play_arrow</span>
+</a>
+</div>
+</div>
+<!-- Bento Grid Content -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Metrics/Info Column -->
+<div class="flex flex-col gap-6">
+<!-- Stats Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant/30 p-6 flex flex-col gap-4">
+<h3 class="font-headline-md text-headline-md text-on-surface text-[20px]">Detalles</h3>
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">format_list_numbered</span>
+</div>
+<div>
+<p class="font-caption text-caption text-on-surface-variant">Preguntas</p>
+<p class="font-label-md text-label-md text-on-surface">65 preguntas</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<div>
+<p class="font-caption text-caption text-on-surface-variant">Dificultad</p>
+<p class="font-label-md text-label-md text-on-surface">Media</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">fact_check</span>
+</div>
+<div>
+<p class="font-caption text-caption text-on-surface-variant">Tipo</p>
+<p class="font-label-md text-label-md text-on-surface">M1 (Competencia Matemática 1)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Topics Column (Takes up 2 columns) -->
+<div class="md:col-span-2 bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant/30 p-6 flex flex-col gap-6">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface text-[20px]">Ejes Temáticos a Evaluar</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 text-[14px]">Este ensayo cubre los 4 ejes principales de la prueba M1.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Topic 1 -->
+<div class="border border-outline-variant/50 rounded-lg p-4 hover:border-primary/50 transition-colors bg-surface/50">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">calculate</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Números</h4>
+<p class="font-caption text-caption text-on-surface-variant mt-1">Conjuntos numéricos, porcentajes, razones y proporciones.</p>
+</div>
+</div>
+</div>
+<!-- Topic 2 -->
+<div class="border border-outline-variant/50 rounded-lg p-4 hover:border-primary/50 transition-colors bg-surface/50">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">functions</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Álgebra y Funciones</h4>
+<p class="font-caption text-caption text-on-surface-variant mt-1">Expresiones algebraicas, ecuaciones, inecuaciones y funciones lineales.</p>
+</div>
+</div>
+</div>
+<!-- Topic 3 -->
+<div class="border border-outline-variant/50 rounded-lg p-4 hover:border-primary/50 transition-colors bg-surface/50">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">architecture</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Geometría</h4>
+<p class="font-caption text-caption text-on-surface-variant mt-1">Figuras geométricas, transformaciones isométricas y proporciones.</p>
+</div>
+</div>
+</div>
+<!-- Topic 4 -->
+<div class="border border-outline-variant/50 rounded-lg p-4 hover:border-primary/50 transition-colors bg-surface/50">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">pie_chart</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Probabilidad y Estadística</h4>
+<p class="font-caption text-caption text-on-surface-variant mt-1">Representación de datos, medidas de tendencia central y reglas de probabilidad.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-2 p-4 bg-surface-container-low rounded-lg border-l-4 border-primary">
+<p class="font-caption text-caption text-on-surface">
+<strong class="font-label-md text-on-surface">Consejo:</strong> Asegúrate de estar en un lugar tranquilo y con buena conexión a internet. Una vez que comiences, el temporizador no se detendrá. Puedes usar lápiz y papel para tus cálculos.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface dark:bg-inverse-surface border-t border-outline-variant shadow-[0_-4px_20px_rgba(0,0,0,0.05)] rounded-t-xl transition-all duration-300 ease-in-out">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:bg-surface-container-highest transition-all duration-300 ease-in-out px-4 py-1 rounded-full w-16 h-14" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-caption text-caption">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-full px-4 py-1 w-16 h-14" href="{{DATA:SCREEN:SCREEN_22}}">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">edit_document</span>
+<span class="font-caption text-caption font-bold">Exams</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:bg-surface-container-highest transition-all duration-300 ease-in-out px-4 py-1 rounded-full w-16 h-14" href="#">
+<span class="material-symbols-outlined mb-1">auto_stories</span>
+<span class="font-caption text-caption">Study</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:bg-surface-container-highest transition-all duration-300 ease-in-out px-4 py-1 rounded-full w-16 h-14" href="#">
+<span class="material-symbols-outlined mb-1">group</span>
+<span class="font-caption text-caption">Social</span>
+</a>
+</nav>
+</body></html>

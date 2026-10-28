@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Resolución de Ensayo - PAES Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#737686",
+                        "surface-container": "#e9edff",
+                        "on-surface-variant": "#434654",
+                        "tertiary-container": "#cea700",
+                        "surface-variant": "#dce2f7",
+                        "inverse-primary": "#b5c4ff",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#ffb690",
+                        "on-primary": "#ffffff",
+                        "on-background": "#141b2b",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#231b00",
+                        "primary": "#003fb1",
+                        "on-secondary-fixed": "#341100",
+                        "secondary-fixed": "#ffdbca",
+                        "on-primary-fixed": "#00174d",
+                        "inverse-surface": "#293040",
+                        "on-primary-fixed-variant": "#003dab",
+                        "inverse-on-surface": "#edf0ff",
+                        "tertiary": "#735c00",
+                        "primary-fixed-dim": "#b5c4ff",
+                        "surface-tint": "#1353d8",
+                        "on-secondary-container": "#5c2400",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "tertiary-fixed": "#ffe083",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#1a56db",
+                        "surface-container-low": "#f1f3ff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#783200",
+                        "tertiary-fixed-dim": "#eec200",
+                        "outline-variant": "#c3c5d7",
+                        "on-primary-container": "#d4dcff",
+                        "surface-dim": "#d3daef",
+                        "on-surface": "#141b2b",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e1e8fd",
+                        "secondary-container": "#fd761a",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#4e3e00",
+                        "secondary": "#9d4300",
+                        "surface": "#f9f9ff",
+                        "surface-container-highest": "#dce2f7",
+                        "primary-fixed": "#dbe1ff",
+                        "background": "#f9f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "stack-lg": "32px",
+                        "margin-desktop": "48px",
+                        "stack-md": "16px",
+                        "container-max": "1280px",
+                        "stack-sm": "8px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "display": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .option-radio:checked + div {
+            border-color: #003fb1;
+            background-color: #f1f3ff;
+        }
+        .option-radio:checked + div .radio-circle {
+            border-color: #003fb1;
+            background-color: #003fb1;
+        }
+        .option-radio:checked + div .radio-inner {
+            opacity: 1;
+        }
+        
+        /* Math rendering simulation */
+        .math-tex {
+            font-family: "Times New Roman", Times, serif;
+            font-style: italic;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col font-body-md">
+<!-- Top Navigation / Exam Header -->
+<header class="bg-surface shadow-[0_4px_20px_rgba(0,0,0,0.05)] w-full sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
+<!-- Brand & Info -->
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center p-2 rounded-full hover:bg-surface-container-low" title="Pausar y Salir">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">close</span>
+</button>
+<div class="hidden sm:block h-6 w-px bg-outline-variant"></div>
+<div>
+<h1 class="font-headline-md text-headline-md text-primary font-bold">PAES Pro</h1>
+<p class="font-caption text-caption text-on-surface-variant">Ensayo Matemáticas M1 - Forma 124</p>
+</div>
+</div>
+<!-- Timer & Progress -->
+<div class="flex items-center gap-6">
+<!-- Timer -->
+<div class="flex items-center gap-2 bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">timer</span>
+<span class="font-label-md text-label-md font-bold text-on-surface" id="exam-timer">02:14:45</span>
+</div>
+<!-- Simple Actions -->
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center p-2 rounded-full hover:bg-surface-container-low" title="Ayuda">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">help</span>
+</button>
+</div>
+</div>
+<!-- Global Progress Bar (Thick stroke as requested) -->
+<div class="w-full h-2 bg-surface-container-highest">
+<div class="h-full bg-primary" style="width: 1.5%; transition: width 0.3s ease;"></div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-center py-stack-lg px-margin-mobile md:px-margin-desktop w-full max-w-4xl mx-auto">
+<!-- Question Header & Actions -->
+<div class="w-full flex justify-between items-center mb-stack-md">
+<div class="flex items-center gap-3">
+<span class="bg-primary-container text-on-primary-container font-label-md text-label-md px-3 py-1 rounded-full font-bold">
+                    Pregunta 1 de 65
+                </span>
+<span class="font-caption text-caption text-on-surface-variant">Eje: Números</span>
+</div>
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-secondary transition-colors font-label-md text-label-md px-3 py-1.5 rounded-lg border border-outline-variant hover:border-secondary hover:bg-surface-container-low">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">bookmark</span>
+<span class="hidden sm:inline">Marcar para revisar</span>
+</button>
+</div>
+<!-- Question Card (Level 1 Elevation) -->
+<div class="w-full bg-surface-container-lowest border border-outline-variant shadow-[0_4px_20px_rgba(0,0,0,0.05)] rounded-xl p-6 md:p-8 mb-stack-lg">
+<!-- Question Text -->
+<div class="font-body-lg text-body-lg text-on-surface mb-8 leading-relaxed">
+<p class="mb-4">Si <span class="math-tex">a = 2</span> y <span class="math-tex">b = -3</span>, ¿cuál es el valor de la expresión <span class="math-tex">(a - b)^2 - (a + b)^2</span>?</p>
+</div>
+<!-- Options -->
+<div class="space-y-4">
+<!-- Option A -->
+<label class="block relative cursor-pointer group">
+<input class="option-radio sr-only" name="question1" type="radio" value="A"/>
+<div class="flex items-center p-4 border border-outline-variant rounded-lg transition-all duration-200 group-hover:border-primary group-hover:bg-surface-container-low">
+<div class="relative flex items-center justify-center w-6 h-6 mr-4">
+<div class="radio-circle w-6 h-6 rounded-full border-2 border-outline transition-colors duration-200"></div>
+<div class="radio-inner absolute w-2.5 h-2.5 bg-on-primary rounded-full opacity-0 transition-opacity duration-200"></div>
+</div>
+<span class="font-body-md text-body-md font-medium text-on-surface w-8">A)</span>
+<span class="font-body-md text-body-md text-on-surface"><span class="math-tex">-24</span></span>
+</div>
+</label>
+<!-- Option B -->
+<label class="block relative cursor-pointer group">
+<input class="option-radio sr-only" name="question1" type="radio" value="B"/>
+<div class="flex items-center p-4 border border-outline-variant rounded-lg transition-all duration-200 group-hover:border-primary group-hover:bg-surface-container-low">
+<div class="relative flex items-center justify-center w-6 h-6 mr-4">
+<div class="radio-circle w-6 h-6 rounded-full border-2 border-outline transition-colors duration-200"></div>
+<div class="radio-inner absolute w-2.5 h-2.5 bg-on-primary rounded-full opacity-0 transition-opacity duration-200"></div>
+</div>
+<span class="font-body-md text-body-md font-medium text-on-surface w-8">B)</span>
+<span class="font-body-md text-body-md text-on-surface"><span class="math-tex">-5</span></span>
+</div>
+</label>
+<!-- Option C -->
+<label class="block relative cursor-pointer group">
+<input class="option-radio sr-only" name="question1" type="radio" value="C"/>
+<div class="flex items-center p-4 border border-outline-variant rounded-lg transition-all duration-200 group-hover:border-primary group-hover:bg-surface-container-low">
+<div class="relative flex items-center justify-center w-6 h-6 mr-4">
+<div class="radio-circle w-6 h-6 rounded-full border-2 border-outline transition-colors duration-200"></div>
+<div class="radio-inner absolute w-2.5 h-2.5 bg-on-primary rounded-full opacity-0 transition-opacity duration-200"></div>
+</div>
+<span class="font-body-md text-body-md font-medium text-on-surface w-8">C)</span>
+<span class="font-body-md text-body-md text-on-surface"><span class="math-tex">0</span></span>
+</div>
+</label>
+<!-- Option D -->
+<label class="block relative cursor-pointer group">
+<input class="option-radio sr-only" name="question1" type="radio" value="D"/>
+<div class="flex items-center p-4 border border-outline-variant rounded-lg transition-all duration-200 group-hover:border-primary group-hover:bg-surface-container-low">
+<div class="relative flex items-center justify-center w-6 h-6 mr-4">
+<div class="radio-circle w-6 h-6 rounded-full border-2 border-outline transition-colors duration-200"></div>
+<div class="radio-inner absolute w-2.5 h-2.5 bg-on-primary rounded-full opacity-0 transition-opacity duration-200"></div>
+</div>
+<span class="font-body-md text-body-md font-medium text-on-surface w-8">D)</span>
+<span class="font-body-md text-body-md text-on-surface"><span class="math-tex">24</span></span>
+</div>
+</label>
+<!-- Option E -->
+<label class="block relative cursor-pointer group">
+<input class="option-radio sr-only" name="question1" type="radio" value="E"/>
+<div class="flex items-center p-4 border border-outline-variant rounded-lg transition-all duration-200 group-hover:border-primary group-hover:bg-surface-container-low">
+<div class="relative flex items-center justify-center w-6 h-6 mr-4">
+<div class="radio-circle w-6 h-6 rounded-full border-2 border-outline transition-colors duration-200"></div>
+<div class="radio-inner absolute w-2.5 h-2.5 bg-on-primary rounded-full opacity-0 transition-opacity duration-200"></div>
+</div>
+<span class="font-body-md text-body-md font-medium text-on-surface w-8">E)</span>
+<span class="font-body-md text-body-md text-on-surface"><span class="math-tex">26</span></span>
+</div>
+</label>
+</div>
+</div>
+<!-- Navigation Controls -->
+<div class="w-full flex justify-between items-center mt-auto pb-stack-lg">
+<button class="flex items-center gap-2 px-6 py-3 rounded-lg font-label-md text-label-md font-bold text-primary border border-outline-variant opacity-50 cursor-not-allowed bg-surface-container-low" disabled="">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_back</span>
+                Anterior
+            </button>
+<button class="flex items-center gap-2 px-8 py-3 rounded-lg font-label-md text-label-md font-bold bg-primary text-on-primary hover:bg-on-primary-fixed-variant transition-colors shadow-sm">
+                Siguiente
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_forward</span>
+</button>
+</div>
+</main>
+<!-- Navigation suppressed as per rules (Linear/Transactional task-focused view) -->
+<script>
+        // Simple timer logic for visual flair
+        function startTimer(duration, display) {
+            let timer = duration, hours, minutes, seconds;
+            setInterval(function () {
+                hours = parseInt(timer / 3600, 10);
+                minutes = parseInt((timer % 3600) / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                hours = hours < 10 ? "0" + hours : hours;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = hours + ":" + minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    timer = duration;
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            // Start at 2:14:45
+            let timeInSeconds = (2 * 3600) + (14 * 60) + 45;
+            let display = document.querySelector('#exam-timer');
+            startTimer(timeInSeconds, display);
+        };
+    </script>
+</body></html>
